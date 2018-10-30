@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# api keys
+.env
+
 # testing
 /coverage
 
@@ -10,6 +13,7 @@
 /build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local

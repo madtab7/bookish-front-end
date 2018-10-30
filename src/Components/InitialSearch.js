@@ -34,6 +34,7 @@ export default class InitialSearch extends Component{
   //user submits input in form
   handleInputSubmit=(event)=>{
     console.log(this.state)
+    debugger;
   }
 
   ///////LIST FORM SEARCH ///////

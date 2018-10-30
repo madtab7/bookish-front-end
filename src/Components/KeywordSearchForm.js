@@ -9,7 +9,7 @@ const KeywordSearchForm = (props) => {
     <Radio
     name='radioGroup'
     label='author'
-    value='author'
+    value='inauthor'
     onChange={props.handleRadioChange}
     />
     </Form.Field>
@@ -18,7 +18,7 @@ const KeywordSearchForm = (props) => {
     <Radio
     name='radioGroup'
     label='title'
-    value='title'
+    value='intitle'
     onChange={props.handleRadioChange}
     />
     </Form.Field>

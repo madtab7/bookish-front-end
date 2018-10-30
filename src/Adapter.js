@@ -1,1 +1,1 @@
-import React from 'react';
+const GOOGLE_Q_ENDPOINT = ''

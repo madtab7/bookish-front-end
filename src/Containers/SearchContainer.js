@@ -29,7 +29,8 @@ export default class SearchContainer extends Component{
 
   //user submits input in form
     //only registers submit on 2nd enter
-  handleInputSubmit=()=>{
+  handleInputSubmit=(event)=>{
+    event.preventDefault()
     Adapter.getBooksFromQuery(this.state)
     .then(response => response.json())
     .then(data=> {
@@ -48,16 +49,19 @@ export default class SearchContainer extends Component{
     return(
       <div>
       {this.state.searchPerformed ?
-        <div>search results!</div>
+        <SearchResults
+        searchData={this.state.searchData}
+        userInput={this.state.userInput}
+        />
       :
-      <InitialSearch
-      toggleSearchPerformed={this.toggleSearchPerformed}
-      handleInputChange={this.handleInputChange}
-      handleRadioChange={this.handleRadioChange}
-      handleInputSubmit={this.handleInputSubmit}
-      userInput={this.state.userInput}
-      radioSelect={this.state.radioSelect}
-      />
+        <InitialSearch
+        toggleSearchPerformed={this.toggleSearchPerformed}
+        handleInputChange={this.handleInputChange}
+        handleRadioChange={this.handleRadioChange}
+        handleInputSubmit={this.handleInputSubmit}
+        userInput={this.state.userInput}
+        radioSelect={this.state.radioSelect}
+        />
       }
       </div>
     )

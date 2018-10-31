@@ -10,6 +10,7 @@ export default class SearchContainer extends Component{
     userInput:"",
     radioSelect: "",
     listSelect: "",
+    NYTData:[],
     searchData: []
   }
 
@@ -45,10 +46,18 @@ export default class SearchContainer extends Component{
 
   ///////LIST FORM SEARCH ///////
 
-  //handled user selection, need to call Adapter and get data
+  //handle user selection, need to call Adapter and get data
   handleDropdownSelect=(event, data)=>{
     this.setState({
       listSelect: data.value
+    },()=>{
+      Adapter.getBooksFromNYTList(this.state)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          NYTData: data.results.books
+        })
+      })
     })
   }
 

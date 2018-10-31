@@ -1,9 +1,12 @@
 const google_api_key = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
+const nyt_api_key = process.env.REACT_APP_NYT_BOOKS_API_KEY
 
 const GOOGLE_Q_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes?q='
+const NYT_LIST_ENDPOINT = 'https://api.nytimes.com/svc/books/v3/lists/'
 
 export default class Adapter {
 
+  //handle google books api query
   static getBooksFromQuery(stateObj){
     let userString = stateObj.userInput.split(" ").join("-")
     let query;
@@ -15,11 +18,17 @@ export default class Adapter {
         query = "inauthor:"
         break
       default:
-        query = null;
+        query = "";
         break
     }
     const queryInfo = `${query}`+`${userString}`
     return fetch(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
+  }
+
+  //handle nyt best sellers api query
+  static getBooksFromNYTList(stateObj){
+    let listEndpoint = stateObj.listSelect
+    return fetch(`${NYT_LIST_ENDPOINT}`+`${listEndpoint}`+`?api-key=${nyt_api_key}`)
   }
 
 }

@@ -25,11 +25,11 @@ export default class InitialSearch extends Component{
         <br></br>
         <br></br>
         <Button basic color='black' name='keyword' animated='fade' onClick={this.handleButtonClick}>
-          <Button.Content visible> keyword </Button.Content>
+          <Button.Content visible> keywords </Button.Content>
           <Button.Content hidden> GO </Button.Content>
         </Button>
         <Button basic color='black' name='best-sellers' animated='fade' onClick={this.handleButtonClick}>
-          <Button.Content visible> best sellers </Button.Content>
+          <Button.Content visible> best-sellers </Button.Content>
           <Button.Content hidden> GO </Button.Content>
         </Button>
 

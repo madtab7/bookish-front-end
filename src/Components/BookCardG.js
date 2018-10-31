@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react'
 
-const BookCard = ({book}) => {
-  console.log(book.volumeInfo.imageLinks)
+const BookCardG = ({book}) => {
 
   return(
     <Card>
@@ -22,6 +21,6 @@ const BookCard = ({book}) => {
 
 }
 
-export default BookCard
+export default BookCardG
 
 // STATIC IMAGE IN ASSETS FOLDER NOT WORKING <Image src='../Assets/no_cover.png'/>

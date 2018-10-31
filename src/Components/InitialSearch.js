@@ -5,9 +5,7 @@ import KeywordSearchForm from './KeywordSearchForm'
 export default class InitialSearch extends Component{
 
   state={
-    clicked:"",
-    userInput:"",
-    radioSelect: ""
+    clicked:""
   }
 
   handleButtonClick=(event)=>{
@@ -16,28 +14,6 @@ export default class InitialSearch extends Component{
     })
   }
 
-  ///////KEYWORD SEARCH FORM///////
-
-  //user inputs into form
-  handleInputChange=(event)=>{
-    this.setState({
-      userInput: event.target.value
-    })
-  }
-
-  handleRadioChange=(event)=>{
-    this.setState({
-      radioSelect: event.target.innerText
-    })
-  }
-
-  //user submits input in form
-  handleInputSubmit=(event)=>{
-    console.log(this.state)
-    debugger;
-  }
-
-  ///////LIST FORM SEARCH ///////
 
   render(){
     //return to conditionally render select / input option for user
@@ -60,11 +36,11 @@ export default class InitialSearch extends Component{
         <br></br>
         {this.state.clicked === "keyword" ?
           <KeywordSearchForm
-            handleInputChange={this.handleInputChange}
-            handleRadioChange={this.handleRadioChange}
-            handleInputSubmit={this.handleInputSubmit}
-            userInput={this.state.userInput}
-            radioSelect={this.state.radioSelect}
+            handleInputChange={this.props.handleInputChange}
+            handleRadioChange={this.props.handleRadioChange}
+            handleInputSubmit={this.props.handleInputSubmit}
+            userInput={this.propsuserInput}
+            radioSelect={this.props.radioSelect}
           />
         :
         null

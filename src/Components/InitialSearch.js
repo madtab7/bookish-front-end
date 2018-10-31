@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'
 import KeywordSearchForm from './KeywordSearchForm'
+import ListFormSearch from './ListFormSearch'
 
 export default class InitialSearch extends Component{
 
@@ -43,7 +44,15 @@ export default class InitialSearch extends Component{
             radioSelect={this.props.radioSelect}
           />
         :
-        null
+          null
+        }
+
+        {this.state.clicked === "best-sellers" ?
+          <ListFormSearch
+            handleDropdownSelect={this.props.handleDropdownSelect}
+          />
+        :
+          null
         }
 
       </div>

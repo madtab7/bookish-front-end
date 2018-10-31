@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import InitialSearch from '../Components/InitialSearch'
-import SearchResults from '../Components/SearchResults'
+import SearchResultsG from '../Components/SearchResultsG'
 import Adapter from '../Adapter'
 
 export default class SearchContainer extends Component{
@@ -9,6 +9,7 @@ export default class SearchContainer extends Component{
     searchPerformed: false,
     userInput:"",
     radioSelect: "",
+    listSelect: "",
     searchData: []
   }
 
@@ -44,12 +45,19 @@ export default class SearchContainer extends Component{
 
   ///////LIST FORM SEARCH ///////
 
+  //handled user selection, need to call Adapter and get data
+  handleDropdownSelect=(event, data)=>{
+    this.setState({
+      listSelect: data.value
+    })
+  }
+
   render(){
 
     return(
       <div>
       {this.state.searchPerformed ?
-        <SearchResults
+        <SearchResultsG
         searchData={this.state.searchData}
         userInput={this.state.userInput}
         />
@@ -61,6 +69,7 @@ export default class SearchContainer extends Component{
         handleInputSubmit={this.handleInputSubmit}
         userInput={this.state.userInput}
         radioSelect={this.state.radioSelect}
+        handleDropdownSelect={this.handleDropdownSelect}
         />
       }
       </div>

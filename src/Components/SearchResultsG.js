@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BookCard from './BookCard'
 import { Card } from 'semantic-ui-react'
 
-export default class SearchResults extends Component{
+export default class SearchResultsG extends Component{
 
   render(){
     console.log(this.props.searchData)

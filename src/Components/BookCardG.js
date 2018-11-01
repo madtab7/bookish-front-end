@@ -1,19 +1,22 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react'
 
-const BookCardG = ({book}) => {
+const BookCardG = ({book, handleBookClick}) => {
+  // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
+
+  let isbn=book.volumeInfo.industryIdentifiers[0].identifier
 
   return(
-    <Card>
-    <Card.Header style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>
+    <Card onClick={handleBookClick} id={isbn}>
+    <Card.Header id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>
       {book.volumeInfo.authors.map((authorName)=>{
-        return <Card.Meta key={authorName} style={{textAlign:"center"}}>{authorName}</Card.Meta>
+        return <Card.Meta id={isbn} key={authorName} style={{textAlign:"center"}}>{authorName}</Card.Meta>
       })}
     <br></br>
     {book.volumeInfo.imageLinks !== undefined ?
-      <Image src={book.volumeInfo.imageLinks.thumbnail}/>
+      <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail}/>
     :
-      <Image src='http://i.imgur.com/sJ3CT4V.gif'/>
+      <Image id={isbn} src='http://i.imgur.com/sJ3CT4V.gif'/>
     }
     </Card>
   )

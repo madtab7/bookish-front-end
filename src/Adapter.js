@@ -31,4 +31,9 @@ export default class Adapter {
     return fetch(`${NYT_LIST_ENDPOINT}`+`${listEndpoint}`+`?api-key=${nyt_api_key}`)
   }
 
+  //handle google api call from NYT isbn
+  static getGoogleData(isbn){
+    return fetch(`${GOOGLE_Q_ENDPOINT}`+'isbn:'+`${isbn}`+`&key=${google_api_key}`)
+  }
+
 }

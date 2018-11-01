@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InitialSearch from '../Components/InitialSearch'
 import SearchResultsG from '../Components/SearchResultsG'
 import SearchResultsNYT from '../Components/SearchResultsNYT'
+import BookShowPage from '../Components/BookShowPage'
 import Adapter from '../Adapter'
 
 export default class SearchContainer extends Component{
@@ -12,11 +13,11 @@ export default class SearchContainer extends Component{
     radioSelect: "",
     listSelect: "",
     NYTData:[],
-    searchData: []
+    searchData: [],
+    selectedBookData:[]
   }
 
   ///////KEYWORD SEARCH FORM///////
-
   //user inputs into form
   handleInputChange=(event)=>{
     this.setState({
@@ -40,13 +41,12 @@ export default class SearchContainer extends Component{
       this.setState({
         searchData: data.items,
         searchPerformed: "googleQuery"
-      },()=>console.log(this.state.searchData))
+      })
     })
 
   }
 
   ///////LIST FORM SEARCH ///////
-
   //handle user selection, need to call Adapter and get data
   handleDropdownSelect=(event, data)=>{
     this.setState({
@@ -58,9 +58,25 @@ export default class SearchContainer extends Component{
         this.setState({
           NYTData: data.results.books,
           searchPerformed: "NYT"
-        },()=> console.log(this.state))
+        })
       })
     })
+  }
+
+  //// BOOK CLICK to SHOW PAGE ////
+
+  //convert NYT data to google api to standardize
+  handleBookClick=(event)=>{
+    const isbn=event.target.id
+    Adapter.getGoogleData(isbn)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        selectedBookData:data,
+        searchPerformed:"bookClicked"
+      })
+    })
+    //need to add error protection
   }
 
   render(){
@@ -71,23 +87,33 @@ export default class SearchContainer extends Component{
           <SearchResultsG
             searchData={this.state.searchData}
             userInput={this.state.userInput}
+            handleBookClick={this.handleBookClick}
           />
         );
       case "NYT":
         return(
           <SearchResultsNYT
+            NYTData={this.state.NYTData}
+            listSelect={this.state.listSelect}
+            handleBookClick={this.handleBookClick}
           />
         );
+      case "bookClicked":
+        return(
+          <BookShowPage
+            selectedBookData={this.state.selectedBookData.items[0]}
+          />
+        )
       default:
         return(
           <InitialSearch
-          toggleSearchPerformed={this.toggleSearchPerformed}
-          handleInputChange={this.handleInputChange}
-          handleRadioChange={this.handleRadioChange}
-          handleInputSubmit={this.handleInputSubmit}
-          userInput={this.state.userInput}
-          radioSelect={this.state.radioSelect}
-          handleDropdownSelect={this.handleDropdownSelect}
+            toggleSearchPerformed={this.toggleSearchPerformed}
+            handleInputChange={this.handleInputChange}
+            handleRadioChange={this.handleRadioChange}
+            handleInputSubmit={this.handleInputSubmit}
+            userInput={this.state.userInput}
+            radioSelect={this.state.radioSelect}
+            handleDropdownSelect={this.handleDropdownSelect}
           />
         )
     }

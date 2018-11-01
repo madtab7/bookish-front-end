@@ -64,7 +64,6 @@ export default class SearchContainer extends Component{
   }
 
   //// BOOK CLICK to SHOW PAGE ////
-
   //convert NYT data to google api to standardize
   handleBookClick=(event)=>{
     const isbn=event.target.id

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react'
 
+
 const BookCardG = ({book, handleBookClick}) => {
   // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
 
@@ -23,7 +24,6 @@ const BookCardG = ({book, handleBookClick}) => {
 
 
 }
-
 export default BookCardG
 
 // STATIC IMAGE IN ASSETS FOLDER NOT WORKING <Image src='../Assets/no_cover.png'/>

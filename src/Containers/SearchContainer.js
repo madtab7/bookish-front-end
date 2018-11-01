@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import InitialSearch from '../Components/InitialSearch'
 import SearchResultsG from '../Components/SearchResultsG'
+import SearchResultsNYT from '../Components/SearchResultsNYT'
 import Adapter from '../Adapter'
 
 export default class SearchContainer extends Component{
 
   state={
-    searchPerformed: false,
+    searchPerformed:"",
     userInput:"",
     radioSelect: "",
     listSelect: "",
@@ -38,7 +39,7 @@ export default class SearchContainer extends Component{
     .then(data=> {
       this.setState({
         searchData: data.items,
-        searchPerformed: true
+        searchPerformed: "googleQuery"
       },()=>console.log(this.state.searchData))
     })
 
@@ -55,33 +56,40 @@ export default class SearchContainer extends Component{
       .then(response => response.json())
       .then(data => {
         this.setState({
-          NYTData: data.results.books
-        })
+          NYTData: data.results.books,
+          searchPerformed: "NYT"
+        },()=> console.log(this.state))
       })
     })
   }
 
   render(){
 
-    return(
-      <div>
-      {this.state.searchPerformed ?
-        <SearchResultsG
-        searchData={this.state.searchData}
-        userInput={this.state.userInput}
-        />
-      :
-        <InitialSearch
-        toggleSearchPerformed={this.toggleSearchPerformed}
-        handleInputChange={this.handleInputChange}
-        handleRadioChange={this.handleRadioChange}
-        handleInputSubmit={this.handleInputSubmit}
-        userInput={this.state.userInput}
-        radioSelect={this.state.radioSelect}
-        handleDropdownSelect={this.handleDropdownSelect}
-        />
-      }
-      </div>
-    )
+    switch(this.state.searchPerformed){
+      case "googleQuery":
+        return(
+          <SearchResultsG
+            searchData={this.state.searchData}
+            userInput={this.state.userInput}
+          />
+        );
+      case "NYT":
+        return(
+          <SearchResultsNYT
+          />
+        );
+      default:
+        return(
+          <InitialSearch
+          toggleSearchPerformed={this.toggleSearchPerformed}
+          handleInputChange={this.handleInputChange}
+          handleRadioChange={this.handleRadioChange}
+          handleInputSubmit={this.handleInputSubmit}
+          userInput={this.state.userInput}
+          radioSelect={this.state.radioSelect}
+          handleDropdownSelect={this.handleDropdownSelect}
+          />
+        )
+    }
   }
 }

@@ -42,7 +42,9 @@ const ListFormSearch =(props) => {
 
   return(
     <div>
-      <img src="http://lighthousepointlibrary.com/LHP/images/stories/nytimes_bestsellers_logo.jpg" />
+      <img src="http://lighthousepointlibrary.com/LHP/images/stories/nytimes_bestsellers_logo.jpg"
+      alt="book"
+      />
       <br></br>
       <Dropdown
         placeholder="Select a list"

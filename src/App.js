@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import UserPage from './Components/UserPage'
+import NavBar from './Components/NavBar'
+import Login from './Components/Login'
+import Home from './Containers/Home'
+import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 
 class App extends Component {
@@ -27,15 +31,34 @@ class App extends Component {
 
   render() {
 
-    // console.log(process.env.REACT_APP_GOOGLE_BOOKS_API_KEY)
-
 
     return (
       <div className="App">
-        <SearchContainer />
+        <NavBar />
+
+        <Switch>
+          <Route exact path="/"
+            render={()=> <Home />}
+          />
+
+          <Route path="/books"
+            render={()=> <SearchContainer/>}
+          />
+
+          <Route path="/profile"
+            render={()=> <UserContainer/>}
+          />
+
+        </Switch>
+
       </div>
     );
   }
 }
 
 export default App;
+
+
+//   <Route path="/login"
+//     render={()=> <Login/>}
+//   />

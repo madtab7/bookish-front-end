@@ -54,7 +54,7 @@ export default class InternalAdapter {
       })
     })
     .then(r=>r.json())
-    .then(data => {
+    .then(data => { console.log(data.id, userId)
       fetch('http://localhost:3001/api/v1/shelved_books',{
         method: "POST",
         headers:{
@@ -62,11 +62,11 @@ export default class InternalAdapter {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          book: {
+          shelved_book: {
             book_id: data.id,
             user_id: userId,
-            read: true,
-            want_to_read: false
+            read:true,
+            want_to_read:false
           }
         })
       })

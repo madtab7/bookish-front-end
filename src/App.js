@@ -72,7 +72,7 @@ class App extends Component {
           />
 
           <Route path="/books"
-            render={()=> <SearchContainer/>}
+            render={()=> <SearchContainer currentUserData={this.state.currentUserData}/>}
           />
 
           <Route path="/profile"

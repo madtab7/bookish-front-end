@@ -4,6 +4,7 @@ import SearchResultsG from '../Components/SearchResultsG'
 import SearchResultsNYT from '../Components/SearchResultsNYT'
 import BookShowPage from '../Components/BookShowPage'
 import BooksAdapter from '../apis/BooksAdapter'
+import InternalAdapter from '../apis/InternalAdapter'
 
 export default class SearchContainer extends Component{
 
@@ -14,7 +15,9 @@ export default class SearchContainer extends Component{
     listSelect: "",
     NYTData:[],
     searchData: [],
-    selectedBookData:[]
+    selectedBookData:[],
+    readBookData:[],
+    wantToReadBookData:[]
   }
 
   ///////KEYWORD SEARCH FORM///////
@@ -78,6 +81,16 @@ export default class SearchContainer extends Component{
     //need to add error protection
   }
 
+  //READ BUTTON CLICK
+  handleReadClick=(event)=>{
+    const bookData= this.state.selectedBookData.items[0].volumeInfo
+    const userId = this.props.currentUserData.id
+    // console.log(bookData, userId)
+    InternalAdapter.createUserBook(userId, bookData)
+  }
+
+  //WANT TO READ BUTTON CLICK
+
   render(){
 
     switch(this.state.searchPerformed){
@@ -101,6 +114,7 @@ export default class SearchContainer extends Component{
         return(
           <BookShowPage
             selectedBookData={this.state.selectedBookData.items[0]}
+            handleReadClick={this.handleReadClick}
           />
         )
       default:

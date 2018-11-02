@@ -27,7 +27,7 @@ export default class BookShowPage extends Component {
           </Grid.Column>
 
           <Grid.Column width={5}>
-            <Button animated>
+            <Button animated onClick={this.props.handleReadClick}>
               <Button.Content visible>mark as read</Button.Content>
               <Button.Content hidden>
                 <Icon name="checkmark" />

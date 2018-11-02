@@ -86,10 +86,15 @@ export default class SearchContainer extends Component{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
     const userId = this.props.currentUserData.id
     // console.log(bookData, userId)
-    InternalAdapter.createUserBook(userId, bookData)
+    InternalAdapter.createUserBookRead(userId, bookData)
   }
 
   //WANT TO READ BUTTON CLICK
+  handleWantToReadClick=(event)=>{
+    const bookData= this.state.selectedBookData.items[0].volumeInfo
+    const userId = this.props.currentUserData.id
+    InternalAdapter.createUserBookWantToRead(userId, bookData)
+  }
 
   render(){
 
@@ -115,6 +120,7 @@ export default class SearchContainer extends Component{
           <BookShowPage
             selectedBookData={this.state.selectedBookData.items[0]}
             handleReadClick={this.handleReadClick}
+            handleWantToReadClick={this.handleWantToReadClick}
           />
         )
       default:

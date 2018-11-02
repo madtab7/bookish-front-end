@@ -34,7 +34,7 @@ export default class BookShowPage extends Component {
               </Button.Content>
             </Button>
             <br/><br/>
-            <Button animated>
+            <Button animated onClick={this.props.handleWantToReadClick}>
               <Button.Content visible>want to read</Button.Content>
               <Button.Content hidden>
                 <Icon name="book" />

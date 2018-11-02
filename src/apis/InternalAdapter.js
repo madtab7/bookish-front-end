@@ -37,7 +37,7 @@ export default class InternalAdapter {
     })
   }
 
-  static createUserBook(userId, bookData){
+  static createUserBookRead(userId, bookData){
     return fetch('http://localhost:3001/api/v1/books', {
       method: "POST",
       headers:{
@@ -72,4 +72,43 @@ export default class InternalAdapter {
       })
     })
   }
+
+  static createUserBookWantToRead(userId, bookData){
+    return fetch('http://localhost:3001/api/v1/books', {
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        book: {
+          title: bookData.title,
+          author: bookData.authors[0],
+          description: bookData.description,
+          imgURL: bookData.imageLinks.thumbnail
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(data => { console.log(data.id, userId)
+      fetch('http://localhost:3001/api/v1/shelved_books',{
+        method: "POST",
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          shelved_book: {
+            book_id: data.id,
+            user_id: userId,
+            read:false,
+            want_to_read:true
+          }
+        })
+      })
+    })
+  }
+
+
+
 }

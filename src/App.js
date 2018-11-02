@@ -11,40 +11,54 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 class App extends Component {
   state={
-    currentUser:''
+    currentUserData:'',
+    redirect: false
   }
 
-  // TEST LOGIN
-  // componentDidMount=()=>{
-  //   fetch('http://localhost:3001/api/v1/login', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       user: {
-  //         username: "maddyTEST5",
-  //         password: "madtab",
-  //         full_name: "Maddy Tabing",
-  //         avatarURL: "www.something.com"
-  //       }
-  //     })
-  //   })
-  // }
 
   registerUser=(event, userData)=>{
     event.preventDefault();
-    // console.log(JSON.stringify(this.state.newUser))
     InternalAdapter.signUpUser(userData)
+    .then(r => r.json())
+    .then(userData => {
+      this.setState({
+        currentUserData: userData.user,
+        redirect: true
+      })
+    })
+    /// add error messages if invalid
+  }
 
+  loginUser=(event, userData)=>{
+    event.preventDefault();
+    InternalAdapter.loginUser(userData)
+    .then(r => r.json())
+    .then(userData => {
+      this.setState({
+        currentUserData: userData.user,
+        redirect:true
+      },()=> console.log(this.state))
+    })
+    /// add error messages if invalid
   }
 
   render() {
 
-
     return (
       <div className="App">
+
+        {this.state.currentUserData.username === undefined ?
+          <Redirect to ="/login" />
+        :
+          null
+        }
+
+        {this.state.redirect ?
+          <Redirect to="/" />
+        :
+          null
+        }
+
         <NavBar />
 
         <Switch>
@@ -54,7 +68,7 @@ class App extends Component {
 
           <Route path="/login"
             render=
-            {()=> <Login registerUser={this.registerUser}/>}
+            {()=> <Login registerUser={this.registerUser} loginUser={this.loginUser}/>}
           />
 
           <Route path="/books"

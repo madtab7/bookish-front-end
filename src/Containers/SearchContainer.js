@@ -3,7 +3,7 @@ import InitialSearch from '../Components/InitialSearch'
 import SearchResultsG from '../Components/SearchResultsG'
 import SearchResultsNYT from '../Components/SearchResultsNYT'
 import BookShowPage from '../Components/BookShowPage'
-import Adapter from '../Adapter'
+import BooksAdapter from '../apis/BooksAdapter'
 
 export default class SearchContainer extends Component{
 
@@ -35,7 +35,7 @@ export default class SearchContainer extends Component{
     //only registers submit on 2nd enter
   handleInputSubmit=(event)=>{
     event.preventDefault()
-    Adapter.getBooksFromQuery(this.state)
+    BooksAdapter.getBooksFromQuery(this.state)
     .then(response => response.json())
     .then(data=> {
       this.setState({
@@ -52,7 +52,7 @@ export default class SearchContainer extends Component{
     this.setState({
       listSelect: data.value
     },()=>{
-      Adapter.getBooksFromNYTList(this.state)
+      BooksAdapter.getBooksFromNYTList(this.state)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -67,7 +67,7 @@ export default class SearchContainer extends Component{
   //convert NYT data to google api to standardize
   handleBookClick=(event)=>{
     const isbn=event.target.id
-    Adapter.getGoogleData(isbn)
+    BooksAdapter.getGoogleData(isbn)
     .then(response => response.json())
     .then(data => {
       this.setState({

@@ -4,7 +4,7 @@ const nyt_api_key = process.env.REACT_APP_NYT_BOOKS_API_KEY
 const GOOGLE_Q_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes?q='
 const NYT_LIST_ENDPOINT = 'https://api.nytimes.com/svc/books/v3/lists/'
 
-export default class Adapter {
+export default class BooksAdapter {
 
   //handle google books api query
   static getBooksFromQuery(stateObj){

@@ -5,10 +5,14 @@ import Login from './Components/Login'
 import Home from './Containers/Home'
 import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
+import InternalAdapter from './apis/InternalAdapter'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 
 class App extends Component {
+  state={
+    currentUser:''
+  }
 
   // TEST LOGIN
   // componentDidMount=()=>{
@@ -29,6 +33,13 @@ class App extends Component {
   //   })
   // }
 
+  registerUser=(event, userData)=>{
+    event.preventDefault();
+    // console.log(JSON.stringify(this.state.newUser))
+    InternalAdapter.signUpUser(userData)
+
+  }
+
   render() {
 
 
@@ -39,6 +50,11 @@ class App extends Component {
         <Switch>
           <Route exact path="/"
             render={()=> <Home />}
+          />
+
+          <Route path="/login"
+            render=
+            {()=> <Login registerUser={this.registerUser}/>}
           />
 
           <Route path="/books"
@@ -57,8 +73,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-//   <Route path="/login"
-//     render={()=> <Login/>}
-//   />

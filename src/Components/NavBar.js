@@ -14,6 +14,13 @@ const NavBar = (props) => {
 
   return(
     <div id="navBar" style={{position: "relative"}}>
+
+      <div style={{textAlign:"center", marginLeft: "45%"}}>
+        <h1 id="bookish">
+        bookish
+        </h1>
+      </div>
+
       <div style={{textAlign:"right", marginRight:"5%"}}>
         <NavLink
           to='/'

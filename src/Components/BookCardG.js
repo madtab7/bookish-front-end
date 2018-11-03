@@ -1,19 +1,22 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react'
 
-
+//need to map authors so card can handle multiple authors
 const BookCardG = ({book, handleBookClick}) => {
-  // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
 
+  console.log(book)
+  // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
   let isbn=book.volumeInfo.industryIdentifiers[0].identifier
 
   return(
     <Card onClick={handleBookClick} id={isbn}>
     <Card.Header id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>
-      {book.volumeInfo.authors.map((authorName)=>{
-        return <Card.Meta id={isbn} key={authorName} style={{textAlign:"center"}}>{authorName}</Card.Meta>
-      })}
     <br></br>
+    {book.volumeInfo.authors ?
+      <Card.Meta id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.authors[0]}</Card.Meta>
+    :
+      null
+    }
     {book.volumeInfo.imageLinks !== undefined ?
       <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail}/>
     :

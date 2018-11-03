@@ -76,7 +76,7 @@ class App extends Component {
           />
 
           <Route path="/profile"
-            render={()=> <UserContainer/>}
+            render={()=> <UserContainer currentUserData={this.state.currentUserData}/>}
           />
 
         </Switch>

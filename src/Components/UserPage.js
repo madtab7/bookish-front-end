@@ -5,9 +5,10 @@ export default class UserPage extends Component{
 
   render(){
     return(
-      <Grid columns={2}>
+      <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%"}}>
         <Grid.Column width={5}>
-          hello
+          <img src={this.props.currentUserData.avatarURL} id="avatarImg"/>
+          <h2 id="subhead" style={{textAlign:"left"}}>{this.props.currentUserData.username}</h2>
         </Grid.Column>
 
         <Grid.Column width={10}>

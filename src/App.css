@@ -34,3 +34,10 @@
   width: 100%;
   height: 80%;
 }
+
+#avatarImg {
+  margin-right : auto;
+  margin-left : auto;
+  min-width : 150px;
+  max-width : 150px;
+}

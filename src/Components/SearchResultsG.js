@@ -3,7 +3,8 @@ import BookCardG from './BookCardG'
 import { Card } from 'semantic-ui-react'
 
 const SearchResultsG =(props)=>{
-
+console.log(props)
+// debugger;
   return(
     <div>
     <h2>Top results for '{props.userInput}'</h2>

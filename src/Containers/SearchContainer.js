@@ -37,14 +37,13 @@ export default class SearchContainer extends Component{
   //user submits input in form
     //only registers submit on 2nd enter
   handleInputSubmit=(event)=>{
-    event.preventDefault()
     BooksAdapter.getBooksFromQuery(this.state)
     .then(response => response.json())
     .then(data=> {
       this.setState({
         searchData: data.items,
         searchPerformed: "googleQuery"
-      })
+      },()=>console.log(this.state.searchData))
     })
 
   }

@@ -109,6 +109,34 @@ export default class InternalAdapter {
     })
   }
 
+  // get users shelved books
+  static getUserShevedBooks(userId){
+    return fetch(`http://localhost:3001/api/v1/shelved_books?user_id=${userId}`)
+    .then(r=>r.json())
+  }
+
+  // update user bookshelf
+  static updateUserBookshelfToRead(bookId){
+    return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
+      method: "PATCH",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        shelved_book:{
+          read: true,
+          want_to_read: false
+        }
+      })
+    })
+  }
+
+  static updateUserBookshelfToRemove(bookId){
+    return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
+      method: "DELETE"
+    })
+  }
 
 
 }

@@ -14,7 +14,7 @@ const BookCardG = ({book, handleBookClick}) => {
     isbn = isbn13.identifier
   } else {
     isbn = 1
-  }
+  }   
   // add error protection for non-13 digit isbn numbers
 
   console.log(isbn)

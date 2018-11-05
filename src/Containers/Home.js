@@ -7,9 +7,6 @@ import Bookshelf from '../images/bookshelf.jpg'
 
 export default class Home extends Component{
 
-  handleClick=(event)=>{
-    console.log(event.target.innerText)
-  }
 
   render(){
     //need to apply background image with id=home
@@ -25,15 +22,15 @@ export default class Home extends Component{
 
         <Grid columns={2}>
           <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
-            <Button size="massive" name="books" onClick={this.handleClick}>
-              <Link to="/books">
+            <Button size="massive" name="books">
+              <Link to="/books" style={{color:"black"}}>
                 <h1 className="subhead">find a book</h1>
               </Link>
             </Button>
           </Grid.Column>
           <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
-            <Button size="massive" name="profile" onClick={this.handleClick}>
-              <Link to="/profile">
+            <Button size="massive" name="profile">
+              <Link to="/profile" style={{color:"black"}}>
                 <h1 className="subhead">see my bookshelf</h1>
               </Link>
             </Button>

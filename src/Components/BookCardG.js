@@ -5,9 +5,19 @@ import { Card, Image } from 'semantic-ui-react'
 const BookCardG = ({book, handleBookClick}) => {
 
   console.log(book)
-  // console.log(book.volumeInfo.industryIdentifiers[0].identifier)
-  let isbn=book.volumeInfo.industryIdentifiers[0].identifier
 
+  let isbn;
+
+  let isbn13 = book.volumeInfo.industryIdentifiers.find((isbn)=>{return isbn.type==="ISBN_13"})
+
+  if(isbn13){
+    isbn = isbn13.identifier
+  } else {
+    isbn = 1
+  }
+  // add error protection for non-13 digit isbn numbers
+
+  console.log(isbn)
   return(
     <Card onClick={handleBookClick} id={isbn}>
     <Card.Header id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>

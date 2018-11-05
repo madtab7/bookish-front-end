@@ -10,7 +10,7 @@ const SearchResultsNYT=(props)=>{
 
   return(
     <div>
-      <h2>Best-sellers for "{nameCategory(props.listSelect)}"</h2>
+      <h2 className="subead">Best-sellers for "{nameCategory(props.listSelect)}"</h2>
       <Card.Group itemsPerRow={5} style={{marginLeft:"50px", marginRight:"50px", marginTop:"30px", marginBottom:"30px"}}>
         {props.NYTData.map((book)=>{
           return <BookCardNYT key={book.primary_isbn10} book={book} handleBookClick={props.handleBookClick}/>

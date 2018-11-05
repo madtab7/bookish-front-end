@@ -33,23 +33,23 @@ export default class BookShowPage extends Component {
 
           <Grid.Column width={5}>
             <Button animated onClick={this.props.handleReadClick}>
-              <Button.Content visible>mark as read</Button.Content>
+              <Button.Content visible><h2 className="subhead">mark as read</h2></Button.Content>
               <Button.Content hidden>
                 <Icon name="checkmark" />
               </Button.Content>
             </Button>
             <br/><br/>
             <Button animated onClick={this.props.handleWantToReadClick}>
-              <Button.Content visible>want to read</Button.Content>
+              <Button.Content visible><h2 className="subhead">want to read</h2></Button.Content>
               <Button.Content hidden>
                 <Icon name="book" />
               </Button.Content>
             </Button>
             <br/><br/>
             <Button animated onClick={this.props.handlePurchaseClick}>
-              <Button.Content visible>purchase link</Button.Content>
+              <Button.Content visible><h2 className="subhead">purchase</h2></Button.Content>
               <Button.Content hidden>
-                <Icon name="dollar" />
+                <Icon name="amazon" />
               </Button.Content>
             </Button>
           </Grid.Column>
@@ -72,7 +72,7 @@ export default class BookShowPage extends Component {
 
       </Grid>
 
-      <Button onClick={this.goBack}> back to home </Button>
+      <Button onClick={this.goBack}><h2 className="subhead">back to home </h2></Button>
       </Container>
     )
   }

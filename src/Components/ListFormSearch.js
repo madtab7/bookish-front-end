@@ -41,9 +41,10 @@ const listOption= [
 const ListFormSearch =(props) => {
 
   return(
-    <div>
+    <div style={{padding:"2%"}}>
       <img src="http://lighthousepointlibrary.com/LHP/images/stories/nytimes_bestsellers_logo.jpg"
       alt="book"
+      style={{borderRadius:"8px"}}
       />
       <br></br>
       <Dropdown

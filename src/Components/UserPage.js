@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Card } from 'semantic-ui-react'
+import { Grid, Card, Divider, Segment } from 'semantic-ui-react'
 import BookCardUser from './BookCardUser'
 import InternalAdapter from '../apis/InternalAdapter'
 
@@ -61,9 +61,8 @@ export default class UserPage extends Component{
     return(
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%"}}>
         <Grid.Column width={5}>
-          <img src={this.props.currentUserData.avatarURL} id="avatarImg"/>
+          <img src={this.props.currentUserData.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
         </Grid.Column>
-
 
         <Grid.Column width={10}>
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf</h1>
@@ -73,6 +72,8 @@ export default class UserPage extends Component{
                   return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
                 })}
             </Card.Group>
+
+        <Divider />
 
           <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()})</h2>
             <Card.Group itemsPerRow={4}>

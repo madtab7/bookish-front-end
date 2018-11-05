@@ -7,7 +7,11 @@ import BackgroundURL from '../images/book1.jpg'
 const LoginForm = (props) => {
 
   return(
-    <Form style={{background:"rgba(255,255,255,0.3)", width:"30%", padding:"5%"}}>
+    <Form style={{
+      background:"rgba(255,255,255,0.3)",
+      width:"40%",
+      padding:"5%",
+      borderRadius:"25px"}}>
       <Form.Input
         fluid label="Username"
         name="username"
@@ -23,7 +27,7 @@ const LoginForm = (props) => {
         value={props.password}
         onChange={props.handleLoginInputChange}
       />
-      <Button type="submit" onClick={props.handleUserLogin}><h2 className="subhead">Login</h2></Button>
+      <Button style={{color:"black"}} type="submit" onClick={props.handleUserLogin}><h2 className="subhead">Login</h2></Button>
     </Form>
   )
 
@@ -32,7 +36,11 @@ const LoginForm = (props) => {
 const SignUpForm = (props) => {
 
   return(
-    <Form style={{background:"rgba(255,255,255,0.3)", width:"30%", padding:"5%"}}>
+    <Form style={{
+      background:"rgba(255,255,255,0.3)",
+      width:"40%",
+      padding:"5%",
+      borderRadius:"25px"}}>
       <Form.Input
         fluid label="Full name"
         name="full_name"
@@ -62,7 +70,7 @@ const SignUpForm = (props) => {
         value={props.password}
         onChange={props.handleNewUserInputChange}
       />
-      <Button type="submit" onClick={props.handleNewUserSubmit}><h2 className="subhead">Join</h2></Button>
+      <Button style={{color:"black"}} type="submit" onClick={props.handleNewUserSubmit}><h2 className="subhead">Join</h2></Button>
     </Form>
   )
 
@@ -132,12 +140,12 @@ class Login extends Component{
       <Grid center columns={1} rows={2} style={{marginTop:"0%", marginLeft:"30%"}}>
         <Grid.Row width={10} style={{position:"relative", marginTop:"20%"}}>
 
-        <Button size="massive" animated id="new" onClick={this.handleButtonClick}>
+        <Button style={{color:"black"}} size="massive" animated id="new" onClick={this.handleButtonClick}>
           <Button.Content visible><h2 className="subhead" id="new">New User</h2></Button.Content>
           <Button.Content hidden><h2 className="subhead" id="new">Get Started</h2></Button.Content>
         </Button>
 
-        <Button size="massive" animated id="existing" onClick={this.handleButtonClick}>
+        <Button style={{color:"black"}} size="massive" animated id="existing" onClick={this.handleButtonClick}>
           <Button.Content visible><h2 className="subhead" id="existing">Existing User</h2></Button.Content>
           <Button.Content hidden><h2 className="subhead" id="existing">Sign In</h2></Button.Content>
         </Button>

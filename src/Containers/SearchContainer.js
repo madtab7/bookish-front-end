@@ -95,6 +95,13 @@ export default class SearchContainer extends Component{
     InternalAdapter.createUserBookWantToRead(userId, bookData)
   }
 
+  //PURCHASE BUTTON CLICK
+  handlePurchaseClick=(event)=>{
+    const bookData= this.state.selectedBookData.items[0].volumeInfo
+    let isbn= bookData.industryIdentifiers[1].identifier
+    window.open(`${BooksAdapter.getAmazonLink(isbn)}`)
+  }
+
   render(){
 
     switch(this.state.searchPerformed){
@@ -120,6 +127,7 @@ export default class SearchContainer extends Component{
             selectedBookData={this.state.selectedBookData.items[0]}
             handleReadClick={this.handleReadClick}
             handleWantToReadClick={this.handleWantToReadClick}
+            handlePurchaseClick={this.handlePurchaseClick}
           />
         )
       default:

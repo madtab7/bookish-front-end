@@ -3,6 +3,7 @@ import SearchContainer from './SearchContainer';
 import UserContainer from './UserContainer';
 import { Container, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import Bookshelf from '../images/bookshelf.jpg'
 
 export default class Home extends Component{
 
@@ -13,20 +14,27 @@ export default class Home extends Component{
   render(){
     //need to apply background image with id=home
     return(
-      <div id="home">
+      <div style={{
+        backgroundImage:`url(${Bookshelf})`,
+        marginTop:"1.1%",
+        backgroundRepeat:"no-repeat",
+        backgroundSize:"cover",
+        width: "100%",
+        height:"800px"
+      }}>
 
-        <Grid columns={2} style={{marginTop:"10%"}}>
-          <Grid.Column style={{textAlign:"center"}}>
+        <Grid columns={2}>
+          <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
             <Button size="massive" name="books" onClick={this.handleClick}>
               <Link to="/books">
-                <h1 id="subhead">find a book</h1>
+                <h1 className="subhead">find a book</h1>
               </Link>
             </Button>
           </Grid.Column>
-          <Grid.Column style={{textAlign:"center"}}>
+          <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
             <Button size="massive" name="profile" onClick={this.handleClick}>
               <Link to="/profile">
-                <h1 id="subhead">see my bookshelf</h1>
+                <h1 className="subhead">see my bookshelf</h1>
               </Link>
             </Button>
           </Grid.Column>
@@ -36,5 +44,3 @@ export default class Home extends Component{
     )
   }
 }
-
-// <h1 id="subhead" name="profile">see my bookshelf</h1>

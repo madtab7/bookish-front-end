@@ -38,4 +38,10 @@ export default class BooksAdapter {
     return fetch(`${GOOGLE_Q_ENDPOINT}`+'isbn:'+`${isbn}`+`&key=${google_api_key}`)
   }
 
+  //handle amazon link for purchase
+  static getAmazonLink(isbn){
+    return (`https://www.amazon.com/gp/search/ref=sr_adv_b/?search-alias=stripbooks&unfiltered=1&field-keywords=&field-author=&field-title=&field-isbn=${isbn}&field-publisher=&node=&field-p_n_condition-type=&p_n_feature_browse-bin=&field-age_range=&field-language=&field-dateop=During&field-datemod=&field-dateyear=&sort=relevanceexprank&Adv-Srch-Books-Submit.x=31&Adv-Srch-Books-Submit.y=10`);
+
+  }
+
 }

@@ -3,6 +3,11 @@ import { Container, Header, Grid, Button, Icon } from 'semantic-ui-react';
 
 export default class BookShowPage extends Component {
 
+  goBack=()=>{
+    window.history.back()
+  }
+
+
   render(){
 
     return(
@@ -41,7 +46,7 @@ export default class BookShowPage extends Component {
               </Button.Content>
             </Button>
             <br/><br/>
-            <Button animated>
+            <Button animated onClick={this.props.handlePurchaseClick}>
               <Button.Content visible>purchase link</Button.Content>
               <Button.Content hidden>
                 <Icon name="dollar" />
@@ -66,6 +71,8 @@ export default class BookShowPage extends Component {
         </Grid.Row>
 
       </Grid>
+
+      <Button onClick={this.goBack}> back to home </Button>
       </Container>
     )
   }

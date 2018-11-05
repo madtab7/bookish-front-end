@@ -48,6 +48,13 @@ export default class UserPage extends Component{
     //not triggering re render
   }
 
+  countWantToRead=()=>{
+    return this.state.wantToReadBooks.length
+  }
+
+  countRead=()=>{
+    return this.state.readBooks.length
+  }
 
   render(){
 
@@ -59,15 +66,15 @@ export default class UserPage extends Component{
 
 
         <Grid.Column width={10}>
-        <h1 id="subhead" style={{textAlign:"left"}}>{this.props.currentUserData.username}'s Bookshelf</h1>
-          <h2 id="subhead">WANT TO READ</h2>
+        <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf</h1>
+          <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.countWantToRead()})</h2>
             <Card.Group itemsPerRow={4}>
                 {this.state.wantToReadBooks.map((book)=>{
                   return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
                 })}
             </Card.Group>
 
-          <h2 id="subhead">READ</h2>
+          <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()})</h2>
             <Card.Group itemsPerRow={4}>
                 {this.state.readBooks.map((book)=>{
                   return <BookCardUser key={book.id} book={book}/>

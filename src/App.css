@@ -19,7 +19,7 @@
   border-bottom: 2px solid black;
 }
 
-#subhead {
+.subhead {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 2px;
   font-size: 1em;

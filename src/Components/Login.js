@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Grid, Form, Button, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import InternalAdapter from '../apis/InternalAdapter'
+import BackgroundURL from '../images/book1.jpg'
 
 const LoginForm = (props) => {
 
   return(
-    <Form>
+    <Form style={{background:"rgba(255,255,255,0.3)", width:"30%", padding:"5%"}}>
       <Form.Input
         fluid label="Username"
         name="username"
@@ -22,7 +23,7 @@ const LoginForm = (props) => {
         value={props.password}
         onChange={props.handleLoginInputChange}
       />
-      <Button type="submit" basic color='black' onClick={props.handleUserLogin}>Login</Button>
+      <Button type="submit" onClick={props.handleUserLogin}><h2 className="subhead">Login</h2></Button>
     </Form>
   )
 
@@ -31,7 +32,7 @@ const LoginForm = (props) => {
 const SignUpForm = (props) => {
 
   return(
-    <Form>
+    <Form style={{background:"rgba(255,255,255,0.3)", width:"30%", padding:"5%"}}>
       <Form.Input
         fluid label="Full name"
         name="full_name"
@@ -61,7 +62,7 @@ const SignUpForm = (props) => {
         value={props.password}
         onChange={props.handleNewUserInputChange}
       />
-      <Button type="submit" basic color='black' onClick={props.handleNewUserSubmit}>Join</Button>
+      <Button type="submit" onClick={props.handleNewUserSubmit}><h2 className="subhead">Join</h2></Button>
     </Form>
   )
 
@@ -118,21 +119,31 @@ class Login extends Component{
   }
 
   render(){
-
     return(
-      <Grid column={1} style={{marginLeft:"30%", marginRight:"30%", marginTop:"5%"}}>
-        <Grid.Column width={10} style={{position:"relative"}}>
+      <div style={{
+        backgroundImage:`url(${BackgroundURL})`,
+        marginTop:"0%",
+        backgroundRepeat:"no-repeat",
+        // backgroundPosition:"center",
+        backgroundSize:"cover",
+        width: "100%",
+        height:"800px"
+      }}>
+      <Grid center columns={1} rows={2} style={{marginTop:"0%", marginLeft:"30%"}}>
+        <Grid.Row width={10} style={{position:"relative", marginTop:"20%"}}>
 
-        <Button animated onClick={this.handleButtonClick}>
-          <Button.Content visible>New User</Button.Content>
-          <Button.Content id="new" hidden>Get Started</Button.Content>
+        <Button size="massive" animated id="new" onClick={this.handleButtonClick}>
+          <Button.Content visible><h2 className="subhead" id="new">New User</h2></Button.Content>
+          <Button.Content hidden><h2 className="subhead" id="new">Get Started</h2></Button.Content>
         </Button>
 
-        <Button animated onClick={this.handleButtonClick}>
-          <Button.Content visible>Existing User</Button.Content>
-          <Button.Content id="existing" hidden>SignIn</Button.Content>
+        <Button size="massive" animated id="existing" onClick={this.handleButtonClick}>
+          <Button.Content visible><h2 className="subhead" id="existing">Existing User</h2></Button.Content>
+          <Button.Content hidden><h2 className="subhead" id="existing">Sign In</h2></Button.Content>
         </Button>
+        </Grid.Row>
 
+        <Grid.Row width={10} style={{position:"relative"}}>
         {this.state.typeUser === "new" ?
         <SignUpForm
           handleNewUserInputChange={this.handleNewUserInputChange}
@@ -159,8 +170,9 @@ class Login extends Component{
         null
         }
 
-        </Grid.Column>
+        </Grid.Row>
       </Grid>
+      </div>
     )
   }
 

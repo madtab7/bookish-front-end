@@ -17,4 +17,6 @@ console.log(props)
   )
 }
 
+    
+
 export default SearchResultsG

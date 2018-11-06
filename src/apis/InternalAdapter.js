@@ -101,7 +101,7 @@ export default class InternalAdapter {
           shelved_book: {
             book_id: data.id,
             user_id: userId,
-            read:false,
+            read: false,
             want_to_read:true
           }
         })
@@ -136,6 +136,34 @@ export default class InternalAdapter {
     return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
       method: "DELETE"
     })
+  }
+
+  static getAllUsers(){
+    return fetch(`http://localhost:3001/api/v1/users`)
+    .then(r=>r.json())
+  }
+
+  static createFriendship(userId, friendId){
+    return fetch('http://localhost:3001/api/v1/friendships', {
+      method: "POST",
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        friendship: {
+          user_id: 3,
+          friend_id: 1
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(data => console.log(data))
+  }
+
+  static getUserFriends(userId){
+    return fetch(`http://localhost:3001/api/v1/friendships?user_id=${userId}`)
+    .then(r=>r.json())
   }
 
 

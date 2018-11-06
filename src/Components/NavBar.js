@@ -46,6 +46,14 @@ const NavBar = (props) => {
           <Icon name="user" />
         </NavLink>
 
+        <NavLink
+          to='/community'
+          exact style={link}
+          activeStyle={activeLink}
+        >
+          <Icon name="globe" />
+        </NavLink>
+
 
       </div>
     </div>

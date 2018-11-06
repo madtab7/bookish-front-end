@@ -6,15 +6,17 @@ const BookCardG = ({book, handleBookClick}) => {
 
   console.log(book)
 
-  let isbn;
+  let isbn = book.volumeInfo.industryIdentifiers[0].identifier
 
-  let isbn13 = book.volumeInfo.industryIdentifiers.find((isbn)=>{return isbn.type==="ISBN_13"})
-
-  if(isbn13){
-    isbn = isbn13.identifier
-  } else {
-    isbn = 1
-  }   
+  // let isbn;
+  //
+  // let isbn13 = book.volumeInfo.industryIdentifiers.find((isbn)=>{return isbn.type==="ISBN_13"})
+  //
+  // if(isbn13){
+  //   isbn = isbn13.identifier
+  // } else {
+  //   isbn = 1
+  // }
   // add error protection for non-13 digit isbn numbers
 
   console.log(isbn)

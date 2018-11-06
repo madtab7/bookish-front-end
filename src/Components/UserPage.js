@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Card, Divider, Segment } from 'semantic-ui-react'
 import BookCardUser from './BookCardUser'
+import FriendIcon from './FriendIcon'
 import InternalAdapter from '../apis/InternalAdapter'
 
 export default class UserPage extends Component{
@@ -8,15 +9,16 @@ export default class UserPage extends Component{
   state = {
     userBooks:[],
     wantToReadBooks:[],
-    readBooks:[]
+    readBooks:[],
+    userFriends:[]
   }
 
   ///NEED TO REFACTOR
   componentDidMount=()=>{
-    this.getUserBookData()
+    this.getUserData()
   }
 
-  getUserBookData=()=>{
+  getUserData=()=>{
     let userId = this.props.currentUserData.id
     InternalAdapter.getUserShevedBooks(userId)
     .then(userBooks => {
@@ -32,6 +34,12 @@ export default class UserPage extends Component{
       this.setState({
         wantToReadBooks,
         readBooks
+      })
+    })
+    InternalAdapter.getUserFriends(userId)
+    .then(userFriends => {
+      this.setState({
+        userFriends
       })
     })
   }
@@ -60,8 +68,16 @@ export default class UserPage extends Component{
 
     return(
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%"}}>
-        <Grid.Column width={5}>
-          <img src={this.props.currentUserData.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
+        <Grid.Column width={5} rows={2}>
+          <Grid.Row>
+            <img src={this.props.currentUserData.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
+          </Grid.Row>
+
+          <Grid.Row>
+            {this.state.userFriends.map((friend)=>{
+              return <FriendIcon key={friend.id} friend={friend.friend}/>
+            })}
+          </Grid.Row>
         </Grid.Column>
 
         <Grid.Column width={10}>

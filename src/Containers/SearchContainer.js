@@ -98,7 +98,9 @@ export default class SearchContainer extends Component{
   //PURCHASE BUTTON CLICK
   handlePurchaseClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
-    let isbn= bookData.industryIdentifiers[1].find((isbn)=>{return isbn.type==="ISBN_10"}).identifier
+    // fix isbn number to query for isbn10
+    // let isbn= bookData.industryIdentifiers[1].find((isbn)=>{return isbn.type==="ISBN_10"}).identifier
+    let isbn = bookData.industryIdentifiers[1].identifier
     window.open(`${BooksAdapter.getAmazonLink(isbn)}`)
   }
 

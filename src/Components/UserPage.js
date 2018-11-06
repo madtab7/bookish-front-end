@@ -45,7 +45,6 @@ export default class UserPage extends Component{
   }
 
   handleUpdateBook=(event)=>{
-    console.log(event.target.parentElement.name)
     let bookId = event.target.parentElement.id
     if(event.target.parentElement.name === "read"){
       InternalAdapter.updateUserBookshelfToRead(bookId)
@@ -64,6 +63,10 @@ export default class UserPage extends Component{
     return this.state.readBooks.length
   }
 
+  countFriends=()=>{
+    return this.state.userFriends.length
+  }
+
   render(){
 
     return(
@@ -74,6 +77,7 @@ export default class UserPage extends Component{
           </Grid.Row>
 
           <Grid.Row>
+            <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>Friends({this.countFriends()})</h3>
             {this.state.userFriends.map((friend)=>{
               return <FriendIcon key={friend.id} friend={friend.friend}/>
             })}

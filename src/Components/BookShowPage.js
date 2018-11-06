@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
 import { Container, Header, Grid, Button, Icon } from 'semantic-ui-react';
+import FriendIcon from './FriendIcon'
 
 export default class BookShowPage extends Component {
+
+  state={
+    showUserFriendsList: false
+  }
 
   goBack=()=>{
     window.history.back()
   }
 
 
+  handleRecc=()=>{
+    this.setState({
+      showUserFriendsList: true
+    })
+  }
+
   render(){
 
     return(
       <Container style={{marginLeft:"70px", marginRight:"70px", marginTop:"30px", marginBottom:"30px"}}>
       <Grid>
-        <Grid.Row columns={3}>
+        <Grid.Row columns={4}>
 
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <img src={this.props.selectedBookData.volumeInfo.imageLinks.thumbnail} alt="book"/>
           </Grid.Column>
 
@@ -31,7 +42,7 @@ export default class BookShowPage extends Component {
             })}
           </Grid.Column>
 
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <Button animated onClick={this.props.handleReadClick}>
               <Button.Content visible><h2 className="subhead">mark as read</h2></Button.Content>
               <Button.Content hidden>
@@ -39,6 +50,7 @@ export default class BookShowPage extends Component {
               </Button.Content>
             </Button>
             <br/><br/>
+
             <Button animated onClick={this.props.handleWantToReadClick}>
               <Button.Content visible><h2 className="subhead">want to read</h2></Button.Content>
               <Button.Content hidden>
@@ -46,12 +58,35 @@ export default class BookShowPage extends Component {
               </Button.Content>
             </Button>
             <br/><br/>
+
+            <Button animated onClick={this.handleRecc}>
+              <Button.Content visible><h2 className="subhead">recommend</h2></Button.Content>
+              <Button.Content hidden>
+                <Icon name="thumbs up" />
+              </Button.Content>
+            </Button>
+            <br/><br/>
+
             <Button animated onClick={this.props.handlePurchaseClick}>
               <Button.Content visible><h2 className="subhead">purchase</h2></Button.Content>
               <Button.Content hidden>
                 <Icon name="amazon" />
               </Button.Content>
             </Button>
+          </Grid.Column>
+
+          <Grid.Column width={2}>
+            {this.state.showUserFriendsList ?
+              this.props.userFriends.map((friend)=>{
+                return (
+                  <div id={friend.friend.id} onClick={this.props.handleRecommendClick}>
+                  <FriendIcon id={friend.friend.id} key={friend.friend.id} friend={friend.friend} />
+                  </div>
+                )
+              })
+            :
+              null
+            }
           </Grid.Column>
 
         </Grid.Row>
@@ -72,6 +107,7 @@ export default class BookShowPage extends Component {
 
       </Grid>
 
+      <br/><br/><br/>
       <Button onClick={this.goBack}><h2 className="subhead">back to home </h2></Button>
       </Container>
     )

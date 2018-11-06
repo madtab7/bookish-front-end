@@ -17,7 +17,8 @@ export default class SearchContainer extends Component{
     searchData: [],
     selectedBookData:[],
     readBookData:[],
-    wantToReadBookData:[]
+    wantToReadBookData:[],
+    userFriends:[]
   }
 
   ///////KEYWORD SEARCH FORM///////
@@ -104,6 +105,24 @@ export default class SearchContainer extends Component{
     window.open(`${BooksAdapter.getAmazonLink(isbn)}`)
   }
 
+  //RECOMMEND BUTTON CLICK
+  handleRecommendClick=(event)=>{
+    const bookData = this.state.selectedBookData.items[0].volumeInfo
+    const userId = this.props.currentUserData.id
+    const friendId = event.target.id
+    InternalAdapter.createBookUserRecommends(userId, friendId, bookData)
+  }
+
+  componentDidMount=()=>{
+    const userId = this.props.currentUserData.id
+    InternalAdapter.getUserFriends(userId)
+    .then(userFriends => {
+      this.setState({
+        userFriends
+      })
+    })
+  }
+
   render(){
 
     switch(this.state.searchPerformed){
@@ -130,6 +149,8 @@ export default class SearchContainer extends Component{
             handleReadClick={this.handleReadClick}
             handleWantToReadClick={this.handleWantToReadClick}
             handlePurchaseClick={this.handlePurchaseClick}
+            handleRecommendClick={this.handleRecommendClick}
+            userFriends={this.state.userFriends}
           />
         )
       default:

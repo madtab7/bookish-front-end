@@ -17,6 +17,9 @@ export default class CommunityPage extends Component{
     })
   }
 
+
+  // ONLY SHOW ADD FRIEND ICON IF THEY AREN"T FRIENDS
+
   render(){
 
     return(
@@ -30,7 +33,7 @@ export default class CommunityPage extends Component{
               <br/>
               <span>{user.full_name}</span>
               <br/>
-              <Icon name="add user" />
+              <Icon id={user.id} name="add user" onClick={this.props.handleAddFriendClick} />
               <br/>
               <br/>
               <br/>

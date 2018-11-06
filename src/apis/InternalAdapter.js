@@ -132,6 +132,7 @@ export default class InternalAdapter {
     })
   }
 
+//remove book from users shelf
   static updateUserBookshelfToRemove(bookId){
     return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
       method: "DELETE"
@@ -143,6 +144,7 @@ export default class InternalAdapter {
     .then(r=>r.json())
   }
 
+
   static createFriendship(userId, friendId){
     return fetch('http://localhost:3001/api/v1/friendships', {
       method: "POST",
@@ -152,18 +154,56 @@ export default class InternalAdapter {
       },
       body: JSON.stringify({
         friendship: {
-          user_id: 3,
-          friend_id: 1
+          user_id: userId,
+          friend_id: friendId
         }
       })
     })
-    .then(r=>r.json())
-    .then(data => console.log(data))
   }
 
   static getUserFriends(userId){
     return fetch(`http://localhost:3001/api/v1/friendships?user_id=${userId}`)
     .then(r=>r.json())
+  }
+
+//create book user recommended
+  static createBookUserRecommends(userId, friendId, bookData){
+    console.log(userId, friendId)
+    return fetch('http://localhost:3001/api/v1/books', {
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        book: {
+          title: bookData.title,
+          author: bookData.authors[0],
+          description: bookData.description,
+          imgURL: bookData.imageLinks.thumbnail
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(data => {
+      fetch('http://localhost:3001/api/v1/shelved_books',{
+        method: "POST",
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          shelved_book: {
+            book_id: data.id,
+            user_id: userId,
+            read:false,
+            want_to_read:false,
+            recommended: true,
+            friend_id: friendId
+          }
+        })
+      })
+    })
   }
 
 

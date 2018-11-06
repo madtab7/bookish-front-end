@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Card, Divider, Segment } from 'semantic-ui-react'
+import { Grid, Card, Divider, Segment, Icon } from 'semantic-ui-react'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
 import InternalAdapter from '../apis/InternalAdapter'
@@ -67,7 +67,7 @@ export default class UserPage extends Component{
     } else if (event.target.parentElement.name === "remove"){
       InternalAdapter.updateUserBookshelfToRemove(bookId)
     }
-    this.getUserBookData()
+    this.getUserData()
     //not triggering re render
   }
 
@@ -112,7 +112,7 @@ export default class UserPage extends Component{
 
         <Grid.Column width={10}>
 
-        <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf</h1>
+        <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>
           {this.state.wantToReadBooks ?
             <Segment>
@@ -146,7 +146,7 @@ export default class UserPage extends Component{
 
           {this.state.booksRecommendedToUser ?
             <Segment>
-            <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()})</h2>
+            <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()})</h2>
             <Card.Group itemsPerRow={4}>
             {this.state.booksRecommendedToUser.map((book)=>{
               return <BookCardUser key={book.id} book={book}/>

@@ -24,10 +24,11 @@ export default class CommunityPage extends Component{
 
     return(
       <Container>
+      <Grid itemsPerRow={5}>
+      <Grid.Row>
         {this.state.allUsers.map((user)=>{
           return(
-            <Grid columns={2}>
-            <div style={{textAlign:"center", paddingTop:"5%"}}>
+            <div style={{textAlign:"center", padding:"5%"}}>
               <Image src={user.avatarURL} avatar/>
               <span>{user.username}</span>
               <br/>
@@ -36,11 +37,11 @@ export default class CommunityPage extends Component{
               <Icon id={user.id} name="add user" onClick={this.props.handleAddFriendClick} />
               <br/>
               <br/>
-              <br/>
             </div>
-            </Grid>
           )
         })}
+        </Grid.Row>
+        </Grid>
       </Container>
     )
 

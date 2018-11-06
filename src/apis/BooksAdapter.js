@@ -23,7 +23,7 @@ export default class BooksAdapter {
     }
     const queryInfo = `${query}`+`${userString}`
     // debugger;
-    // console.log(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
+    console.log(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
     return fetch(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
   }
 

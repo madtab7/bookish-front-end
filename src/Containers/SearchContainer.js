@@ -109,7 +109,7 @@ export default class SearchContainer extends Component{
   handleRecommendClick=(event)=>{
     const bookData = this.state.selectedBookData.items[0].volumeInfo
     const userId = this.props.currentUserData.id
-    const friendId = event.target.id
+    const friendId = parseInt(event.target.id)
     InternalAdapter.createBookUserRecommends(userId, friendId, bookData)
   }
 

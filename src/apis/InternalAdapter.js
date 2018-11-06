@@ -115,6 +115,12 @@ export default class InternalAdapter {
     .then(r=>r.json())
   }
 
+  static getAllShelvedBooks(userId){
+    return fetch('http://localhost:3001/api/v1/shelved_books')
+    .then(r=>r.json())
+  }
+
+
   // update user bookshelf
   static updateUserBookshelfToRead(bookId){
     return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {

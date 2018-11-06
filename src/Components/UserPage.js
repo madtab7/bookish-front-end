@@ -10,7 +10,9 @@ export default class UserPage extends Component{
     userBooks:[],
     wantToReadBooks:[],
     readBooks:[],
-    userFriends:[]
+    userFriends:[],
+    recommendedBooks:[],
+    booksRecommendedToUser:[]
   }
 
   ///NEED TO REFACTOR
@@ -31,9 +33,22 @@ export default class UserPage extends Component{
       let readBooks = userBooks.filter((book)=>{
         return book.read === true
       })
+      let recommendedBooks = userBooks.filter((book)=>{
+        return book.recommended === true
+      })
       this.setState({
         wantToReadBooks,
-        readBooks
+        readBooks,
+        recommendedBooks
+      })
+    })
+    InternalAdapter.getAllShelvedBooks(userId)
+    .then(shelvedBooks => {
+      let booksRecommendedToUser = shelvedBooks.filter((book)=>{
+        return book.friend_id === userId
+      })
+      this.setState({
+        booksRecommendedToUser
       })
     })
     InternalAdapter.getUserFriends(userId)
@@ -43,6 +58,7 @@ export default class UserPage extends Component{
       })
     })
   }
+
 
   handleUpdateBook=(event)=>{
     let bookId = event.target.parentElement.id
@@ -67,6 +83,16 @@ export default class UserPage extends Component{
     return this.state.userFriends.length
   }
 
+  countRecommendedBooks=()=>{
+    return this.state.recommendedBooks.length
+  }
+
+  countBooksRecommendedToUser=()=>{
+    return this.state.booksRecommendedToUser.length
+  }
+
+  //NEED TO ADD ERROR PROTECTION IF NO BOOKS ARE ON LIST
+
   render(){
 
     return(
@@ -85,22 +111,70 @@ export default class UserPage extends Component{
         </Grid.Column>
 
         <Grid.Column width={10}>
+
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf</h1>
-          <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.countWantToRead()})</h2>
+        <br/>
+          {this.state.wantToReadBooks ?
+            <Segment>
+            <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.countWantToRead()})</h2>
             <Card.Group itemsPerRow={4}>
-                {this.state.wantToReadBooks.map((book)=>{
-                  return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
-                })}
+            {this.state.wantToReadBooks.map((book)=>{
+              return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
+            })}
             </Card.Group>
 
-        <Divider />
+            <Divider />
+            </Segment>
+          :
+            null
+          }
 
-          <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()})</h2>
+          {this.state.readBooks ?
+            <Segment>
+            <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()})</h2>
             <Card.Group itemsPerRow={4}>
-                {this.state.readBooks.map((book)=>{
-                  return <BookCardUser key={book.id} book={book}/>
-                })}
+            {this.state.readBooks.map((book)=>{
+              return <BookCardUser key={book.id} book={book}/>
+            })}
             </Card.Group>
+
+            <Divider />
+            </Segment>
+          :
+            null
+          }
+
+          {this.state.booksRecommendedToUser ?
+            <Segment>
+            <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()})</h2>
+            <Card.Group itemsPerRow={4}>
+            {this.state.booksRecommendedToUser.map((book)=>{
+              return <BookCardUser key={book.id} book={book}/>
+            })}
+            </Card.Group>
+
+            <Divider />
+            </Segment>
+          :
+            null
+          }
+
+          {this.state.recommendedBooks ?
+            <Segment>
+            <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.countRecommendedBooks()})</h2>
+            <Card.Group itemsPerRow={4}>
+            {this.state.recommendedBooks.map((book)=>{
+              return <BookCardUser key={book.id} book={book}/>
+            })}
+            </Card.Group>
+
+            <Divider />
+            </Segment>
+          :
+            null
+          }
+
+
         </Grid.Column>
 
       </Grid>

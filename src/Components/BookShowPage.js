@@ -108,7 +108,7 @@ export default class BookShowPage extends Component {
       </Grid>
 
       <br/><br/><br/>
-      <Button onClick={this.goBack}><h2 className="subhead">back to home </h2></Button>
+      <Button onClick={this.goBack}><h2 className="subhead"> go back </h2></Button>
       </Container>
     )
   }

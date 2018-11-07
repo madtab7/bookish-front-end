@@ -69,7 +69,14 @@ export default class SearchContainer extends Component{
   //// BOOK CLICK to SHOW PAGE ////
   //convert NYT data to google api to standardize
   handleBookClick=(event)=>{
-    const isbn=event.target.id
+    let isbn;
+    if(event.target.id !== "error"){
+      isbn=event.target.id
+    } else {
+      window.history.back()
+      /// flash message if unavailable isbn
+    }
+    console.log(isbn)
     BooksAdapter.getGoogleData(isbn)
     .then(response => response.json())
     .then(data => {
@@ -85,7 +92,6 @@ export default class SearchContainer extends Component{
   handleReadClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
     const userId = this.props.currentUserData.id
-    // console.log(bookData, userId)
     InternalAdapter.createUserBookRead(userId, bookData)
   }
 

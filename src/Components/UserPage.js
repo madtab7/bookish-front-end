@@ -123,7 +123,7 @@ export default class UserPage extends Component{
             })}
             </Card.Group>
 
-            <Divider />
+            <Divider fitted />
             </Segment>
           :
             null
@@ -138,7 +138,7 @@ export default class UserPage extends Component{
             })}
             </Card.Group>
 
-            <Divider />
+            <Divider fitted />
             </Segment>
           :
             null
@@ -153,7 +153,7 @@ export default class UserPage extends Component{
             })}
             </Card.Group>
 
-            <Divider />
+            <Divider fitted />
             </Segment>
           :
             null
@@ -168,7 +168,7 @@ export default class UserPage extends Component{
             })}
             </Card.Group>
 
-            <Divider />
+            <Divider fitted />
             </Segment>
           :
             null

@@ -110,7 +110,7 @@ export default class UserPage extends Component{
           <Grid.Row>
             <img src={this.props.currentUserData.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
           </Grid.Row>
-
+          <br></br>
           <Grid.Row>
             <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>Friends({this.countFriends()})</h3>
             {this.state.userFriends.map((friend)=>{
@@ -119,7 +119,7 @@ export default class UserPage extends Component{
           </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column width={10}>
+        <Grid.Column width={11}>
 
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>

@@ -8,9 +8,9 @@ const BookCardNYT = ({book, handleBookClick}) => {
     <Card onClick={handleBookClick} id={book.primary_isbn10} style={{borderRadius:"10px"}}>
 
       {book.book_image !== undefined ?
-        <Image id={book.primary_isbn10} src={book.book_image} style={{height:"200px"}}/>
+        <Image id={book.primary_isbn10} src={book.book_image} style={{height:"250px"}}/>
       :
-        <Image src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"200px"}}/>
+        <Image src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"250px"}}/>
       }
       <br></br>
       <Card.Header style={{textAlign:"center"}} id={book.primary_isbn10}>{book.title}</Card.Header>

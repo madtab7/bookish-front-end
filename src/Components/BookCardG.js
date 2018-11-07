@@ -5,12 +5,18 @@ import { Card, Image } from 'semantic-ui-react'
 const BookCardG = ({book, handleBookClick}) => {
   // console.log(book)
 
+  // error protection for non standard isbn numbers
   function getISBN(book){
     let isbn;
     if(book.volumeInfo.industryIdentifiers){
       isbn = book.volumeInfo.industryIdentifiers.find((isbn)=>{
         return isbn.type === "ISBN_13"
-      }).identifier
+      })
+      if(!isbn){
+        isbn = "error"
+      } else {
+        isbn = isbn.identifier
+      }
     } else {
       isbn = "error"
     }
@@ -19,7 +25,7 @@ const BookCardG = ({book, handleBookClick}) => {
 
   let isbn = getISBN(book)
 
-  // console.log(isbn)
+  console.log(isbn)
 
   // currently assigns "error" for non13 digit isbns
 
@@ -27,9 +33,9 @@ const BookCardG = ({book, handleBookClick}) => {
   return(
     <Card onClick={handleBookClick} id={isbn}>
       {book.volumeInfo.imageLinks !== undefined ?
-        <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail} style={{height:"200px"}}/>
+        <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail} style={{height:"250px"}}/>
       :
-        <Image id={isbn} src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"200px"}}/>
+        <Image id={isbn} src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"250px"}}/>
       }
       <br></br>
       <Card.Header id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>

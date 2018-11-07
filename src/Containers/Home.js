@@ -13,7 +13,7 @@ export default class Home extends Component{
     return(
       <div style={{
         backgroundImage:`url(${Bookshelf})`,
-        marginTop:"1.1%",
+        marginTop:"0.8%",
         backgroundRepeat:"no-repeat",
         backgroundSize:"cover",
         width: "100%",

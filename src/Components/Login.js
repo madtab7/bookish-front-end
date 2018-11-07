@@ -138,7 +138,7 @@ class Login extends Component{
         height:"800px"
       }}>
       <Grid center columns={1} rows={2} style={{marginTop:"0%", marginLeft:"30%"}}>
-        <Grid.Row width={10} style={{position:"relative", marginTop:"20%"}}>
+        <Grid.Row width={10} style={{position:"relative", marginTop:"5%"}}>
 
         <Button style={{color:"black"}} size="massive" animated id="new" onClick={this.handleButtonClick}>
           <Button.Content visible><h2 className="subhead" id="new">New User</h2></Button.Content>

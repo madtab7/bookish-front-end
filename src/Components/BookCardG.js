@@ -26,18 +26,18 @@ const BookCardG = ({book, handleBookClick}) => {
 
   return(
     <Card onClick={handleBookClick} id={isbn}>
-    <Card.Header id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>
-    <br></br>
-    {book.volumeInfo.authors ?
-      <Card.Meta id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.authors[0]}</Card.Meta>
-    :
-      null
-    }
-    {book.volumeInfo.imageLinks !== undefined ?
-      <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail}/>
-    :
-      <Image id={isbn} src='http://i.imgur.com/sJ3CT4V.gif'/>
-    }
+      {book.volumeInfo.imageLinks !== undefined ?
+        <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail} style={{height:"200px"}}/>
+      :
+        <Image id={isbn} src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"200px"}}/>
+      }
+      <br></br>
+      <Card.Header id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.title}</Card.Header>
+      {book.volumeInfo.authors ?
+        <Card.Meta id={isbn} style={{textAlign:"center"}}>{book.volumeInfo.authors[0]}</Card.Meta>
+      :
+        null
+      }
     </Card>
   )
 

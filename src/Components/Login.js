@@ -8,7 +8,7 @@ const LoginForm = (props) => {
 
   return(
     <Form style={{
-      background:"rgba(255,255,255,0.3)",
+      background:"rgba(255,255,255,0.4)",
       width:"40%",
       padding:"5%",
       borderRadius:"25px"}}>
@@ -37,7 +37,7 @@ const SignUpForm = (props) => {
 
   return(
     <Form style={{
-      background:"rgba(255,255,255,0.3)",
+      background:"rgba(255,255,255,0.4)",
       width:"40%",
       padding:"5%",
       borderRadius:"25px"}}>

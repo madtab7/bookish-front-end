@@ -1,59 +1,60 @@
 import React from 'react';
-import { Dropdown } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 
-//map values to api query data values
-const listOption= [
-  {
-    text:"Advice & How To's",
-    value:'advice-how-to-and-miscellaneous'
-  },
-  {
-    text:"Business",
-    value:'business-books'
-  },
-  {
-    text:"Crime",
-    value:'crime-and-punishment'
-  },
-  {
-    text:"Culture",
-    value:'culture'
-  },
-  {
-    text:"Fiction",
-    value:'combined-print-and-e-book-fiction'
-  },
-  {
-    text:"Food & Fitness",
-    value:'food-and-fitness'
-  },
-  {
-    text:"Non-Fiction",
-    value:'combined-print-and-e-book-nonfiction'
-  },
-  {
-    text:"Young Adult",
-    value:'young-adult'
-  }
-
-]
 
 const ListFormSearch =(props) => {
 
   return(
-    <div style={{padding:"2%"}}>
-      <img src="http://lighthousepointlibrary.com/LHP/images/stories/nytimes_bestsellers_logo.jpg"
-      alt="book"
-      style={{borderRadius:"8px"}}
-      />
-      <br></br>
-      <Dropdown
-        placeholder="Select a list"
-        fluid selection options={listOption}
-        onChange={props.handleDropdownSelect}
-        style={{width:"30%", display:"inline-block"}}
-      />
-    </div>
+    <List link>
+      <List.Item
+        as="a"
+        value='advice-how-to-and-miscellaneous'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Advice & How To's </List.Item>
+      <List.Item
+        as="a"
+        value='business-books'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Business </List.Item>
+      <List.Item
+        as="a"
+        value='crime-and-punishment'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Crime </List.Item>
+      <List.Item
+        as="a"
+        value='culture'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Culture </List.Item>
+      <List.Item
+        as="a"
+        value='combined-print-and-e-book-fiction'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Fiction </List.Item>
+      <List.Item
+        as="a"
+        value='food-and-fitness'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Food & Fitness </List.Item>
+      <List.Item
+        as="a"
+        value='combined-print-and-e-book-nonfiction'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Non-Fiction </List.Item>
+      <List.Item
+        as="a"
+        value='young-adult'
+        onClick={props.handleDropdownSelect}
+        style={{fontSize:"1.3em", fontWeight:"bold"}}
+      > Young Adult </List.Item>
+    </List>
   )
 }
 

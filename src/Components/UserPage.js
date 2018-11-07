@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Card, Divider, Segment, Icon } from 'semantic-ui-react'
+import { Grid, Card, Divider, Segment, Icon, Accordion } from 'semantic-ui-react'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
 import InternalAdapter from '../apis/InternalAdapter'
@@ -12,7 +12,8 @@ export default class UserPage extends Component{
     readBooks:[],
     userFriends:[],
     recommendedBooks:[],
-    booksRecommendedToUser:[]
+    booksRecommendedToUser:[],
+    activeIndex:""
   }
 
   ///NEED TO REFACTOR
@@ -71,6 +72,16 @@ export default class UserPage extends Component{
     //not triggering re render
   }
 
+  ////////////////// FOR Accordion
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ activeIndex: newIndex })
+  }
+  ////////////////////
+
   countWantToRead=()=>{
     return this.state.wantToReadBooks.length
   }
@@ -90,8 +101,6 @@ export default class UserPage extends Component{
   countBooksRecommendedToUser=()=>{
     return this.state.booksRecommendedToUser.length
   }
-
-  //NEED TO ADD ERROR PROTECTION IF NO BOOKS ARE ON LIST
 
   render(){
 
@@ -114,65 +123,60 @@ export default class UserPage extends Component{
 
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>
-          {this.state.wantToReadBooks ?
-            <Segment>
-            <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.countWantToRead()})</h2>
-            <Card.Group itemsPerRow={4}>
-            {this.state.wantToReadBooks.map((book)=>{
-              return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
-            })}
-            </Card.Group>
 
-            <Divider fitted />
-            </Segment>
-          :
-            null
-          }
 
-          {this.state.readBooks ?
-            <Segment>
-            <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()})</h2>
-            <Card.Group itemsPerRow={4}>
-            {this.state.readBooks.map((book)=>{
-              return <BookCardUser key={book.id} book={book}/>
-            })}
-            </Card.Group>
+          <Accordion fluid styled exclusive={false}>
 
-            <Divider fitted />
-            </Segment>
-          :
-            null
-          }
+            <Accordion.Title active={this.state.activeIndex === 0} index={0} onClick={this.handleClick}>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.countWantToRead()}) <Icon name='dropdown' /></h2>
+            </Accordion.Title>
+            <Accordion.Content active={this.state.activeIndex === 0}>
+              <Card.Group itemsPerRow={4}>
+                {this.state.wantToReadBooks.map((book)=>{
+                  return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
+                })}
+              </Card.Group>
+            </Accordion.Content>
 
-          {this.state.booksRecommendedToUser ?
-            <Segment>
-            <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()})</h2>
-            <Card.Group itemsPerRow={4}>
-            {this.state.booksRecommendedToUser.map((book)=>{
-              return <BookCardUser key={book.id} book={book}/>
-            })}
-            </Card.Group>
 
-            <Divider fitted />
-            </Segment>
-          :
-            null
-          }
+            <Accordion.Title active={this.state.activeIndex === 1} index={1} onClick={this.handleClick}>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()}) <Icon name='dropdown' /></h2>
+            </Accordion.Title>
+            <Accordion.Content active={this.state.activeIndex === 1}>
+              <Card.Group itemsPerRow={4}>
+                {this.state.readBooks.map((book)=>{
+                  return <BookCardUser key={book.id} book={book}/>
+                })}
+              </Card.Group>
+            </Accordion.Content>
 
-          {this.state.recommendedBooks ?
-            <Segment>
-            <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.countRecommendedBooks()})</h2>
-            <Card.Group itemsPerRow={4}>
-            {this.state.recommendedBooks.map((book)=>{
-              return <BookCardUser key={book.id} book={book}/>
-            })}
-            </Card.Group>
 
-            <Divider fitted />
-            </Segment>
-          :
-            null
-          }
+            <Accordion.Title active={this.state.activeIndex === 2} index={2} onClick={this.handleClick}>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()}) <Icon name='dropdown' /></h2>
+            </Accordion.Title>
+            <Accordion.Content active={this.state.activeIndex === 2}>
+              <Card.Group itemsPerRow={4}>
+                {this.state.booksRecommendedToUser.map((book)=>{
+                  return <BookCardUser key={book.id} book={book}/>
+                })}
+              </Card.Group>
+            </Accordion.Content>
+
+
+            <Accordion.Title active={this.state.activeIndex === 3} index={3} onClick={this.handleClick}>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.countRecommendedBooks()}) <Icon name='dropdown' /></h2>
+            </Accordion.Title>
+            <Accordion.Content active={this.state.activeIndex === 3}>
+              <Card.Group itemsPerRow={4}>
+                {this.state.recommendedBooks.map((book)=>{
+                  return <BookCardUser key={book.id} book={book}/>
+                })}
+              </Card.Group>
+            </Accordion.Content>
+
+
+          </Accordion>
+
 
 
         </Grid.Column>

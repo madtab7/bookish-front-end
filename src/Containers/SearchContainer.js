@@ -11,7 +11,6 @@ export default class SearchContainer extends Component{
   state={
     searchPerformed:"",
     userInput:"",
-    radioSelect: "",
     listSelect: "",
     NYTData:[],
     searchData: [],
@@ -26,12 +25,6 @@ export default class SearchContainer extends Component{
   handleInputChange=(event)=>{
     this.setState({
       userInput: event.target.value
-    })
-  }
-
-  handleRadioChange=(event)=>{
-    this.setState({
-      radioSelect: event.target.innerText
     })
   }
 

@@ -79,7 +79,7 @@ export default class SearchContainer extends Component{
     })
     //need to add error protection
   }
-
+    
   //READ BUTTON CLICK
   handleReadClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo

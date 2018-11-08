@@ -13,22 +13,21 @@ export default class Home extends Component{
     return(
       <div style={{
         backgroundImage:`url(${Bookshelf})`,
-        marginTop:"1.1%",
+        marginTop:"0.8%",
         backgroundRepeat:"no-repeat",
         backgroundSize:"cover",
         width: "100%",
         height:"800px"
       }}>
 
-        <Grid columns={2}>
+        <Grid columns={1}>
           <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
             <Button size="massive" name="books">
               <Link to="/books" style={{color:"black"}}>
                 <h1 className="subhead">find a book</h1>
               </Link>
             </Button>
-          </Grid.Column>
-          <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
+
             <Button size="massive" name="profile">
               <Link to="/profile" style={{color:"black"}}>
                 <h1 className="subhead">see my bookshelf</h1>

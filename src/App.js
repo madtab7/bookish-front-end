@@ -5,6 +5,7 @@ import Login from './Components/Login'
 import Home from './Containers/Home'
 import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
+import FriendsContainer from './Containers/FriendsContainer'
 import InternalAdapter from './apis/InternalAdapter'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ class App extends Component {
     currentUserData:'',
     redirect: false
   }
+
 
 
   registerUser=(event, userData)=>{
@@ -77,6 +79,10 @@ class App extends Component {
 
           <Route path="/profile"
             render={()=> <UserContainer currentUserData={this.state.currentUserData}/>}
+          />
+
+          <Route path="/community"
+            render={()=> <FriendsContainer currentUserData={this.state.currentUserData}/>}
           />
 
         </Switch>

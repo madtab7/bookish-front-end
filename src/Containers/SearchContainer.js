@@ -11,13 +11,13 @@ export default class SearchContainer extends Component{
   state={
     searchPerformed:"",
     userInput:"",
-    radioSelect: "",
     listSelect: "",
     NYTData:[],
     searchData: [],
     selectedBookData:[],
     readBookData:[],
-    wantToReadBookData:[]
+    wantToReadBookData:[],
+    userFriends:[]
   }
 
   ///////KEYWORD SEARCH FORM///////
@@ -25,12 +25,6 @@ export default class SearchContainer extends Component{
   handleInputChange=(event)=>{
     this.setState({
       userInput: event.target.value
-    })
-  }
-
-  handleRadioChange=(event)=>{
-    this.setState({
-      radioSelect: event.target.innerText
     })
   }
 
@@ -66,9 +60,16 @@ export default class SearchContainer extends Component{
   }
 
   //// BOOK CLICK to SHOW PAGE ////
-  //convert NYT data to google api to standardize
+  //convert NYT data to google api to standardize data
   handleBookClick=(event)=>{
-    const isbn=event.target.id
+    let isbn;
+    if(event.target.id !== "error"){
+      isbn=event.target.id
+    } else {
+      window.history.back()
+      /// flash message if unavailable isbn
+    }
+    // console.log(isbn)
     BooksAdapter.getGoogleData(isbn)
     .then(response => response.json())
     .then(data => {
@@ -84,7 +85,6 @@ export default class SearchContainer extends Component{
   handleReadClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
     const userId = this.props.currentUserData.id
-    // console.log(bookData, userId)
     InternalAdapter.createUserBookRead(userId, bookData)
   }
 
@@ -98,8 +98,28 @@ export default class SearchContainer extends Component{
   //PURCHASE BUTTON CLICK
   handlePurchaseClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
-    let isbn= bookData.industryIdentifiers[1].find((isbn)=>{return isbn.type==="ISBN_10"}).identifier
+    // fix isbn number to query for isbn10
+    // let isbn= bookData.industryIdentifiers[1].find((isbn)=>{return isbn.type==="ISBN_10"}).identifier
+    let isbn = bookData.industryIdentifiers[1].identifier
     window.open(`${BooksAdapter.getAmazonLink(isbn)}`)
+  }
+
+  //RECOMMEND BUTTON CLICK
+  handleRecommendClick=(event)=>{
+    const bookData = this.state.selectedBookData.items[0].volumeInfo
+    const userId = this.props.currentUserData.id
+    const friendId = parseInt(event.target.id)
+    InternalAdapter.createBookUserRecommends(userId, friendId, bookData)
+  }
+
+  componentDidMount=()=>{
+    const userId = this.props.currentUserData.id
+    InternalAdapter.getUserFriends(userId)
+    .then(userFriends => {
+      this.setState({
+        userFriends
+      })
+    })
   }
 
   render(){
@@ -128,6 +148,8 @@ export default class SearchContainer extends Component{
             handleReadClick={this.handleReadClick}
             handleWantToReadClick={this.handleWantToReadClick}
             handlePurchaseClick={this.handlePurchaseClick}
+            handleRecommendClick={this.handleRecommendClick}
+            userFriends={this.state.userFriends}
           />
         )
       default:

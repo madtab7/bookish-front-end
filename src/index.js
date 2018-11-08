@@ -10,15 +10,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import thunk from 'redux-thunk';
 import * as serviceWorker from './serviceWorker';
 
-// import * as reducers from './store/reducers';
-// const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
-
-// const store = createStore(signUpUser)
-//
-// const store = createStore(
-//   (state={}) => state,
-//   applyMiddleware(thunk)
-// );
 
 ReactDOM.render(
   // <Provider store={store}>

@@ -26,6 +26,14 @@ export default class BooksAdapter {
     return fetch(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
   }
 
+  static getPaginatedBooksFromQuery(stateObj){
+    let userString = stateObj.userInput.split(" ").join("-")
+    let startIndex = stateObj.searchIndex
+    const queryInfo = `${userString}`
+    console.log(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&startIndex=${startIndex}`+`&maxResults=40`+`&key=${google_api_key}`)
+    return fetch(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&startIndex=${startIndex}`+`&maxResults=40`+`&key=${google_api_key}`)
+  }
+
   //handle nyt best sellers api query
   static getBooksFromNYTList(stateObj){
     let listEndpoint = stateObj.listSelect

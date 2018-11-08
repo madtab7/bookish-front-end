@@ -3,8 +3,7 @@ import BookCardG from './BookCardG'
 import { Card, Button, Icon } from 'semantic-ui-react'
 
 const SearchResultsG =(props)=>{
-console.log(props)
-// debugger;
+
   return(
     <div>
     <h2 className="subead">Top results for '{props.userInput}'</h2>
@@ -14,10 +13,28 @@ console.log(props)
         })}
       </Card.Group>
 
+      <div style={{textAlign:"center"}}>
+        <h3>see more results</h3>
+        {props.searchIndex === 0 ? null
+        :
+          <div id="decrease">
+          <Button icon onClick={props.handlePagination}>
+            <Icon name="angle double left"/>
+          </Button>
+          </div>
+        }
+        <div className="increase">
+        <Button icon className="increase" onClick={props.handlePagination}>
+          <Icon name="angle double right"/>
+        </Button>
+        </div>
+      </div>
+      <br/><br/>
+
     </div>
   )
 }
 
-    
+
 
 export default SearchResultsG

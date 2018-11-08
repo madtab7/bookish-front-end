@@ -14,6 +14,7 @@ export default class SearchContainer extends Component{
     listSelect: "",
     NYTData:[],
     searchData: [],
+    searchIndex: 0,
     selectedBookData:[],
     readBookData:[],
     wantToReadBookData:[],
@@ -79,7 +80,31 @@ export default class SearchContainer extends Component{
     })
     //need to add error protection
   }
-    
+
+  // adjust search results according to arrow button click
+  handlePagination=(event)=>{
+    // console.log(event.target)
+    if(event.target.parentElement.className.includes("increase")){
+      this.setState({
+        searchIndex: this.state.searchIndex + 40
+      })
+    } else {
+      this.setState({
+        searchIndex: this.state.searchIndex - 40
+      })
+    }
+    BooksAdapter.getPaginatedBooksFromQuery(this.state)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        searchData: data.items,
+        searchPerformed: "googleQuery"
+      })
+    })
+
+
+  }
+
   //READ BUTTON CLICK
   handleReadClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
@@ -122,13 +147,15 @@ export default class SearchContainer extends Component{
   }
 
   render(){
-
+    console.log(this.state.searchIndex)
     switch(this.state.searchPerformed){
       case "googleQuery":
         return(
           <SearchResultsG
             searchData={this.state.searchData}
+            searchIndex={this.state.searchIndex}
             userInput={this.state.userInput}
+            handlePagination={this.handlePagination}
             handleBookClick={this.handleBookClick}
           />
         );

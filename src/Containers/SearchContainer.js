@@ -29,7 +29,6 @@ export default class SearchContainer extends Component{
   }
 
   //user submits input in form
-    //only registers submit on 2nd enter
   handleInputSubmit=(event)=>{
     BooksAdapter.getBooksFromQuery(this.state)
     .then(response => response.json())

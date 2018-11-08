@@ -4,7 +4,7 @@ import { Card, Image, Icon } from 'semantic-ui-react'
 
 const BookCardNYT = ({book, handleBookClick}) => {
 
-  console.log(book)
+  // console.log(book)
 
   return(
     <Card onClick={handleBookClick} id={book.primary_isbn13} style={{borderRadius:"10px"}}>

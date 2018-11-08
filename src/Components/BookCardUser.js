@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, Image, Button, Popup } from 'semantic-ui-react'
 
-//need to map authors so card can handle multiple authors
 const BookCardUser = (props) => {
 
   return(

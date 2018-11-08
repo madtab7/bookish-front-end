@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Form, Button, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { withRouter, Redirect } from 'react-router'
+import { loginUser } from '../actions/user'
 import InternalAdapter from '../apis/InternalAdapter'
 import BackgroundURL from '../images/book1.jpg'
 
@@ -11,7 +13,13 @@ const LoginForm = (props) => {
       background:"rgba(255,255,255,0.4)",
       width:"40%",
       padding:"5%",
-      borderRadius:"25px"}}>
+      borderRadius:"25px"}}
+      loading={props.loading}
+      error={props.failedLogin}
+    >
+
+      <Message error header={props.failedLogin ? props.error : null} />
+
       <Form.Input
         fluid label="Username"
         name="username"
@@ -117,7 +125,13 @@ class Login extends Component{
 
   handleUserLogin=(event)=>{
     event.preventDefault()
-    this.props.loginUser(event, this.state.user)
+    this.props.loginUser(this.state.user.username, this.state.user.password)
+    this.setState({ /// reset state
+      user:{
+        username:"",
+        password:""
+      }
+    })
   }
 
   handleButtonClick=(event)=>{
@@ -127,64 +141,79 @@ class Login extends Component{
   }
 
   render(){
-    return(
-      <div style={{
-        backgroundImage:`url(${BackgroundURL})`,
-        marginTop:"0%",
-        backgroundRepeat:"no-repeat",
-        // backgroundPosition:"center",
-        backgroundSize:"cover",
-        width: "100%",
-        height:"800px"
-      }}>
-      <Grid center columns={1} rows={2} style={{marginTop:"0%", marginLeft:"30%"}}>
-        <Grid.Row width={10} style={{position:"relative", marginTop:"5%"}}>
 
-        <Button style={{color:"black"}} size="massive" animated id="new" onClick={this.handleButtonClick}>
-          <Button.Content visible><h2 className="subhead" id="new">New User</h2></Button.Content>
-          <Button.Content hidden><h2 className="subhead" id="new">Get Started</h2></Button.Content>
-        </Button>
-
-        <Button style={{color:"black"}} size="massive" animated id="existing" onClick={this.handleButtonClick}>
-          <Button.Content visible><h2 className="subhead" id="existing">Existing User</h2></Button.Content>
-          <Button.Content hidden><h2 className="subhead" id="existing">Sign In</h2></Button.Content>
-        </Button>
-        </Grid.Row>
-
-        <Grid.Row width={10} style={{position:"relative"}}>
-        {this.state.typeUser === "new" ?
-        <SignUpForm
-          handleNewUserInputChange={this.handleNewUserInputChange}
-          username={this.state.newUser.username}
-          password={this.state.newUser.password}
-          full_name={this.state.newUser.full_name}
-          avatarURL={this.state.newUser.avatarURL}
-          registerUser={this.props.registerUser}
-          handleNewUserSubmit={this.handleNewUserSubmit}
-        />
-        :
-        null
-        }
-
-        {this.state.typeUser === "existing" ?
-        <LoginForm
-          handleLoginInputChange={this.handleLoginInputChange}
-          username={this.state.user.username}
-          password={this.state.user.password}
-          handleUserLogin={this.handleUserLogin}
-        />
-
-        :
-        null
-        }
-
-        </Grid.Row>
-      </Grid>
-      </div>
+    return this.props.loggedIn ? (
+      <Redirect to="/home" />
+    ) : (
+      null
     )
+
+    // return(
+    //   <div style={{
+    //     backgroundImage:`url(${BackgroundURL})`,
+    //     marginTop:"0%",
+    //     backgroundRepeat:"no-repeat",
+    //     // backgroundPosition:"center",
+    //     backgroundSize:"cover",
+    //     width: "100%",
+    //     height:"800px"
+    //   }}>
+    //   <Grid center columns={1} rows={2} style={{marginTop:"0%", marginLeft:"30%"}}>
+    //     <Grid.Row width={10} style={{position:"relative", marginTop:"5%"}}>
+    //
+    //     <Button style={{color:"black"}} size="massive" animated id="new" onClick={this.handleButtonClick}>
+    //       <Button.Content visible><h2 className="subhead" id="new">New User</h2></Button.Content>
+    //       <Button.Content hidden><h2 className="subhead" id="new">Get Started</h2></Button.Content>
+    //     </Button>
+    //
+    //     <Button style={{color:"black"}} size="massive" animated id="existing" onClick={this.handleButtonClick}>
+    //       <Button.Content visible><h2 className="subhead" id="existing">Existing User</h2></Button.Content>
+    //       <Button.Content hidden><h2 className="subhead" id="existing">Sign In</h2></Button.Content>
+    //     </Button>
+    //     </Grid.Row>
+    //
+    //     <Grid.Row width={10} style={{position:"relative"}}>
+    //     {this.state.typeUser === "new" ?
+    //     <SignUpForm
+    //       handleNewUserInputChange={this.handleNewUserInputChange}
+    //       username={this.state.newUser.username}
+    //       password={this.state.newUser.password}
+    //       full_name={this.state.newUser.full_name}
+    //       avatarURL={this.state.newUser.avatarURL}
+    //       registerUser={this.props.registerUser}
+    //       handleNewUserSubmit={this.handleNewUserSubmit}
+    //     />
+    //     :
+    //     null
+    //     }
+    //
+    //     {this.state.typeUser === "existing" ?
+    //     <LoginForm
+    //       loading={this.props.authenticatingUser}
+    //       error={this.props.failedLogin}
+    //       handleLoginInputChange={this.handleLoginInputChange}
+    //       username={this.state.user.username}
+    //       password={this.state.user.password}
+    //       handleUserLogin={this.handleUserLogin}
+    //     />
+    //
+    //     :
+    //     null
+    //     }
+    //
+    //     </Grid.Row>
+    //   </Grid>
+    //   </div>
+    // )
   }
 
 }
 
-export default Login
-// connect((state) => {return{}}, { signUpUser })(Login);
+const mapStateToProps = ({ usersReducer: { authenticatingUser, failedLogin, error, loggedIn } }) => ({
+  authenticatingUser,
+  failedLogin,
+  error,
+  loggedIn
+})
+
+export default withRouter(connect(mapStateToProps, { loginUser })(LoginForm))

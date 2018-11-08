@@ -21,7 +21,25 @@ export default class InternalAdapter {
 
   }
 
-  static loginUser(userData){
+  // static loginUser(userData){
+  //   return fetch('http://localhost:3001/api/v1/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       user: {
+  //         username: userData.username,
+  //         password: userData.password
+  //       }
+  //     })
+  //   })
+  // }
+
+//////////////// loginUser REDUX BELOW ////////////////
+
+  static loginUser(username, password){
     return fetch('http://localhost:3001/api/v1/login', {
       method: 'POST',
       headers: {
@@ -30,12 +48,26 @@ export default class InternalAdapter {
       },
       body: JSON.stringify({
         user: {
-          username: userData.username,
-          password: userData.password
+          username: username,
+          password: password
         }
       })
     })
   }
+
+  //////////////// loginUser REDUX END ////////////////
+
+  //match jwt with user
+  static getUser(){
+    return fetch('http://localhost:3001/api/v1/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+  }
+
+  //////////////// REDUX /////////////////////////
 
   static createUserBookRead(userId, bookData){
     return fetch('http://localhost:3001/api/v1/books', {

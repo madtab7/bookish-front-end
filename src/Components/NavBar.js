@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom'
+import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
 
 const link = {

@@ -7,7 +7,7 @@ import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
 import FriendsContainer from './Containers/FriendsContainer'
 import InternalAdapter from './apis/InternalAdapter'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
     /// add error messages if invalid
   }
 
-  loginUser=(event, userData)=>{
+  loginUserNow=(event, userData)=>{
     event.preventDefault();
     InternalAdapter.loginUser(userData)
     .then(r => r.json())

@@ -101,7 +101,7 @@ export default class InternalAdapter {
           shelved_book: {
             book_id: data.id,
             user_id: userId,
-            read:false,
+            read: false,
             want_to_read:true
           }
         })
@@ -114,6 +114,12 @@ export default class InternalAdapter {
     return fetch(`http://localhost:3001/api/v1/shelved_books?user_id=${userId}`)
     .then(r=>r.json())
   }
+
+  static getAllShelvedBooks(userId){
+    return fetch('http://localhost:3001/api/v1/shelved_books')
+    .then(r=>r.json())
+  }
+
 
   // update user bookshelf
   static updateUserBookshelfToRead(bookId){
@@ -132,9 +138,77 @@ export default class InternalAdapter {
     })
   }
 
+//remove book from users shelf
   static updateUserBookshelfToRemove(bookId){
     return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
       method: "DELETE"
+    })
+  }
+
+  static getAllUsers(){
+    return fetch(`http://localhost:3001/api/v1/users`)
+    .then(r=>r.json())
+  }
+
+
+  static createFriendship(userId, friendId){
+    return fetch('http://localhost:3001/api/v1/friendships', {
+      method: "POST",
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        friendship: {
+          user_id: userId,
+          friend_id: friendId
+        }
+      })
+    })
+  }
+
+  static getUserFriends(userId){
+    return fetch(`http://localhost:3001/api/v1/friendships?user_id=${userId}`)
+    .then(r=>r.json())
+  }
+
+//create book user recommended
+  static createBookUserRecommends(userId, friendId, bookData){
+    console.log(userId, friendId)
+    return fetch('http://localhost:3001/api/v1/books', {
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        book: {
+          title: bookData.title,
+          author: bookData.authors[0],
+          description: bookData.description,
+          imgURL: bookData.imageLinks.thumbnail
+        }
+      })
+    })
+    .then(r=>r.json())
+    .then(data => {
+      fetch('http://localhost:3001/api/v1/shelved_books',{
+        method: "POST",
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          shelved_book: {
+            book_id: data.id,
+            user_id: userId,
+            read:false,
+            want_to_read:false,
+            recommended: true,
+            friend_id: friendId
+          }
+        })
+      })
     })
   }
 

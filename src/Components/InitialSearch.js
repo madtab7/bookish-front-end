@@ -6,16 +6,6 @@ import Bookshelf2 from '../images/bookshelf2.jpg'
 
 export default class InitialSearch extends Component{
 
-  state={
-    clicked:""
-  }
-
-  handleButtonClick=(event)=>{
-    this.setState({
-      clicked: event.target.parentNode.name
-    })
-  }
-
 
   render(){
     //return to conditionally render select / input option for user
@@ -32,54 +22,28 @@ export default class InitialSearch extends Component{
         <br></br>
         <br></br>
       <div style={{
-        background:"rgba(255,255,255,0.5)",
+        background:"rgba(255,255,255,0.65)",
         width:"60%",
         marginLeft:"20%",
-        borderRadius:"25px"
+        borderRadius:"15px"
       }}>
-        <h1 className="subhead" style={{fontSize:"2em", paddingTop:"5%"}}>Find a book by:</h1>
-        <br></br>
-        <br></br>
-        <Button
-          size="massive"
-          name='keyword'
-          animated='fade'
-          style={{color:"black"}}
-          onClick={this.handleButtonClick}>
-          <Button.Content visible className="subhead"> keywords </Button.Content>
-          <Button.Content hidden className="subhead"> GO </Button.Content>
-        </Button>
-        <Button
-          size="massive"
-          name='best-sellers'
-          animated='fade'
-          style={{color:"black"}}
-          onClick={this.handleButtonClick}>
-          <Button.Content visible className="subhead"> best-sellers</Button.Content>
-          <Button.Content hidden className="subhead">GO </Button.Content>
-        </Button>
+        <h1 className="subhead" style={{fontSize:"2em", paddingTop:"5%"}}>
+          Search by
+        </h1>
+          <h2 className="subhead" style={{fontSize:"1.5em"}}>Keywords:</h2>
+            <KeywordSearchForm
+              handleInputChange={this.props.handleInputChange}
+              handleInputSubmit={this.props.handleInputSubmit}
+              userInput={this.props.userInput}
+            />
+          <h2 className="subhead" style={{fontSize:"1.5em"}}>-OR-</h2>
+          <h2 className="subhead" style={{fontSize:"1.5em"}}>Select a New York Times Best-Seller List:</h2>
+            <ListFormSearch
+              handleDropdownSelect={this.props.handleDropdownSelect}
+            />
 
         <br></br>
-        <br></br>
-        {this.state.clicked === "keyword" ?
-          <KeywordSearchForm
-            handleInputChange={this.props.handleInputChange}
-            handleRadioChange={this.props.handleRadioChange}
-            handleInputSubmit={this.props.handleInputSubmit}
-            userInput={this.propsuserInput}
-            radioSelect={this.props.radioSelect}
-          />
-        :
-          null
-        }
 
-        {this.state.clicked === "best-sellers" ?
-          <ListFormSearch
-            handleDropdownSelect={this.props.handleDropdownSelect}
-          />
-        :
-          null
-        }
       </div>
       </div>
     )

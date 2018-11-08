@@ -20,15 +20,14 @@ export default class Home extends Component{
         height:"800px"
       }}>
 
-        <Grid columns={2}>
+        <Grid columns={1}>
           <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
             <Button size="massive" name="books">
               <Link to="/books" style={{color:"black"}}>
                 <h1 className="subhead">find a book</h1>
               </Link>
             </Button>
-          </Grid.Column>
-          <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
+
             <Button size="massive" name="profile">
               <Link to="/profile" style={{color:"black"}}>
                 <h1 className="subhead">see my bookshelf</h1>

@@ -25,7 +25,7 @@ const BookCardG = ({book, handleBookClick}) => {
 
   let isbn = getISBN(book)
 
-  console.log(isbn)
+  // console.log(isbn)
 
   // currently assigns "error" for non13 digit isbns
 

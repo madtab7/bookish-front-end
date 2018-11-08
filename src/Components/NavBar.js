@@ -15,7 +15,7 @@ const NavBar = (props) => {
   return(
     <div id="navBar" style={{position: "relative"}}>
 
-      <div style={{textAlign:"center", marginLeft: "45%"}}>
+      <div style={{textAlign:"center", marginLeft: "45%", marginBottom:"1%"}}>
         <h1 id="bookish">
         bookish
         </h1>

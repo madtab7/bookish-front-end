@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BookCardG from './BookCardG'
-import { Card } from 'semantic-ui-react'
+import { Card, Button, Icon } from 'semantic-ui-react'
 
 const SearchResultsG =(props)=>{
 console.log(props)
@@ -13,6 +13,7 @@ console.log(props)
           return <BookCardG key={book.id} book={book} handleBookClick={props.handleBookClick}/>
         })}
       </Card.Group>
+
     </div>
   )
 }

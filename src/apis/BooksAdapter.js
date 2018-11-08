@@ -34,7 +34,7 @@ export default class BooksAdapter {
 
   //handle google api call from NYT isbn
   static getGoogleData(isbn){
-    return fetch(`${GOOGLE_Q_ENDPOINT}`+'isbn:'+`${isbn}`+`&key=${google_api_key}`)
+    return fetch(`${GOOGLE_Q_ENDPOINT}`+'isbn:'+`${isbn}`+`&printType=books`+`&key=${google_api_key}`)
   }
 
   //handle amazon link for purchase

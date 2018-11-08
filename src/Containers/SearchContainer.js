@@ -60,7 +60,7 @@ export default class SearchContainer extends Component{
   }
 
   //// BOOK CLICK to SHOW PAGE ////
-  //convert NYT data to google api to standardize
+  //convert NYT data to google api to standardize data
   handleBookClick=(event)=>{
     let isbn;
     if(event.target.id !== "error"){
@@ -69,7 +69,7 @@ export default class SearchContainer extends Component{
       window.history.back()
       /// flash message if unavailable isbn
     }
-    console.log(isbn)
+    // console.log(isbn)
     BooksAdapter.getGoogleData(isbn)
     .then(response => response.json())
     .then(data => {

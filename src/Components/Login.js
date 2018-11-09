@@ -20,7 +20,7 @@ class Login extends Component{
   handleInputChange=(event, { name, value })=>{
     this.setState({
       [name]: value
-    },()=>console.log(this.state))
+    })
   }
 
   handleUserLogin=(event)=>{
@@ -58,8 +58,11 @@ class Login extends Component{
         width: "100%",
         height:"800px"
       }}>
+      <Button style={{color:"black"}} onClick={this.handleNewUserClick}>
+        <h2 className="subhead">Create an Account</h2>
+      </Button>
+      <h2 className="subhead">OR</h2>
       {!this.state.clickedNewUser ?
-        <div>
         <Form style={{
           background:"rgba(255,255,255,0.4)",
           width:"40%",
@@ -92,15 +95,11 @@ class Login extends Component{
           <Button type="submit" style={{color:"black"}} >
             <h2 className="subhead">Login</h2>
           </Button>
-          <h2 className="subhead">OR</h2>
-          <Button style={{color:"black"}} onClick={this.handleNewUserClick}>
-            <h2 className="subhead">Create an Account</h2>
-          </Button>
         </Form>
 
-        </div>
-
       :
+
+
         <Form style={{
           background:"rgba(255,255,255,0.4)",
           width:"40%",

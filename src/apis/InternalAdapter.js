@@ -21,9 +21,6 @@ export default class InternalAdapter {
 
   }
 
-
-//////////////// loginUser REDUX BELOW ////////////////
-
   static loginUser(username, password){
     return fetch('http://localhost:3001/api/v1/login', {
       method: 'POST',
@@ -40,8 +37,6 @@ export default class InternalAdapter {
     })
   }
 
-  //////////////// loginUser REDUX END ////////////////
-
   //match jwt with user
   static getUser(){
     return fetch('http://localhost:3001/api/v1/profile', {
@@ -51,8 +46,6 @@ export default class InternalAdapter {
       }
     })
   }
-
-  //////////////// REDUX /////////////////////////
 
   static createUserBookRead(userId, bookData){
     return fetch('http://localhost:3001/api/v1/books', {

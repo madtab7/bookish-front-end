@@ -33,7 +33,7 @@ const withAuth = (WrappedComponent) => {
 
   const mapDispatchToProps = (dispatch) => {
     return{
-      fetchCurrentUser:() => dispatch(fetchCurrentUser()),
+      fetchCurrentUser: () => dispatch(fetchCurrentUser()),
     }
   }
 

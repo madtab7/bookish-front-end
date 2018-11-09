@@ -48,6 +48,13 @@ export const fetchCurrentUser = () => {
   }
 }
 
+// export const logoutUser = () => {
+//   return (dispatch) => {
+//     localStorage.removeItem('jwt')
+//     dispatch({type: 'LOGOUT_USER'})
+//   }
+// }
+
 // handle userdata
 export const setCurrentUser = (userData) => ({
   type: 'SET_CURRENT_USER',

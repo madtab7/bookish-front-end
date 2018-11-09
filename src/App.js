@@ -12,30 +12,12 @@ import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 're
 
 
 class App extends Component {
-  state={
-    currentUserData:'',
-    redirect: false
-  }
-
-  registerUser=(event, userData)=>{
-    event.preventDefault();
-    InternalAdapter.signUpUser(userData)
-    .then(r => r.json())
-    .then(userData => {
-      this.setState({
-        currentUserData: userData.user,
-        redirect: true
-      })
-    })
-    /// add error messages if invalid
-  }
 
 
-  /// props: user, loggedIn
 
   render() {
 
-    console.log("APP", this.props)
+    // console.log("APP", this.props)
 
     return (
       <div className="App">
@@ -46,7 +28,7 @@ class App extends Component {
           null
         }
 
-        <NavBar />
+        <NavBar loggedIn={this.props.loggedIn}/>
 
         <Switch>
           <Route exact path="/"

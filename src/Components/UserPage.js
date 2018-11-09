@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Card, Divider, Segment, Icon, Accordion } from 'semantic-ui-react'
+import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
 import InternalAdapter from '../apis/InternalAdapter'
@@ -70,7 +71,7 @@ export default class UserPage extends Component{
       InternalAdapter.updateUserBookshelfToRemove(bookId)
     }
     this.getUserData()
-    //not triggering re render
+    // window.location.reload()
   }
 
   ////////////////// FOR Accordion
@@ -117,6 +118,14 @@ export default class UserPage extends Component{
             {this.state.userFriends.map((friend)=>{
               return <FriendIcon key={friend.id} friend={friend.friend}/>
             })}
+
+            <NavLink
+              to='/community'
+              exact style={{color:"black"}}
+            >
+              <Icon name="globe" /><br/><h4>See all users</h4>
+            </NavLink>
+
           </Grid.Row>
         </Grid.Column>
 

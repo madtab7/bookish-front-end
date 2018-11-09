@@ -14,6 +14,8 @@ import * as serviceWorker from './serviceWorker';
 const rootReducer = combineReducers({ usersReducer })
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
+console.log(`%c INITIAL REDUX STORE`, 'color: purple', store.getState())
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>

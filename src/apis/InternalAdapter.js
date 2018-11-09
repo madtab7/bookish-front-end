@@ -21,21 +21,6 @@ export default class InternalAdapter {
 
   }
 
-  // static loginUser(userData){
-  //   return fetch('http://localhost:3001/api/v1/login', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       user: {
-  //         username: userData.username,
-  //         password: userData.password
-  //       }
-  //     })
-  //   })
-  // }
 
 //////////////// loginUser REDUX BELOW ////////////////
 

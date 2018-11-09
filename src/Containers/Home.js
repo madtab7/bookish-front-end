@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import SearchContainer from './SearchContainer';
 import UserContainer from './UserContainer';
 import { Container, Grid, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import Bookshelf from '../images/bookshelf.jpg'
 
-export default class Home extends Component{
+class Home extends Component{
 
 
   render(){
@@ -40,3 +40,5 @@ export default class Home extends Component{
     )
   }
 }
+
+export default withRouter(Home)

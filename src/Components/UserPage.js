@@ -22,7 +22,8 @@ export default class UserPage extends Component{
   }
 
   getUserData=()=>{
-    let userId = this.props.currentUserData.id
+    let userId = this.props.id
+    console.log(userId)
     InternalAdapter.getUserShevedBooks(userId)
     .then(userBooks => {
       this.setState({
@@ -108,7 +109,7 @@ export default class UserPage extends Component{
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%"}}>
         <Grid.Column width={5} rows={2}>
           <Grid.Row>
-            <img src={this.props.currentUserData.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
+            <img src={this.props.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
           </Grid.Row>
           <br></br>
           <Grid.Row>
@@ -121,7 +122,7 @@ export default class UserPage extends Component{
 
         <Grid.Column width={11}>
 
-        <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.currentUserData.username}'s Bookshelf <Icon name="book" /></h1>
+        <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>
 
 

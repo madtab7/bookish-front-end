@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Button, Icon } from 'semantic-ui-react';
+import { Container, Header, Grid, Button, Icon, Modal } from 'semantic-ui-react';
 import FriendIcon from './FriendIcon'
+import ReviewModal from './ReviewModal'
+
+// const ReviewButton = () => {
+//   <Button animated >
+//     <Button.Content visible><h2 className="subhead">review</h2></Button.Content>
+//     <Button.Content hidden>
+//       <Icon name="amazon" />
+//     </Button.Content>
+//   </Button>
+// }
 
 export default class BookShowPage extends Component {
 
@@ -67,12 +77,18 @@ export default class BookShowPage extends Component {
             </Button>
             <br/><br/>
 
+            <ReviewModal selectedBookData={this.props.selectedBookData}/>
+            <br/><br/>
+
             <Button animated onClick={this.props.handlePurchaseClick}>
               <Button.Content visible><h2 className="subhead">purchase</h2></Button.Content>
               <Button.Content hidden>
                 <Icon name="amazon" />
               </Button.Content>
             </Button>
+            <br/><br/>
+
+
           </Grid.Column>
 
           <Grid.Column width={2}>

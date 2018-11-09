@@ -19,6 +19,25 @@ export const loginUser = (username, password) => {
   })
 }
 
+export const signUpUser = (username, password, full_name, avatarURL) => {
+  return (dispatch => {
+    dispatch(authenticatingUser())
+    InternalAdapter.signUpUser(username, password, full_name, avatarURL)
+    .then(response => {
+      if (response.ok){
+        return response.json()
+      } else {
+        throw response
+      }
+    })
+    .then(JSONResponse => {
+      localStorage.setItem('jwt', JSONResponse.jwt)
+      dispatch(setCurrentUser(JSONResponse.user))
+    })
+    .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+  })
+}
+
 export const fetchCurrentUser = () => {
   //matches jwt to user
   return(dispatch) => {

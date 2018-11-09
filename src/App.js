@@ -29,19 +29,7 @@ class App extends Component {
     })
     /// add error messages if invalid
   }
-  //
-  // loginUserNow=(event, userData)=>{
-  //   event.preventDefault();
-  //   InternalAdapter.loginUser(userData)
-  //   .then(r => r.json())
-  //   .then(userData => {
-  //     this.setState({
-  //       currentUserData: userData.user,
-  //       redirect:true
-  //     },()=> console.log(this.state))
-  //   })
-  //   /// add error messages if invalid
-  // }
+
 
   /// props: user, loggedIn
 
@@ -66,8 +54,7 @@ class App extends Component {
           />
 
           <Route path="/login"
-            render=
-            {()=> <Login registerUser={this.registerUser} loginUser={this.loginUser}/>}
+            render= {()=> <Login />}
           />
 
           <Route path="/books"

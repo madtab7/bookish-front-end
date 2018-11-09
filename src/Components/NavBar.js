@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom'
+import { BrowserRouter as Router, NavLink, Route, withRouter, Redirect } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
+import { logoutUser } from '../actions/user'
+import { connect } from 'react-redux';
 
 const link = {
   color: 'black'
@@ -10,7 +12,16 @@ const activeLink = {
   color: 'grey'
 }
 
+// export const handleLogout = () => {
+//   this.props.logoutUser()
+// }
+
+
 const NavBar = (props) => {
+
+  function handleLogout(){
+    localStorage.removeItem('jwt')
+  }
 
   return(
     <div id="navBar" style={{position: "relative"}}>
@@ -46,13 +57,18 @@ const NavBar = (props) => {
           <Icon name="user" />
         </NavLink>
 
-        <NavLink
-          to='/community'
-          exact style={link}
-          activeStyle={activeLink}
-        >
-          <Icon name="globe" />
-        </NavLink>
+        {props.loggedIn ?
+          <NavLink
+            to="/login"
+            exact style={link}
+            activeStyle={activeLink}
+          >
+            <Icon name="sign-out" style={link} />
+          </NavLink>
+
+        :
+          <Redirect to ="/login" />
+        }
 
 
       </div>
@@ -60,4 +76,4 @@ const NavBar = (props) => {
   )
 }
 
-export default NavBar
+export default withRouter(NavBar)

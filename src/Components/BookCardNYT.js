@@ -22,7 +22,7 @@ const BookCardNYT = ({book, handleBookClick}) => {
       <Card.Meta style={{textAlign:"center"}}>{book.author}</Card.Meta>
 
     </Card>
-
+  
   )
 
 }

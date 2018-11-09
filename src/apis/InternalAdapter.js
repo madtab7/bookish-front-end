@@ -1,8 +1,6 @@
-
-
 export default class InternalAdapter {
 
-  static signUpUser(userData){
+  static signUpUser(username, password, full_name, avatarURL){
     return fetch('http://localhost:3001/api/v1/users', {
       method: 'POST',
       headers: {
@@ -11,17 +9,17 @@ export default class InternalAdapter {
       },
       body: JSON.stringify({
         user: {
-          username: userData.username,
-          password: userData.password,
-          full_name: userData.full_name,
-          avatarURL: userData.avatarURL
+          username: username,
+          password: password,
+          full_name: full_name,
+          avatarURL: avatarURL
         }
       })
     })
 
   }
 
-  static loginUser(userData){
+  static loginUser(username, password){
     return fetch('http://localhost:3001/api/v1/login', {
       method: 'POST',
       headers: {
@@ -30,10 +28,20 @@ export default class InternalAdapter {
       },
       body: JSON.stringify({
         user: {
-          username: userData.username,
-          password: userData.password
+          username: username,
+          password: password
         }
       })
+    })
+  }
+
+  //match jwt with user
+  static getUser(){
+    return fetch('http://localhost:3001/api/v1/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
     })
   }
 

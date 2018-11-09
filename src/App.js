@@ -7,61 +7,28 @@ import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
 import FriendsContainer from './Containers/FriendsContainer'
 import InternalAdapter from './apis/InternalAdapter'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 
 class App extends Component {
-  state={
-    currentUserData:'',
-    redirect: false
-  }
 
 
-
-  registerUser=(event, userData)=>{
-    event.preventDefault();
-    InternalAdapter.signUpUser(userData)
-    .then(r => r.json())
-    .then(userData => {
-      this.setState({
-        currentUserData: userData.user,
-        redirect: true
-      })
-    })
-    /// add error messages if invalid
-  }
-
-  loginUser=(event, userData)=>{
-    event.preventDefault();
-    InternalAdapter.loginUser(userData)
-    .then(r => r.json())
-    .then(userData => {
-      this.setState({
-        currentUserData: userData.user,
-        redirect:true
-      },()=> console.log(this.state))
-    })
-    /// add error messages if invalid
-  }
 
   render() {
+
+    // console.log("APP", this.props)
 
     return (
       <div className="App">
 
-        {this.state.currentUserData.username === undefined ?
+        {!this.props.loggedIn ?
           <Redirect to ="/login" />
         :
           null
         }
 
-        {this.state.redirect ?
-          <Redirect to="/" />
-        :
-          null
-        }
-
-        <NavBar />
+        <NavBar loggedIn={this.props.loggedIn}/>
 
         <Switch>
           <Route exact path="/"
@@ -69,20 +36,19 @@ class App extends Component {
           />
 
           <Route path="/login"
-            render=
-            {()=> <Login registerUser={this.registerUser} loginUser={this.loginUser}/>}
+            render= {()=> <Login />}
           />
 
           <Route path="/books"
-            render={()=> <SearchContainer currentUserData={this.state.currentUserData}/>}
+            render={()=> <SearchContainer currentUserData={this.props.user}/>}
           />
 
           <Route path="/profile"
-            render={()=> <UserContainer currentUserData={this.state.currentUserData}/>}
+            render={()=> <UserContainer currentUserData={this.props.user}/>}
           />
 
           <Route path="/community"
-            render={()=> <FriendsContainer currentUserData={this.state.currentUserData}/>}
+            render={()=> <FriendsContainer currentUserData={this.props.user}/>}
           />
 
         </Switch>
@@ -92,4 +58,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ usersReducer: { user, loggedIn } }) => ({
+  user,
+  loggedIn
+})
+
+export default withRouter(connect(mapStateToProps)(App)) //allows for React router props

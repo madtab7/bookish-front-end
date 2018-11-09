@@ -13,8 +13,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 're
 
 class App extends Component {
 
-
-
   render() {
 
     // console.log("APP", this.props)

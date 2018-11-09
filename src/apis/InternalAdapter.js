@@ -220,5 +220,26 @@ export default class InternalAdapter {
     })
   }
 
+  //create book review
+
+  static createBookReview(){
+    return fetch('http://localhost:3001/api/v1/reviews', {
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        review: {
+          book_id: 7,
+          user_id: 1,
+          title: "thrilling read!",
+          content: "this is such a good book OMG kept me on the edge of my seat the entire time!",
+          rating: 4
+        }
+      })
+    })
+  }
+
 
 }

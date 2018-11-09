@@ -12,16 +12,12 @@ const activeLink = {
   color: 'grey'
 }
 
-// export const handleLogout = () => {
-//   this.props.logoutUser()
-// }
-
 
 const NavBar = (props) => {
 
-  function handleLogout(){
-    localStorage.removeItem('jwt')
-  }
+  // function handleLogout(){
+  //   localStorage.removeItem('jwt')
+  // }
 
   return(
     <div id="navBar" style={{position: "relative"}}>

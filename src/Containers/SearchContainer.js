@@ -37,7 +37,7 @@ export default class SearchContainer extends Component{
       this.setState({
         searchData: data.items,
         searchPerformed: "googleQuery"
-      },()=>console.log(this.state.searchData))
+      })
     })
 
   }

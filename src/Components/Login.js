@@ -58,17 +58,20 @@ class Login extends Component{
         width: "100%",
         height:"800px"
       }}>
-      <Button style={{color:"black"}} onClick={this.handleNewUserClick}>
-        <h2 className="subhead">Create an Account</h2>
-      </Button>
-      <h2 className="subhead">OR</h2>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
       {!this.state.clickedNewUser ?
         <Form style={{
           background:"rgba(255,255,255,0.4)",
           width:"40%",
           padding:"5%",
           borderRadius:"25px",
-          textAlign: "center"
+          textAlign: "center",
+          marginLeft:"30%"
         }}
           loading={this.props.loading}
           error={this.props.failedLogin}
@@ -76,6 +79,13 @@ class Login extends Component{
         >
 
           <Message error header={this.props.failedLogin ? this.props.error : null} />
+
+          <Button style={{color:"black"}} onClick={this.handleNewUserClick}>
+            <h2 className="subhead">Create an Account</h2>
+          </Button>
+          <h2 className="subhead">OR</h2>
+
+          <h2 className="subhead">Login:</h2>
 
           <Form.Input
             fluid label="Username"
@@ -93,7 +103,7 @@ class Login extends Component{
             onChange={this.handleInputChange}
           />
           <Button type="submit" style={{color:"black"}} >
-            <h2 className="subhead">Login</h2>
+            <h2 className="subhead">Submit</h2>
           </Button>
         </Form>
 
@@ -105,7 +115,8 @@ class Login extends Component{
           width:"40%",
           padding:"5%",
           borderRadius:"25px",
-          textAlign: "center"
+          textAlign: "center",
+          marginLeft:"30%"
         }}
           loading={this.props.loading}
           error={this.props.failedLogin}

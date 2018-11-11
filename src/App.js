@@ -7,6 +7,7 @@ import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
 import FriendsContainer from './Containers/FriendsContainer'
 import InternalAdapter from './apis/InternalAdapter'
+import NotFound from './Components/NotFound'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
@@ -49,6 +50,8 @@ class App extends Component {
           <Route path="/community"
             render={()=> <FriendsContainer currentUserData={this.props.user}/>}
           />
+
+          <Route component={NotFound} />
 
         </Switch>
 

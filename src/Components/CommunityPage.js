@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import InternalAdapter from '../apis/InternalAdapter'
-import { Image, Icon, Container, Grid } from 'semantic-ui-react'
+import { Image, Icon, Container, Grid, Message } from 'semantic-ui-react'
 
 export default class CommunityPage extends Component{
 
   state = {
-    allUsers:[]
+    allUsers:[],
+    showConfirmMessage: false
   }
 
   componentDidMount=()=>{
@@ -17,6 +18,11 @@ export default class CommunityPage extends Component{
     })
   }
 
+  handleAddFriend=()=>{
+    this.setState({
+      showConfirmMessage: true
+    })
+  }
 
   // ONLY SHOW ADD FRIEND ICON IF THEY AREN"T FRIENDS
 
@@ -24,7 +30,13 @@ export default class CommunityPage extends Component{
 
     return(
       <Container>
+      <Message floating positive
+      hidden={!this.state.showConfirmMessage}
+      visible={this.state.showConfirmMessage}>Friend added!
+      </Message>
+
       <Grid itemsPerRow={5}>
+
       <Grid.Row>
         {this.state.allUsers.map((user)=>{
           return(
@@ -34,7 +46,11 @@ export default class CommunityPage extends Component{
               <br/>
               <span>{user.full_name}</span>
               <br/>
-              <Icon id={user.id} name="add user" onClick={this.props.handleAddFriendClick} />
+              <Icon id={user.id} name="add user"
+                onClick={(event)=>{
+                  this.props.handleAddFriendClick(event);
+                  this.handleAddFriend()
+              }} />
               <br/>
               <br/>
             </div>

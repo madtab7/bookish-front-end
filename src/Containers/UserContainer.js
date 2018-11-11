@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import UserPage from '../Components/UserPage'
 import { connect } from 'react-redux'
 import withAuth from '../HOCs/withAuth'
+import InternalAdapter from '../apis/InternalAdapter'
+
+const handleUpdatedReview=(reviewObj, reviewId)=>{
+  InternalAdapter.updateUserReview(reviewObj, reviewId)
+}
 
 const UserContainer = ({ id, avatarURL, username }) => {
   console.log(id, avatarURL, username)
@@ -11,6 +16,7 @@ const UserContainer = ({ id, avatarURL, username }) => {
         id={id}
         avatarURL={avatarURL}
         username={username}
+        handleUpdatedReview={handleUpdatedReview}
       />
     </div>
   )

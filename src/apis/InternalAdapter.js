@@ -259,6 +259,33 @@ export default class InternalAdapter {
     })
   }
 
+  // get user's reviews
+  static getUserReviews(userId){
+    return fetch(`http://localhost:3001/api/v1/reviews?user_id=${userId}`)
+    .then(r=>r.json())
+  }
 
+  //delete user review
+  static deleteUserReview(reviewId){
+    return fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
+      method: 'DELETE'
+    })
+  }
+
+  static updateUserReview(reviewObj, reviewId){
+    return fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: reviewId,
+        rating: reviewObj.rating,
+        title: reviewObj.title,
+        content: reviewObj.review
+      })
+    })
+  }
 
 }

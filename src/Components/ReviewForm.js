@@ -31,7 +31,15 @@ export default class ReviewForm extends Component {
     return(
 
       <Form onSubmit={this.handleReviewSubmit}>
-        Rating: <Rating icon="star" size="large" defaultRating={0} maxRating={5} name="rating" value={this.state.rating} onRate={this.handleRate}/>
+        Rating:
+        <Rating
+          icon="star"
+          size="large"
+          defaultRating={0} maxRating={5}
+          name="rating"
+          value={this.state.rating}
+          onRate={this.handleRate}
+        />
         <br/><br/>
 
         <Form.Input

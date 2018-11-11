@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Grid, Card, Divider, Segment, Icon, Accordion } from 'semantic-ui-react'
+import React, { Component, Fragment } from 'react';
+import { Grid, Card, Divider, Segment, Icon, Accordion, List, Rating, Button } from 'semantic-ui-react'
 import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
+import EditReviewModal from './EditReviewModal'
 import InternalAdapter from '../apis/InternalAdapter'
 
 export default class UserPage extends Component{
@@ -15,6 +16,7 @@ export default class UserPage extends Component{
     userFriends:[],
     recommendedBooks:[],
     booksRecommendedToUser:[],
+    userReviews:[],
     activeIndex:""
   }
 
@@ -61,6 +63,12 @@ export default class UserPage extends Component{
         userFriends
       })
     })
+    InternalAdapter.getUserReviews(userId)
+    .then(userReviews => {
+      this.setState({
+        userReviews
+      })
+    })
   }
 
 
@@ -105,9 +113,15 @@ export default class UserPage extends Component{
     return this.state.booksRecommendedToUser.length
   }
 
+  countReviews=()=>{
+    return this.state.userReviews.length
+  }
+
   render(){
 
     return(
+      <Fragment>
+
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%"}}>
         <Grid.Column width={5} rows={2}>
           <Grid.Row>
@@ -161,11 +175,47 @@ export default class UserPage extends Component{
               </Card.Group>
             </Accordion.Content>
 
-
             <Accordion.Title active={this.state.activeIndex === 2} index={2} onClick={this.handleClick}>
-              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()}) <Icon name='dropdown' /></h2>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>REVIEWED ({this.countReviews()}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 2}>
+              <List divided verticalAlign='middle'>
+                {this.state.userReviews.map((review)=>{
+                  return(
+                    <List.Item>
+                    <List.Content floated='right'>
+
+                      <EditReviewModal
+                        review={review}
+                        book={review.book}
+                        handleUpdatedReview={this.props.handleUpdatedReview}
+                      />
+
+                    </List.Content>
+                    <List.Content>
+                      <List.Header>
+                        {review.book.title} by {review.book.author}
+                      </List.Header>
+                      {review.title}
+                      <Rating
+                        defaultRating={review.rating}
+                        maxRating={5}
+                        disabled
+                      />
+                    </List.Content>
+                  </List.Item>
+
+
+                  )
+                })}
+              </List>
+            </Accordion.Content>
+
+
+            <Accordion.Title active={this.state.activeIndex === 3} index={3} onClick={this.handleClick}>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()}) <Icon name='dropdown' /></h2>
+            </Accordion.Title>
+            <Accordion.Content active={this.state.activeIndex === 3}>
               <Card.Group itemsPerRow={4}>
                 {this.state.booksRecommendedToUser.map((book)=>{
                   return <BookCardUser key={book.id} book={book}/>
@@ -174,10 +224,10 @@ export default class UserPage extends Component{
             </Accordion.Content>
 
 
-            <Accordion.Title active={this.state.activeIndex === 3} index={3} onClick={this.handleClick}>
+            <Accordion.Title active={this.state.activeIndex === 4} index={4} onClick={this.handleClick}>
               <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.countRecommendedBooks()}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
-            <Accordion.Content active={this.state.activeIndex === 3}>
+            <Accordion.Content active={this.state.activeIndex === 4}>
               <Card.Group itemsPerRow={4}>
                 {this.state.recommendedBooks.map((book)=>{
                   return <BookCardUser key={book.id} book={book}/>
@@ -193,6 +243,7 @@ export default class UserPage extends Component{
         </Grid.Column>
 
       </Grid>
+      </Fragment>
     )
   }
 }

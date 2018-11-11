@@ -3,6 +3,7 @@ import { Grid, Card, Divider, Segment, Icon, Accordion } from 'semantic-ui-react
 import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
+import ReviewModal from './ReviewModal'
 import InternalAdapter from '../apis/InternalAdapter'
 
 export default class UserPage extends Component{

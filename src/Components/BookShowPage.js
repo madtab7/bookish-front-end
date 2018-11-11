@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Button, Icon, Modal } from 'semantic-ui-react';
+import { Container, Header, Grid, Button, Icon, Modal, Message } from 'semantic-ui-react';
 import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
 
-// const ReviewButton = () => {
-//   <Button animated >
-//     <Button.Content visible><h2 className="subhead">review</h2></Button.Content>
-//     <Button.Content hidden>
-//       <Icon name="amazon" />
-//     </Button.Content>
-//   </Button>
-// }
 
 export default class BookShowPage extends Component {
 
   state={
-    showUserFriendsList: false
+    showUserFriendsList: false,
+    showConfirmMessage: false,
+    showReccMessage: false
   }
 
   goBack=()=>{
     window.history.back()
   }
 
+  handleButtonClick=()=>{
+    this.setState({
+      showConfirmMessage: true
+    })
+  }
+
+  handleReccButton=()=>{
+    this.setState({
+      showReccMessage: true
+    })
+  }
+  // set timeout to make message disappear?
 
   handleRecc=()=>{
     this.setState({
       showUserFriendsList: true
     })
   }
+
+  handleReccC
 
   render(){
 
@@ -53,7 +61,22 @@ export default class BookShowPage extends Component {
           </Grid.Column>
 
           <Grid.Column width={4}>
-            <Button animated onClick={this.props.handleReadClick}>
+
+          <Message floating positive
+            hidden={!this.state.showConfirmMessage}
+            visible={this.state.showConfirmMessage}>Added to your bookshelf!
+          </Message>
+          <Message floating positive
+            hidden={!this.state.showReccMessage}
+            visible={this.state.showReccMessage}>Recommended!
+          </Message>
+
+            <Button animated
+              onClick={(event)=>{
+              this.props.handleReadClick(event);
+              this.handleButtonClick()
+            }}>
+
               <Button.Content visible><h2 className="subhead">mark as read</h2></Button.Content>
               <Button.Content hidden>
                 <Icon name="checkmark" />
@@ -61,7 +84,12 @@ export default class BookShowPage extends Component {
             </Button>
             <br/><br/>
 
-            <Button animated onClick={this.props.handleWantToReadClick}>
+            <Button animated
+              onClick={(event)=>{
+              this.props.handleWantToReadClick(event);
+              this.handleButtonClick()
+            }}>
+
               <Button.Content visible><h2 className="subhead">want to read</h2></Button.Content>
               <Button.Content hidden>
                 <Icon name="book" />
@@ -94,10 +122,15 @@ export default class BookShowPage extends Component {
           </Grid.Column>
 
           <Grid.Column width={2}>
+
             {this.state.showUserFriendsList ?
               this.props.userFriends.map((friend)=>{
                 return (
-                  <div id={friend.friend.id} onClick={this.props.handleRecommendClick}>
+                  <div id={friend.friend.id}
+                  onClick={(event)=>{
+                    this.props.handleRecommendClick(event);
+                    this.handleReccButton()
+                  }}>
                   <FriendIcon id={friend.friend.id} key={friend.friend.id} friend={friend.friend} />
                   </div>
                 )

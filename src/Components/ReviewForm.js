@@ -5,7 +5,7 @@ export default class ReviewForm extends Component {
 
   state = {
     title:"",
-    content:"",
+    review:"",
     rating:0
   }
 
@@ -19,6 +19,11 @@ export default class ReviewForm extends Component {
     this.setState({
       rating
     },()=>console.log(this.state))
+  }
+
+  handleReviewSubmit = (event) => {
+    const reviewObj = this.state
+    this.props.handleBookReview(reviewObj)
   }
 
 

@@ -77,7 +77,9 @@ export default class BookShowPage extends Component {
             </Button>
             <br/><br/>
 
-            <ReviewModal selectedBookData={this.props.selectedBookData}/>
+            <ReviewModal selectedBookData={this.props.selectedBookData}
+            handleBookReview={this.props.handleBookReview}
+            />
             <br/><br/>
 
             <Button animated onClick={this.props.handlePurchaseClick}>

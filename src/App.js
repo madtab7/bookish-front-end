@@ -13,7 +13,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 're
 
 class App extends Component {
 
-
   render() {
 
     // console.log("APP", this.props)
@@ -39,7 +38,8 @@ class App extends Component {
           />
 
           <Route path="/books"
-            render={()=> <SearchContainer currentUserData={this.props.user}/>}
+            render={()=> <SearchContainer
+            currentUserData={this.props.user}/>}
           />
 
           <Route path="/profile"

@@ -119,6 +119,13 @@ export default class SearchContainer extends Component{
     InternalAdapter.createUserBookWantToRead(userId, bookData)
   }
 
+  //REVIEW CLICK
+  handleBookReview = (reviewObj) => {
+    const bookData= this.state.selectedBookData.items[0].volumeInfo
+    const userId = this.props.currentUserData.id
+    InternalAdapter.createBookReview(userId, bookData, reviewObj)
+  }
+
   //PURCHASE BUTTON CLICK
   handlePurchaseClick=(event)=>{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
@@ -133,6 +140,7 @@ export default class SearchContainer extends Component{
     const friendId = parseInt(event.target.id)
     InternalAdapter.createBookUserRecommends(userId, friendId, bookData)
   }
+
 
   componentDidMount=()=>{
     const userId = this.props.currentUserData.id
@@ -173,6 +181,7 @@ export default class SearchContainer extends Component{
             handleWantToReadClick={this.handleWantToReadClick}
             handlePurchaseClick={this.handlePurchaseClick}
             handleRecommendClick={this.handleRecommendClick}
+            handleBookReview={this.handleBookReview}
             userFriends={this.state.userFriends}
           />
         )

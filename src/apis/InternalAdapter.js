@@ -222,24 +222,43 @@ export default class InternalAdapter {
 
   //create book review
 
-  static createBookReview(){
-    return fetch('http://localhost:3001/api/v1/reviews', {
-      method:'POST',
-      headers: {
+  static createBookReview(userId, bookData, reviewObj){
+    return fetch('http://localhost:3001/api/v1/books', {
+      method: "POST",
+      headers:{
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        review: {
-          book_id: 7,
-          user_id: 1,
-          title: "thrilling read!",
-          content: "this is such a good book OMG kept me on the edge of my seat the entire time!",
-          rating: 4
+        book: {
+          title: bookData.title,
+          author: bookData.authors[0],
+          description: bookData.description,
+          imgURL: bookData.imageLinks.thumbnail
         }
       })
     })
+    .then(r=>r.json())
+    .then(data => {
+      fetch('http://localhost:3001/api/v1/reviews', {
+        method: "POST",
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          review: {
+            book_id: data.id,
+            user_id: userId,
+            title: reviewObj.title,
+            content: reviewObj.review,
+            rating: reviewObj.rating
+          }
+        })
+      })
+    })
   }
+
 
 
 }

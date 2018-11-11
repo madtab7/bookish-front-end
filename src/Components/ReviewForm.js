@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
-import { Form, Button, Icon} from 'semantic-ui-react';
+import { Form, Button, Icon, Rating} from 'semantic-ui-react';
 
 export default class ReviewForm extends Component {
 
   state = {
     title:"",
     content:"",
-    rating:""
+    rating:0
   }
 
   handleInputChange=(event, { name, value })=>{
     this.setState({
       [name]:value
-    })
+    },()=>console.log(this.state))
   }
+
+  handleRate=(event, { rating }) => {
+    this.setState({
+      rating
+    },()=>console.log(this.state))
+  }
+
 
   render(){
     return(
 
-      <Form>
+      <Form onSubmit={this.handleReviewSubmit}>
+        Rating: <Rating icon="star" size="large" defaultRating={0} maxRating={5} name="rating" value={this.state.rating} onRate={this.handleRate}/>
+        <br/><br/>
 
         <Form.Input
-          type="title"
+          type="text"
           fluid label="Title"
           name="title"
           value={this.state.title}
@@ -29,12 +38,16 @@ export default class ReviewForm extends Component {
         />
 
         <Form.Input
-          type="content"
+          type="text area"
           fluid label="Review"
-          name="title"
-          value={this.state.title}
+          name="review"
+          value={this.state.review}
           onChange={this.handleInputChange}
         />
+
+        <Button type="submit" style={{color:"black"}}>
+          <h2 className="subhead">Submit</h2>
+        </Button>
 
       </Form>
 

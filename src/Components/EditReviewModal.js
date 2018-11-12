@@ -19,6 +19,7 @@ export default class ReviewModal extends Component {
           </Button>}
         open={this.state.modalOpen}
         onClose={this.handleClose}
+        size="tiny"
       >
 
         <Modal.Header id="subhead"><h2 className="subhead">Edit Review for "{this.props.book.title}":</h2></Modal.Header>

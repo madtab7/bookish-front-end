@@ -6,9 +6,9 @@ import RecommendModal from './RecommendModal'
 const BookCardUser = (props) => {
 
   return(
-    <Card >
+    <Card style={{border:"0px", borderColor:"white"}} id={props.book.book.id} onClick={props.handleBookClick}>
       {props.book.book.imgURL !== undefined ?
-        <Image src={props.book.book.imgURL} style={{height:"158px"}}/>
+        <Image src={props.book.book.imgURL} style={{height:"158px"}} id={props.book.book.id} onClick={props.handleBookClick} />
       :
         <Image src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"158px"}}/>
       }

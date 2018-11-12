@@ -325,4 +325,9 @@ export default class InternalAdapter {
     })
   }
 
+  static getUserBookInfo(bookId){
+    return fetch(`http://localhost:3001/api/v1/books/${bookId}`)
+    .then(r=>r.json())
+  }
+
 }

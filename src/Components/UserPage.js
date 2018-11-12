@@ -19,7 +19,8 @@ export default class UserPage extends Component{
     recommendedBooks:[],
     booksRecommendedToUser:[],
     userReviews:[],
-    activeIndex:""
+    activeIndex:"",
+    selectedBookData:[]
   }
 
   ///NEED TO REFACTOR
@@ -84,6 +85,16 @@ export default class UserPage extends Component{
       // this.forceUpdate()
       this.getUserData()
     }
+  }
+
+  handleBookClick=(event)=>{
+    let bookId = event.target.id
+    InternalAdapter.getUserBookInfo(bookId)
+    .then(selectedBookData => {
+      this.setState({
+        selectedBookData
+      })
+    })
   }
 
   ////////////////// FOR Accordion
@@ -180,7 +191,8 @@ export default class UserPage extends Component{
             <Accordion.Content active={this.state.activeIndex === 0}>
               <Card.Group itemsPerRow={4}>
                 {this.state.wantToReadBooks.map((book)=>{
-                  return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}/>
+                  return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}
+                  handleBookClick={this.handleBookClick}/>
                 })}
               </Card.Group>
             </Accordion.Content>
@@ -195,6 +207,7 @@ export default class UserPage extends Component{
                   return <BookCardUser
                   handleBookReview={this.props.handleBookReview}
                   handleRecommendUserBook={this.props.handleRecommendUserBook}
+                  handleBookClick={this.handleBookClick}
                   userFriends={this.state.userFriends}
                   key={book.id}
                   book={book}/>
@@ -249,7 +262,7 @@ export default class UserPage extends Component{
             <Accordion.Content active={this.state.activeIndex === 3}>
               <Card.Group itemsPerRow={4}>
                 {this.state.booksRecommendedToUser.map((book)=>{
-                  return <BookCardUser key={book.id} book={book}/>
+                  return <BookCardUser key={book.id} book={book} handleBookClick={this.handleBookClick}/>
                 })}
               </Card.Group>
             </Accordion.Content>
@@ -261,7 +274,7 @@ export default class UserPage extends Component{
             <Accordion.Content active={this.state.activeIndex === 4}>
               <Card.Group itemsPerRow={4}>
                 {this.state.recommendedBooks.map((book)=>{
-                  return <BookCardUser key={book.id} book={book}/>
+                  return <BookCardUser key={book.id} book={book} handleBookClick={this.handleBookClick}/>
                 })}
               </Card.Group>
             </Accordion.Content>

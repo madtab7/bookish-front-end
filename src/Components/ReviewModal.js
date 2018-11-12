@@ -32,6 +32,7 @@ export default class ReviewModal extends Component {
         trigger={<Popup trigger={<Button name="review" icon="write" onClick={this.handleOpen} />} content="review" />}
         open={this.state.modalOpen}
         onClose={this.handleClose}
+        size="tiny"
       >
 
         <Modal.Header><h2 className="subhead">Review "{this.state.bookData.title}":</h2></Modal.Header>

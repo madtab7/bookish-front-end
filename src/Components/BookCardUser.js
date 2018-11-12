@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Image, Button, Popup } from 'semantic-ui-react'
+import ReviewModal from './ReviewModal'
 
 const BookCardUser = (props) => {
 
@@ -24,6 +25,20 @@ const BookCardUser = (props) => {
         null
         // <Button circular icon="" />
       }
+
+      {props.book.read ?
+
+        <Button.Group basic size="mini">
+          <ReviewModal
+            userBook={props.book.book}
+            bookId={props.book.book.id}
+            handleBookReview={props.handleBookReview}
+          />
+        </Button.Group>
+      :
+        null
+      }
+
 
     </Card>
   )

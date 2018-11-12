@@ -4,22 +4,33 @@ import { connect } from 'react-redux'
 import withAuth from '../HOCs/withAuth'
 import InternalAdapter from '../apis/InternalAdapter'
 
-const handleUpdatedReview=(reviewObj, reviewId)=>{
-  InternalAdapter.updateUserReview(reviewObj, reviewId)
-}
 
-const UserContainer = ({ id, avatarURL, username }) => {
-  console.log(id, avatarURL, username)
-  return(
-    <div>
+class UserContainer extends Component {
+
+  handleUpdatedReview=(reviewObj, reviewId)=>{
+    InternalAdapter.updateUserReview(reviewObj, reviewId)
+  }
+
+  handleBookReview=(reviewObj,bookId)=>{
+    const userId = this.props.id
+    console.log(reviewObj, userId, bookId)
+    InternalAdapter.createReviewFromReadBook(userId, bookId, reviewObj)
+  }
+
+  render(){
+
+    return(
+      <div>
       <UserPage
-        id={id}
-        avatarURL={avatarURL}
-        username={username}
-        handleUpdatedReview={handleUpdatedReview}
+      id={this.props.id}
+      avatarURL={this.props.avatarURL}
+      username={this.props.username}
+      handleUpdatedReview={this.handleUpdatedReview}
+      handleBookReview={this.handleBookReview}
       />
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = ({ usersReducer: { user: { id, avatarURL, username } } }) => ({

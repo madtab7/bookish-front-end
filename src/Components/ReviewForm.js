@@ -23,7 +23,12 @@ export default class ReviewForm extends Component {
 
   handleReviewSubmit = (event) => {
     const reviewObj = this.state
-    this.props.handleBookReview(reviewObj)
+    if(this.props.bookId){
+      const bookId = this.props.bookId
+      this.props.handleBookReview(reviewObj, bookId)
+    } else {
+      this.props.handleBookReview(reviewObj)
+    }
   }
 
 

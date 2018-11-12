@@ -35,7 +35,6 @@ export default class BookShowPage extends Component {
     })
   }
 
-  handleReccC
 
   render(){
 

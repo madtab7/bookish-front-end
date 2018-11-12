@@ -288,4 +288,23 @@ export default class InternalAdapter {
     })
   }
 
+  static createReviewFromReadBook(userId, bookId, reviewObj){
+    return fetch(`http://localhost:3001/api/v1/reviews`,{
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        review: {
+          book_id: bookId,
+          user_id: userId,
+          title: reviewObj.title,
+          content: reviewObj.review,
+          rating: reviewObj.rating
+        }
+      })
+    })
+  }  
+
 }

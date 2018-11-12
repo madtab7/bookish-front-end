@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Image, Button, Icon, Modal } from 'semantic-ui-react';
+import { Container, Header, Image, Button, Icon, Modal, Popup } from 'semantic-ui-react';
 import ReviewForm from './ReviewForm'
 
 export default class ReviewModal extends Component {
@@ -29,12 +29,7 @@ export default class ReviewModal extends Component {
     return (
 
       <Modal
-        trigger={<Button animated name="review" onClick={this.handleOpen}>
-          <Button.Content visible><h2 className="subhead">review</h2></Button.Content>
-          <Button.Content hidden>
-          <Icon name="write" />
-          </Button.Content>
-          </Button>}
+        trigger={<Popup trigger={<Button name="review" icon="write" onClick={this.handleOpen} />} content="review" />}
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >

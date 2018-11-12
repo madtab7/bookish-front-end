@@ -305,6 +305,24 @@ export default class InternalAdapter {
         }
       })
     })
-  }  
+  }
+
+  static createRecommendationFromReadBook(userId, bookId, friendId){
+    return fetch(`http://localhost:3001/api/v1/shelved_books`,{
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        shelved_book: {
+          book_id: bookId,
+          user_id: userId,
+          recommended: true,
+          friend_id: friendId
+        }
+      })
+    })
+  }
 
 }

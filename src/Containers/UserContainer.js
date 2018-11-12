@@ -10,7 +10,8 @@ class UserContainer extends Component {
 
   state = {
     showDeleteMessage: false,
-    showEditMessage: false
+    showEditMessage: false,
+    showReccMessage: false
   }
 
   handleUpdatedReview=(reviewObj, reviewId)=>{
@@ -32,6 +33,15 @@ class UserContainer extends Component {
     InternalAdapter.createReviewFromReadBook(userId, bookId, reviewObj)
   }
 
+  handleRecommendUserBook=(event, bookId)=>{
+    const userId = this.props.id
+    const friendId = parseInt(event.target.id)
+    InternalAdapter.createRecommendationFromReadBook(userId, bookId, friendId)
+    this.setState({
+      showReccMessage: true
+    })
+  }
+
   render(){
 
     return(
@@ -47,6 +57,11 @@ class UserContainer extends Component {
         visible={this.state.showEditMessage}>Your review has been updated.
       </Message>
 
+      <Message floating positive
+        hidden={!this.state.showReccMessage}
+        visible={this.state.showReccMessage}>Your recommendation has been sent.
+      </Message>
+
       <UserPage
         id={this.props.id}
         avatarURL={this.props.avatarURL}
@@ -54,6 +69,7 @@ class UserContainer extends Component {
         handleUpdatedReview={this.handleUpdatedReview}
         handleBookReview={this.handleBookReview}
         handleDeletedReview={this.handleDeletedReview}
+        handleRecommendUserBook={this.handleRecommendUserBook}
       />
       </div>
     )

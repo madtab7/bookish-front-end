@@ -78,8 +78,6 @@ export default class UserPage extends Component{
       InternalAdapter.updateUserBookshelfToRead(bookId)
     } else if (event.target.parentElement.name === "remove"){
       InternalAdapter.updateUserBookshelfToRemove(bookId)
-    } else if( event.target.parentElement.name === "review"){
-      console.log(bookId)
     }
     this.getUserData()
     // window.location.reload()
@@ -172,7 +170,10 @@ export default class UserPage extends Component{
             <Accordion.Content active={this.state.activeIndex === 1}>
               <Card.Group itemsPerRow={4}>
                 {this.state.readBooks.map((book)=>{
-                  return <BookCardUser handleBookReview={this.props.handleBookReview}
+                  return <BookCardUser
+                  handleBookReview={this.props.handleBookReview}
+                  handleRecommendUserBook={this.props.handleRecommendUserBook}
+                  userFriends={this.state.userFriends}
                   key={book.id}
                   book={book}/>
                 })}

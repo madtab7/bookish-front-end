@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Image, Button, Popup } from 'semantic-ui-react'
 import ReviewModal from './ReviewModal'
+import RecommendModal from './RecommendModal'
 
 const BookCardUser = (props) => {
 
@@ -34,6 +35,14 @@ const BookCardUser = (props) => {
             bookId={props.book.book.id}
             handleBookReview={props.handleBookReview}
           />
+
+          <RecommendModal
+            userBook={props.book.book}
+            bookId={props.book.book.id}
+            userFriends={props.userFriends}
+            handleRecommendUserBook={props.handleRecommendUserBook}
+          />
+
         </Button.Group>
       :
         null

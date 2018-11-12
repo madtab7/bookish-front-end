@@ -27,7 +27,6 @@ export default class UserPage extends Component{
 
   getUserData=()=>{
     let userId = this.props.id
-    console.log(userId)
     InternalAdapter.getUserShevedBooks(userId)
     .then(userBooks => {
       this.setState({
@@ -76,9 +75,11 @@ export default class UserPage extends Component{
     let bookId = event.target.parentElement.id
     if(event.target.parentElement.name === "read"){
       InternalAdapter.updateUserBookshelfToRead(bookId)
+      // this.forceUpdate()
       this.getUserData()
     } else if (event.target.parentElement.name === "remove"){
       InternalAdapter.updateUserBookshelfToRemove(bookId)
+      // this.forceUpdate()
       this.getUserData()
     }
   }

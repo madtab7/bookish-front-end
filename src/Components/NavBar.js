@@ -20,10 +20,6 @@ const handleLogout=()=>{
 
 const NavBar = (props) => {
 
-  // function handleLogout(){
-  //   localStorage.removeItem('jwt')
-  // }
-
   return(
     <div id="navBar" style={{position: "relative"}}>
 

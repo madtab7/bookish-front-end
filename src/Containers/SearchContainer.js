@@ -73,7 +73,6 @@ class SearchContainer extends Component{
       window.history.back()
       /// flash message if unavailable isbn
     }
-    // console.log(isbn)
     BooksAdapter.getGoogleData(isbn)
     .then(response => response.json())
     .then(data => {

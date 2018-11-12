@@ -27,6 +27,8 @@ export default class ReviewModal extends Component {
         <EditReviewForm
           review={this.props.review}
           handleUpdatedReview={this.props.handleUpdatedReview}
+          handleDeletedReview={this.props.handleDeletedReview}
+          handleClose={this.handleClose}
         />
         </Modal.Content>
         </Modal>
@@ -36,5 +38,3 @@ export default class ReviewModal extends Component {
   }
 
 }
-
-// handleEditReview={this.props.handleEditReview}

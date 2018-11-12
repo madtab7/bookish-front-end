@@ -193,6 +193,7 @@ export default class UserPage extends Component{
                         review={review}
                         book={review.book}
                         handleUpdatedReview={this.props.handleUpdatedReview}
+                        handleDeletedReview={this.props.handleDeletedReview}
                       />
 
                     </List.Content>

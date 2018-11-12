@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import InitialSearch from '../Components/InitialSearch'
 import SearchResultsG from '../Components/SearchResultsG'
 import SearchResultsNYT from '../Components/SearchResultsNYT'
 import BookShowPage from '../Components/BookShowPage'
 import BooksAdapter from '../apis/BooksAdapter'
 import InternalAdapter from '../apis/InternalAdapter'
+import { Message } from 'semantic-ui-react';
 
 export default class SearchContainer extends Component{
 
@@ -18,7 +19,8 @@ export default class SearchContainer extends Component{
     selectedBookData:[],
     readBookData:[],
     wantToReadBookData:[],
-    userFriends:[]
+    userFriends:[],
+    showReviewConfirmMessage: false
   }
 
   ///////KEYWORD SEARCH FORM///////
@@ -124,6 +126,9 @@ export default class SearchContainer extends Component{
     const bookData= this.state.selectedBookData.items[0].volumeInfo
     const userId = this.props.currentUserData.id
     InternalAdapter.createBookReview(userId, bookData, reviewObj)
+    this.setState({
+      showReviewConfirmMessage: true
+    })
   }
 
   //PURCHASE BUTTON CLICK
@@ -153,7 +158,6 @@ export default class SearchContainer extends Component{
   }
 
   render(){
-    console.log(this.state.searchIndex)
     switch(this.state.searchPerformed){
       case "googleQuery":
         return(
@@ -175,6 +179,13 @@ export default class SearchContainer extends Component{
         );
       case "bookClicked":
         return(
+          <Fragment>
+
+          <Message floating positive
+            hidden={!this.state.showReviewConfirmMessage}
+            visible={this.state.showReviewConfirmMessage}>Your review has been submitted.
+          </Message>
+
           <BookShowPage
             selectedBookData={this.state.selectedBookData.items[0]}
             handleReadClick={this.handleReadClick}
@@ -184,6 +195,7 @@ export default class SearchContainer extends Component{
             handleBookReview={this.handleBookReview}
             userFriends={this.state.userFriends}
           />
+          </Fragment>
         )
       default:
         return(

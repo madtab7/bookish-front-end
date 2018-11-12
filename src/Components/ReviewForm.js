@@ -35,7 +35,10 @@ export default class ReviewForm extends Component {
   render(){
     return(
 
-      <Form onSubmit={this.handleReviewSubmit}>
+      <Form onSubmit={(event)=>{
+        this.handleReviewSubmit(event);
+        this.props.handleClose()
+      }}>
         Rating:
         <Rating
           icon="star"

@@ -5,9 +5,11 @@ import SearchResultsNYT from '../Components/SearchResultsNYT'
 import BookShowPage from '../Components/BookShowPage'
 import BooksAdapter from '../apis/BooksAdapter'
 import InternalAdapter from '../apis/InternalAdapter'
-import { Message } from 'semantic-ui-react';
+import { Message } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import withAuth from '../HOCs/withAuth'
 
-export default class SearchContainer extends Component{
+class SearchContainer extends Component{
 
   state={
     searchPerformed:"",
@@ -212,3 +214,5 @@ export default class SearchContainer extends Component{
     }
   }
 }
+
+export default SearchContainer

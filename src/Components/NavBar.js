@@ -12,6 +12,11 @@ const activeLink = {
   color: 'grey'
 }
 
+const handleLogout=()=>{
+  localStorage.removeItem('jwt')
+  window.location.reload()
+}
+
 
 const NavBar = (props) => {
 
@@ -58,6 +63,7 @@ const NavBar = (props) => {
             to="/login"
             exact style={link}
             activeStyle={activeLink}
+            onClick={handleLogout}
           >
             <Icon name="sign-out" style={link} />
           </NavLink>

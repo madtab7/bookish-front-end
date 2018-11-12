@@ -34,7 +34,7 @@ export default class ReviewModal extends Component {
         onClose={this.handleClose}
       >
 
-        <Modal.Header id="subhead"><h2 id="subhead">Review "{this.state.bookData.title}" by {this.state.bookData.author}:</h2></Modal.Header>
+        <Modal.Header><h2 className="subhead">Review "{this.state.bookData.title}":</h2></Modal.Header>
         <Modal.Content >
         <ReviewForm
           handleBookReview={this.props.handleBookReview}

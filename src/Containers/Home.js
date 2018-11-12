@@ -3,6 +3,8 @@ import SearchContainer from './SearchContainer';
 import UserContainer from './UserContainer';
 import { Container, Grid, Button } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import withAuth from '../HOCs/withAuth'
 import Bookshelf from '../images/bookshelf.jpg'
 
 class Home extends Component{
@@ -13,7 +15,7 @@ class Home extends Component{
     return(
       <div style={{
         backgroundImage:`url(${Bookshelf})`,
-        marginTop:"0.8%",
+        marginTop:"1.1%",
         backgroundRepeat:"no-repeat",
         backgroundSize:"cover",
         width: "100%",
@@ -41,4 +43,4 @@ class Home extends Component{
   }
 }
 
-export default withRouter(Home)
+export default withAuth(withRouter(Home))

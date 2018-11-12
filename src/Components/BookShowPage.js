@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Button, Icon, Modal, Message } from 'semantic-ui-react';
+import { Container, Header, Grid, Button, Icon, Modal, Message, Popup } from 'semantic-ui-react';
 import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
 
@@ -39,7 +39,7 @@ export default class BookShowPage extends Component {
   render(){
 
     return(
-      <Container style={{marginLeft:"70px", marginRight:"70px", marginTop:"30px", marginBottom:"30px"}}>
+      <Container style={{marginLeft:"70px", marginRight:"70px", marginTop:"30px", marginBottom:"30px", textAlign:"left"}}>
       <Grid>
         <Grid.Row columns={4}>
 
@@ -48,18 +48,18 @@ export default class BookShowPage extends Component {
           </Grid.Column>
 
           <Grid.Column width={5}>
-            <Header as='h2'> {this.props.selectedBookData.volumeInfo.title} </Header>
+            <Header as='h2' className="subhead"> {this.props.selectedBookData.volumeInfo.title} </Header>
             {this.props.selectedBookData.volumeInfo.authors.map((author)=>{
-              return <Header as='h3'> {author} </Header>
+              return <Header as='h3' className="subhead"> {author} </Header>
             })}
-            <Header as='h4'>Published: {this.props.selectedBookData.volumeInfo.publishedDate}</Header>
-            <Header as='h4'>Page Count: {this.props.selectedBookData.volumeInfo.pageCount}</Header>
+            <Header as='h4' className="subhead">Published: {this.props.selectedBookData.volumeInfo.publishedDate}</Header>
+            <Header as='h4' className="subhead">Page Count: {this.props.selectedBookData.volumeInfo.pageCount}</Header>
             {this.props.selectedBookData.volumeInfo.categories.map((category)=>{
-              return <Header as='h5'> {category} </Header>
+              return <Header as='h5' className="subhead"> {category} </Header>
             })}
           </Grid.Column>
 
-          <Grid.Column width={4}>
+          <Grid.Column width={4} style={{textAlign:"center"}}>
 
           <Message floating positive
             hidden={!this.state.showConfirmMessage}
@@ -104,18 +104,12 @@ export default class BookShowPage extends Component {
             </Button>
             <br/><br/>
 
+
+            <Popup trigger={<Button name="purchase" icon="amazon" onClick={this.props.handlePurchaseClick} />} content="purchase link" />
+
             <ReviewModal selectedBookData={this.props.selectedBookData}
             handleBookReview={this.props.handleBookReview}
             />
-            <br/><br/>
-
-            <Button animated onClick={this.props.handlePurchaseClick}>
-              <Button.Content visible><h2 className="subhead">purchase</h2></Button.Content>
-              <Button.Content hidden>
-                <Icon name="amazon" />
-              </Button.Content>
-            </Button>
-            <br/><br/>
 
 
           </Grid.Column>
@@ -144,11 +138,11 @@ export default class BookShowPage extends Component {
         <Grid.Row columns={1}>
           <Grid.Column>
             {this.props.selectedBookData.volumeInfo.subtitle ?
-              <Header as='h3'>"{this.props.selectedBookData.volumeInfo.subtitle}"</Header>
+              <Header as='h3' className="subhead">"{this.props.selectedBookData.volumeInfo.subtitle}"</Header>
             :
               null
             }
-            <Header as='h4'>Description:</Header>
+            <Header as='h4' className="subhead">Description:</Header>
               <p>
                 {this.props.selectedBookData.volumeInfo.description}
               </p>

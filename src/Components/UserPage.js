@@ -76,11 +76,11 @@ export default class UserPage extends Component{
     let bookId = event.target.parentElement.id
     if(event.target.parentElement.name === "read"){
       InternalAdapter.updateUserBookshelfToRead(bookId)
+      this.getUserData()
     } else if (event.target.parentElement.name === "remove"){
       InternalAdapter.updateUserBookshelfToRemove(bookId)
+      this.getUserData()
     }
-    this.getUserData()
-    // window.location.reload()
   }
 
   ////////////////// FOR Accordion
@@ -133,12 +133,12 @@ export default class UserPage extends Component{
             {this.state.userFriends.map((friend)=>{
               return <FriendIcon key={friend.id} friend={friend.friend}/>
             })}
-
+            <br></br>
             <NavLink
               to='/community'
               exact style={{color:"black"}}
             >
-              <Icon name="globe" /><br/><h4>See all users</h4>
+            <h4 style={{fontSize:"0.8em"}}> <Icon name="globe" size="small"/> See all users</h4>
             </NavLink>
 
           </Grid.Row>
@@ -199,15 +199,18 @@ export default class UserPage extends Component{
 
                     </List.Content>
                     <List.Content>
-                      <List.Header>
+                      <List.Header className="subhead">
                         {review.book.title} by {review.book.author}
                       </List.Header>
-                      {review.title}
                       <Rating
                         defaultRating={review.rating}
                         maxRating={5}
                         disabled
                       />
+                      <br/>
+                      "{review.title}"
+                      <br/>
+                      {review.content}
                     </List.Content>
                   </List.Item>
 

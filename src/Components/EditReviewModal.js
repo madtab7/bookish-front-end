@@ -14,14 +14,14 @@ export default class ReviewModal extends Component {
     return (
 
       <Modal
-        trigger={<Button onClick={this.handleOpen}>
+        trigger={<Button size="tiny" onClick={this.handleOpen}>
           <h4 className="subhead">Update Review</h4>
           </Button>}
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
 
-        <Modal.Header id="subhead"><h2 id="subhead">Edit Review for "{this.props.book.title}" by {this.props.book.author}:</h2></Modal.Header>
+        <Modal.Header id="subhead"><h2 className="subhead">Edit Review for "{this.props.book.title}":</h2></Modal.Header>
         <Modal.Content >
 
         <EditReviewForm

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Grid, Card, Divider, Segment, Icon, Accordion, List, Rating, Button } from 'semantic-ui-react'
 import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
@@ -6,6 +6,8 @@ import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
 import EditReviewModal from './EditReviewModal'
 import InternalAdapter from '../apis/InternalAdapter'
+import Bookshelves from '../images/bookshelves.jpg'
+import Bookshelves2 from '../images/bookshelves2.jpg'
 
 export default class UserPage extends Component{
 
@@ -121,10 +123,23 @@ export default class UserPage extends Component{
   render(){
 
     return(
-      <Fragment>
+      <div style={{
+        backgroundImage:`url(${Bookshelves2})`,
+        marginTop:"1.1%",
+        backgroundRepeat:"repeat",
+        backgroundSize:"cover",
+        width: "100%",
+        height:"2000px"
+      }}>
 
-      <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%"}}>
-        <Grid.Column width={5} rows={2}>
+      <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%"}}>
+        <Grid.Column width={4} rows={2}
+          style={{
+            background:"rgba(255,255,255,255)",
+            borderTopLeftRadius:"15px",
+            borderBottomLeftRadius:"15px",
+            marginTop:"5%"
+          }}>
           <Grid.Row>
             <img src={this.props.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
           </Grid.Row>
@@ -145,7 +160,13 @@ export default class UserPage extends Component{
           </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column width={11}>
+        <Grid.Column width={11}
+          style={{
+            background:"rgba(255,255,255,255)",
+            borderTopRightRadius:"15px",
+            borderBottomRightRadius:"15px",
+            marginTop:"5%"
+          }}>
 
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>
@@ -253,7 +274,7 @@ export default class UserPage extends Component{
         </Grid.Column>
 
       </Grid>
-      </Fragment>
+      </div>
     )
   }
 }

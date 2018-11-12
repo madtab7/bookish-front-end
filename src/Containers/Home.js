@@ -24,13 +24,13 @@ class Home extends Component{
 
         <Grid columns={1}>
           <Grid.Column style={{textAlign:"center", marginTop:"10%"}}>
-            <Button size="massive" name="books">
+            <Button size="massive" name="books" style={{background:"rgba(255,255,255,0.4)"}}>
               <Link to="/books" style={{color:"black"}}>
                 <h1 className="subhead">find a book</h1>
               </Link>
             </Button>
 
-            <Button size="massive" name="profile">
+            <Button size="massive" name="profile" style={{background:"rgba(255,255,255,0.4)"}}>
               <Link to="/profile" style={{color:"black"}}>
                 <h1 className="subhead">see my bookshelf</h1>
               </Link>

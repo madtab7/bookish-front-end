@@ -63,11 +63,11 @@ export default class BookShowPage extends Component {
 
           <Message floating positive
             hidden={!this.state.showConfirmMessage}
-            visible={this.state.showConfirmMessage}>Added to your bookshelf!
+            visible={this.state.showConfirmMessage}><h2 className="subhead">Added to your bookshelf!</h2>
           </Message>
           <Message floating positive
             hidden={!this.state.showReccMessage}
-            visible={this.state.showReccMessage}>Recommended!
+            visible={this.state.showReccMessage}><h2 className="subhead">Recommended!</h2>
           </Message>
 
             <Button animated

@@ -32,7 +32,7 @@ export default class CommunityPage extends Component{
       <Container>
       <Message floating positive
       hidden={!this.state.showConfirmMessage}
-      visible={this.state.showConfirmMessage}>Friend added!
+      visible={this.state.showConfirmMessage}><h2 className="subhead">Friend added!</h2>
       </Message>
 
       <Grid itemsPerRow={5}>

@@ -49,17 +49,17 @@ class UserContainer extends Component {
 
       <Message floating positive
         hidden={!this.state.showDeleteMessage}
-        visible={this.state.showDeleteMessage}>Your review has been deleted.
+        visible={this.state.showDeleteMessage}><h2 className="subhead">Your review has been</h2> deleted.
       </Message>
 
       <Message floating positive
         hidden={!this.state.showEditMessage}
-        visible={this.state.showEditMessage}>Your review has been updated.
+        visible={this.state.showEditMessage}><h2 className="subhead">Your review has been</h2> updated.
       </Message>
 
       <Message floating positive
         hidden={!this.state.showReccMessage}
-        visible={this.state.showReccMessage}>Your recommendation has been sent.
+        visible={this.state.showReccMessage}><h2 className="subhead">Your recommendation has been sent.</h2>
       </Message>
 
       <UserPage

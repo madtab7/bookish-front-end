@@ -29,7 +29,6 @@ class UserContainer extends Component {
 
   handleBookReview=(reviewObj,bookId)=>{
     const userId = this.props.id
-    console.log(reviewObj, userId, bookId)
     InternalAdapter.createReviewFromReadBook(userId, bookId, reviewObj)
   }
 

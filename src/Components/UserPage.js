@@ -78,17 +78,24 @@ export default class UserPage extends Component{
     })
   }
 
-  //NEED TO RE RENDER PAGE ON STATE CHANGE -- CURRENTLY DOES NOT
-  handleUpdateBook=(event)=>{
+  //OPTIMISTICALLY RENDERING
+  handleUpdateBook=(event, bookObj)=>{
+    console.log(bookObj)
     let bookId = event.target.parentElement.id
+    let idx = this.state.wantToReadBooks.indexOf(bookObj)
+    let removeIdx = this.state.wantToReadBooks.splice(idx,1)
+    let updatedArr = this.state.wantToReadBooks
     if(event.target.parentElement.name === "read"){
+      this.setState({
+        readBooks: [...this.state.readBooks, bookObj],
+        wantToReadBooks: updatedArr
+      })
       InternalAdapter.updateUserBookshelfToRead(bookId)
-      // this.forceUpdate()
-      this.getUsersBooks()
     } else if (event.target.parentElement.name === "remove"){
+      this.setState({
+        wantToReadBooks: updatedArr
+      })
       InternalAdapter.updateUserBookshelfToRemove(bookId)
-      // this.forceUpdate()
-      this.getUsersBooks()
     }
   }
 
@@ -118,10 +125,10 @@ export default class UserPage extends Component{
 
     this.setState({ activeIndex: newIndex })
   }
-  ////////////////////
   handleOpen = () => this.setState({ modalOpen: true })
 
   handleClose = () => this.setState({ modalOpen: false })
+  ////////////////////
 
   render(){
 

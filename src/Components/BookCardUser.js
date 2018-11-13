@@ -18,8 +18,8 @@ const BookCardUser = (props) => {
       {props.book.want_to_read ?
 
         <Button.Group basic size="mini">
-          <Popup trigger={<Button icon="check" name="read" id={props.book.id} onClick={props.handleUpdateBook}/>} content="mark read" />
-          <Popup trigger={<Button icon="delete" name="remove" id={props.book.id} onClick={props.handleUpdateBook}/>} content="remove from list" />
+          <Popup trigger={<Button icon="check" name="read" id={props.book.id} onClick={(event)=>props.handleUpdateBook(event, props.book)}/>} content="mark read" />
+          <Popup trigger={<Button icon="delete" name="remove" id={props.book.id} onClick={(event)=>props.handleUpdateBook(event, props.book)}/>} content="remove from list" />
         </Button.Group>
 
       :

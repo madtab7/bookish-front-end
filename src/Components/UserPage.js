@@ -4,6 +4,7 @@ import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-route
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
+import BookModalUserPage from './BookModalUserPage'
 import EditReviewModal from './EditReviewModal'
 import InternalAdapter from '../apis/InternalAdapter'
 import Bookshelves from '../images/bookshelves.jpg'
@@ -20,7 +21,8 @@ export default class UserPage extends Component{
     booksRecommendedToUser:[],
     userReviews:[],
     activeIndex:"",
-    selectedBookData:[]
+    selectedBookData:[],
+    modalOpen: false
   }
 
   ///NEED TO REFACTOR
@@ -88,13 +90,17 @@ export default class UserPage extends Component{
   }
 
   handleBookClick=(event)=>{
-    let bookId = event.target.id
-    InternalAdapter.getUserBookInfo(bookId)
-    .then(selectedBookData => {
-      this.setState({
-        selectedBookData
+    console.log(event.target)
+    if (event.target.name === "bookcard"){
+      this.handleOpen()
+      let bookId = event.target.id
+      InternalAdapter.getUserBookInfo(bookId)
+      .then(selectedBookData => {
+        this.setState({
+          selectedBookData
+        })
       })
-    })
+    }
   }
 
   // display counts for each accordion item
@@ -111,6 +117,9 @@ export default class UserPage extends Component{
     this.setState({ activeIndex: newIndex })
   }
   ////////////////////
+  handleOpen = () => this.setState({ modalOpen: true })
+
+  handleClose = () => this.setState({ modalOpen: false })
 
   render(){
 
@@ -162,6 +171,12 @@ export default class UserPage extends Component{
 
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>
+
+          <BookModalUserPage
+            open={this.state.modalOpen}
+            handleClose={this.handleClose}
+            selectedBookData={this.state.selectedBookData}
+          />
 
           <Accordion fluid styled exclusive={false}>
 

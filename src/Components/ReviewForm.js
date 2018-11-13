@@ -12,13 +12,13 @@ export default class ReviewForm extends Component {
   handleInputChange=(event, { name, value })=>{
     this.setState({
       [name]:value
-    },()=>console.log(this.state))
+    })
   }
 
   handleRate=(event, { rating }) => {
     this.setState({
       rating
-    },()=>console.log(this.state))
+    })
   }
 
   handleReviewSubmit = (event) => {

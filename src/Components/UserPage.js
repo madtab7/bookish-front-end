@@ -25,10 +25,11 @@ export default class UserPage extends Component{
 
   ///NEED TO REFACTOR
   componentDidMount=()=>{
+    this.getUsersBooks()
     this.getUserData()
   }
 
-  getUserData=()=>{
+  getUsersBooks=()=>{
     let userId = this.props.id
     InternalAdapter.getUserShevedBooks(userId)
     .then(userBooks => {
@@ -59,6 +60,10 @@ export default class UserPage extends Component{
         booksRecommendedToUser
       })
     })
+  }
+
+  getUserData=()=>{
+    let userId = this.props.id
     InternalAdapter.getUserFriends(userId)
     .then(userFriends => {
       this.setState({
@@ -79,11 +84,11 @@ export default class UserPage extends Component{
     if(event.target.parentElement.name === "read"){
       InternalAdapter.updateUserBookshelfToRead(bookId)
       // this.forceUpdate()
-      this.getUserData()
+      this.getUsersBooks()
     } else if (event.target.parentElement.name === "remove"){
       InternalAdapter.updateUserBookshelfToRemove(bookId)
       // this.forceUpdate()
-      this.getUserData()
+      this.getUsersBooks()
     }
   }
 

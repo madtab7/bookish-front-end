@@ -73,7 +73,7 @@ export default class UserPage extends Component{
     })
   }
 
-
+  //NEED TO RE RENDER PAGE ON STATE CHANGE -- CURRENTLY DOES NOT
   handleUpdateBook=(event)=>{
     let bookId = event.target.parentElement.id
     if(event.target.parentElement.name === "read"){
@@ -97,6 +97,11 @@ export default class UserPage extends Component{
     })
   }
 
+  // display counts for each accordion item
+  count=(category)=>{
+    return category.length
+  }
+
   ////////////////// FOR Accordion
   handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -106,30 +111,6 @@ export default class UserPage extends Component{
     this.setState({ activeIndex: newIndex })
   }
   ////////////////////
-
-  countWantToRead=()=>{
-    return this.state.wantToReadBooks.length
-  }
-
-  countRead=()=>{
-    return this.state.readBooks.length
-  }
-
-  countFriends=()=>{
-    return this.state.userFriends.length
-  }
-
-  countRecommendedBooks=()=>{
-    return this.state.recommendedBooks.length
-  }
-
-  countBooksRecommendedToUser=()=>{
-    return this.state.booksRecommendedToUser.length
-  }
-
-  countReviews=()=>{
-    return this.state.userReviews.length
-  }
 
   render(){
 
@@ -156,7 +137,7 @@ export default class UserPage extends Component{
           </Grid.Row>
           <br></br>
           <Grid.Row>
-            <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>Friends({this.countFriends()})</h3>
+            <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>Friends({this.count(this.state.userFriends)})</h3>
             {this.state.userFriends.map((friend)=>{
               return <FriendIcon key={friend.id} friend={friend.friend}/>
             })}
@@ -185,7 +166,7 @@ export default class UserPage extends Component{
           <Accordion fluid styled exclusive={false}>
 
             <Accordion.Title active={this.state.activeIndex === 0} index={0} onClick={this.handleClick}>
-              <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.countWantToRead()}) <Icon name='dropdown' /></h2>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.count(this.state.wantToReadBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 0}>
               <Card.Group itemsPerRow={4}>
@@ -198,7 +179,7 @@ export default class UserPage extends Component{
 
 
             <Accordion.Title active={this.state.activeIndex === 1} index={1} onClick={this.handleClick}>
-              <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.countRead()}) <Icon name='dropdown' /></h2>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.count(this.state.readBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 1}>
               <Card.Group itemsPerRow={4}>
@@ -215,7 +196,7 @@ export default class UserPage extends Component{
             </Accordion.Content>
 
             <Accordion.Title active={this.state.activeIndex === 2} index={2} onClick={this.handleClick}>
-              <h2 className="subhead" style={{fontSize:"1.5em"}}>REVIEWED ({this.countReviews()}) <Icon name='dropdown' /></h2>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>REVIEWED ({this.count(this.state.userReviews)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 2}>
               <List divided verticalAlign='middle'>
@@ -256,7 +237,7 @@ export default class UserPage extends Component{
 
 
             <Accordion.Title active={this.state.activeIndex === 3} index={3} onClick={this.handleClick}>
-              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.countBooksRecommendedToUser()}) <Icon name='dropdown' /></h2>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.count(this.state.booksRecommendedToUser)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 3}>
               <Card.Group itemsPerRow={4}>
@@ -268,7 +249,7 @@ export default class UserPage extends Component{
 
 
             <Accordion.Title active={this.state.activeIndex === 4} index={4} onClick={this.handleClick}>
-              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.countRecommendedBooks()}) <Icon name='dropdown' /></h2>
+              <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.count(this.state.recommendedBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 4}>
               <Card.Group itemsPerRow={4}>

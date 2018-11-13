@@ -40,6 +40,7 @@ export default class ReviewModal extends Component {
         <ReviewForm
           handleBookReview={this.props.handleBookReview}
           bookId={this.props.bookId}
+          bookData={this.state.bookData}
           handleClose={this.handleClose}
         />
         </Modal.Content>

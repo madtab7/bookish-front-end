@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Card, Icon, Accordion, List, Rating } from 'semantic-ui-react'
+import { Grid, Card, Icon, Accordion, List, Rating, Message } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
@@ -20,7 +20,10 @@ export default class UserPage extends Component{
     userReviews:[],
     activeIndex:"",
     selectedBookData:[],
-    modalOpen: false
+    modalOpen: false,
+    showDeleteMessage: false,
+    showEditMessage: false,
+    showReccMessage: false
   }
 
   ///NEED TO REFACTOR
@@ -99,6 +102,58 @@ export default class UserPage extends Component{
     }
   }
 
+  ///////////////////////////////////////////////
+
+  handleUpdatedReview=(reviewObj, reviewId)=>{
+    InternalAdapter.updateUserReview(reviewObj, reviewId)
+    this.setState({
+      showEditMessage: true
+    })
+  }
+
+  /////// optimistically rendering
+  handleDeletedReview=(event, reviewId)=>{
+    InternalAdapter.deleteUserReview(reviewId)
+    let filteredArr = this.state.userReviews.filter((review)=>{
+      return review.id !== reviewId
+    })
+    this.setState({
+      showDeleteMessage: true,
+      userReviews: filteredArr
+    })
+  }
+
+  //optimistically rendering
+  handleBookReview=(reviewObj, bookData)=>{
+    const userId = this.props.id
+    let bookId;
+    if (typeof bookData == "number" ){
+      bookId = bookData
+    } else {
+      bookId = bookData.id
+      const reviewObjWithBook = Object.assign({}, reviewObj)
+      reviewObjWithBook.book = bookData
+      this.setState({
+        userReviews: [...this.state.userReviews, reviewObjWithBook]
+      })
+    }
+    InternalAdapter.createReviewFromReadBook(userId, bookId, reviewObj)
+  }
+
+  handleRecommendUserBook=(event, bookId)=>{
+    const userId = this.props.id
+    const friendId = parseInt(event.target.id)
+    InternalAdapter.createRecommendationFromReadBook(userId, bookId, friendId)
+    this.setState({
+      showReccMessage: true
+    })
+  }
+
+
+  ////////////////////////////////////////////////
+
+
+  //allows modal pop up on book click
   handleBookClick=(event)=>{
     if (event.target.name === "bookcard"){
       this.handleOpen()
@@ -141,6 +196,21 @@ export default class UserPage extends Component{
         width: "100%",
         height:"2000px"
       }}>
+
+      <Message floating positive
+      hidden={!this.state.showDeleteMessage}
+      visible={this.state.showDeleteMessage}><h2 className="subhead">Your review has been</h2> deleted.
+      </Message>
+
+      <Message floating positive
+      hidden={!this.state.showEditMessage}
+      visible={this.state.showEditMessage}><h2 className="subhead">Your review has been</h2> updated.
+      </Message>
+
+      <Message floating positive
+      hidden={!this.state.showReccMessage}
+      visible={this.state.showReccMessage}><h2 className="subhead">Your recommendation has been sent.</h2>
+      </Message>
 
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%"}}>
         <Grid.Column width={4} rows={2}
@@ -209,7 +279,7 @@ export default class UserPage extends Component{
               <Card.Group itemsPerRow={4}>
                 {this.state.readBooks.map((book)=>{
                   return <BookCardUser
-                  handleBookReview={this.props.handleBookReview}
+                  handleBookReview={this.handleBookReview}
                   handleRecommendUserBook={this.props.handleRecommendUserBook}
                   handleBookClick={this.handleBookClick}
                   userFriends={this.state.userFriends}
@@ -232,8 +302,8 @@ export default class UserPage extends Component{
                       <EditReviewModal
                         review={review}
                         book={review.book}
-                        handleUpdatedReview={this.props.handleUpdatedReview}
-                        handleDeletedReview={this.props.handleDeletedReview}
+                        handleUpdatedReview={this.handleUpdatedReview}
+                        handleDeletedReview={this.handleDeletedReview}
                       />
 
                     </List.Content>

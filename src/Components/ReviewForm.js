@@ -21,12 +21,15 @@ export default class ReviewForm extends Component {
     })
   }
 
-  handleReviewSubmit = (event) => {
+  handleReviewSubmit = (event, bookData) => {
     const reviewObj = this.state
-    if(this.props.bookId){
+    if(bookData){
+      this.props.handleBookReview(reviewObj, bookData)
+    } else if (this.props.bookId){
       const bookId = this.props.bookId
       this.props.handleBookReview(reviewObj, bookId)
-    } else {
+    }
+    else {
       this.props.handleBookReview(reviewObj)
     }
   }
@@ -36,7 +39,7 @@ export default class ReviewForm extends Component {
     return(
 
       <Form onSubmit={(event)=>{
-        this.handleReviewSubmit(event);
+        this.handleReviewSubmit(event, this.props.bookData);
         this.props.handleClose()
       }}>
         Rating:

@@ -26,6 +26,7 @@ export default class ReviewModal extends Component {
         <Modal.Content >
 
         <EditReviewForm
+          book={this.props.book}
           review={this.props.review}
           handleUpdatedReview={this.props.handleUpdatedReview}
           handleDeletedReview={this.props.handleDeletedReview}

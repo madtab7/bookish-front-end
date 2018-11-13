@@ -45,7 +45,7 @@ class UserContainer extends Component {
   // hidden={!this.state.showDeleteMessage}
   // visible={this.state.showDeleteMessage}><h2 className="subhead">Your review has been</h2> deleted.
   // </Message>
-  // 
+  //
   // <Message floating positive
   // hidden={!this.state.showEditMessage}
   // visible={this.state.showEditMessage}><h2 className="subhead">Your review has been</h2> updated.
@@ -65,10 +65,6 @@ class UserContainer extends Component {
         id={this.props.id}
         avatarURL={this.props.avatarURL}
         username={this.props.username}
-        handleUpdatedReview={this.handleUpdatedReview}
-        handleBookReview={this.handleBookReview}
-        handleDeletedReview={this.handleDeletedReview}
-        handleRecommendUserBook={this.handleRecommendUserBook}
       />
       </div>
     )

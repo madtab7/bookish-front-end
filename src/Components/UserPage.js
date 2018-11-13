@@ -102,7 +102,7 @@ export default class UserPage extends Component{
     }
   }
 
-  ////////////////////////////////
+  ////////// partially optimistically rendering user reviews ///////
   handleUpdatedReview=(reviewObj, reviewId, bookObj)=>{
     InternalAdapter.updateUserReview(reviewObj, reviewId)
     const newReviewObj = Object.assign({}, {
@@ -153,6 +153,8 @@ export default class UserPage extends Component{
     InternalAdapter.createReviewFromReadBook(userId, bookId, reviewObj)
   }
 
+  ////////////////////////////////////////////////
+
   handleRecommendUserBook=(event, bookId)=>{
     const userId = this.props.id
     const friendId = parseInt(event.target.id)
@@ -161,9 +163,8 @@ export default class UserPage extends Component{
       showReccMessage: true
     })
   }
+////////////////////////////////////////////////////
 
-
-  ////////////////////////////////////////////////
 
 
   //allows modal pop up on book click
@@ -293,7 +294,7 @@ export default class UserPage extends Component{
                 {this.state.readBooks.map((book)=>{
                   return <BookCardUser
                   handleBookReview={this.handleBookReview}
-                  handleRecommendUserBook={this.props.handleRecommendUserBook}
+                  handleRecommendUserBook={this.handleRecommendUserBook}
                   handleBookClick={this.handleBookClick}
                   userFriends={this.state.userFriends}
                   key={book.id}

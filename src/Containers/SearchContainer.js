@@ -72,9 +72,8 @@ class SearchContainer extends Component{
     if(event.target.id !== "error"){
       isbn=event.target.id
     } else {
-      // window.history.back()
       isbn="error"
-      /// flash message if unavailable isbn
+      //error protection added in render
     }
     BooksAdapter.getGoogleData(isbn)
     .then(response => response.json())
@@ -84,12 +83,10 @@ class SearchContainer extends Component{
         searchPerformed:"bookClicked"
       })
     })
-    //need to add error protection
   }
 
   // adjust search results according to arrow button click
   handlePagination=(event)=>{
-    // console.log(event.target)
     if(event.target.parentElement.className.includes("increase")){
       this.setState({
         searchIndex: this.state.searchIndex + 40
@@ -224,13 +221,5 @@ class SearchContainer extends Component{
     }
   }
 }
-
-// const mapStateToProps = ({ usersReducer: { user: { id, avatarURL, username } } }) => ({
-//   id,
-//   avatarURL,
-//   username
-// })
-//
-// export default (connect(mapStateToProps)(SearchContainer))
 
 export default SearchContainer

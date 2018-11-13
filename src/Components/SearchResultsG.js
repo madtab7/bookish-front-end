@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BookCardG from './BookCardG'
 import { Card, Button, Icon } from 'semantic-ui-react'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Button, Icon, Modal, Message, Popup } from 'semantic-ui-react';
+import { Container, Header, Grid, Button, Icon, Message, Popup } from 'semantic-ui-react';
 import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
 

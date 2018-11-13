@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
 import KeywordSearchForm from './KeywordSearchForm'
 import ListFormSearch from './ListFormSearch'
 import Bookshelf2 from '../images/bookshelf2.jpg'

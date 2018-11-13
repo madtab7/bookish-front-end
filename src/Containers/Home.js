@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import SearchContainer from './SearchContainer';
-import UserContainer from './UserContainer';
-import { Container, Grid, Button } from 'semantic-ui-react'
+import { Grid, Button } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import withAuth from '../HOCs/withAuth'
 import Bookshelf from '../images/bookshelf.jpg'
 

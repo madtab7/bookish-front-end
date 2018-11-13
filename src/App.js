@@ -6,10 +6,9 @@ import Home from './Containers/Home'
 import UserContainer from './Containers/UserContainer'
 import SearchContainer from './Containers/SearchContainer'
 import FriendsContainer from './Containers/FriendsContainer'
-import InternalAdapter from './apis/InternalAdapter'
 import NotFound from './Components/NotFound'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 
 class App extends Component {

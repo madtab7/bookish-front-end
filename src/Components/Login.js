@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Form, Button, Message } from 'semantic-ui-react'
+import { Form, Button, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router'
 import { loginUser, signUpUser } from '../actions/user'
-import InternalAdapter from '../apis/InternalAdapter'
 import BackgroundURL from '../images/book1.jpg'
 
 class Login extends Component{

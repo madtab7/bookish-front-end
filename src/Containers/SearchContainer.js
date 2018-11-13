@@ -7,9 +7,6 @@ import NotFound from '../Components/NotFound'
 import BooksAdapter from '../apis/BooksAdapter'
 import InternalAdapter from '../apis/InternalAdapter'
 import { Message } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import withAuth from '../HOCs/withAuth'
 
 class SearchContainer extends Component{
 

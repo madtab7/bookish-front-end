@@ -7,7 +7,7 @@ import usersReducer from './reducers/usersReducer'
 import './index.css';
 import App from './App';
 import 'semantic-ui-css/semantic.min.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 

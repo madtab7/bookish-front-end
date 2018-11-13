@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Grid, Card, Divider, Segment, Icon, Accordion, List, Rating, Button, Modal } from 'semantic-ui-react'
-import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
+import { Grid, Card, Icon, Accordion, List, Rating } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
-import ReviewModal from './ReviewModal'
 import BookModalUserPage from './BookModalUserPage'
 import EditReviewModal from './EditReviewModal'
 import InternalAdapter from '../apis/InternalAdapter'
-import Bookshelves from '../images/bookshelves.jpg'
 import Bookshelves2 from '../images/bookshelves2.jpg'
 
 export default class UserPage extends Component{
@@ -90,7 +88,6 @@ export default class UserPage extends Component{
   }
 
   handleBookClick=(event)=>{
-    console.log(event.target)
     if (event.target.name === "bookcard"){
       this.handleOpen()
       let bookId = event.target.id

@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { Form, Button, Icon, Rating, Message} from 'semantic-ui-react';
+import { Form, Button, Rating } from 'semantic-ui-react';
 import InternalAdapter from '../apis/InternalAdapter'
 
 export default class ReviewForm extends Component {

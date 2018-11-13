@@ -1,8 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route, withRouter, Redirect } from 'react-router-dom'
+import { NavLink, withRouter, Redirect } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
-import { logoutUser } from '../actions/user'
-import { connect } from 'react-redux';
 
 const link = {
   color: 'black'

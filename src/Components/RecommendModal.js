@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Image, Button, Icon, Modal, Popup, List } from 'semantic-ui-react';
+import { Image, Button, Modal, Popup, List } from 'semantic-ui-react';
 
 export default class RecommendModal extends Component {
   state = {

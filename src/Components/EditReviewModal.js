@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Image, Button, Icon, Modal } from 'semantic-ui-react';
-import EditReviewForm from './EditReviewForm'
+import { Button, Modal } from 'semantic-ui-react';
+import EditReviewForm from './EditReviewForm';
 
 export default class ReviewModal extends Component {
   state = { modalOpen: false }

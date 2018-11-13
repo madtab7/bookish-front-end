@@ -1,12 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Grid, Icon, Modal, Segment, Divider, Rating } from 'semantic-ui-react';
-import BookCardUser from './BookCardUser'
 
 
 
 const BookModalUserPage = (props)=> {
 
-  console.log(props.selectedBookData)
   return(
     <Modal
     open={props.open}

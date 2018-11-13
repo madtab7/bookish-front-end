@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Header, Image, Message, Button } from 'semantic-ui-react'
+import React from 'react'
+import { Header, Message, Button } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import Error from '../images/error.jpg'
 

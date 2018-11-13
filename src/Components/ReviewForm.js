@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Icon, Rating} from 'semantic-ui-react';
+import { Form, Button, Rating} from 'semantic-ui-react';
 
 export default class ReviewForm extends Component {
 

@@ -3,7 +3,7 @@ import UserPage from '../Components/UserPage'
 import { connect } from 'react-redux'
 import withAuth from '../HOCs/withAuth'
 import InternalAdapter from '../apis/InternalAdapter'
-import { Button, Message} from 'semantic-ui-react';
+import { Message } from 'semantic-ui-react';
 
 
 class UserContainer extends Component {

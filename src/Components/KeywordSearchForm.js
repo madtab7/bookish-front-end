@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Radio } from 'semantic-ui-react'
+import { Form, Input } from 'semantic-ui-react'
 
 const KeywordSearchForm = (props) => {
 

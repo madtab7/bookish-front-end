@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Image, Button, Icon, Modal, Popup } from 'semantic-ui-react';
+import { Button, Modal, Popup } from 'semantic-ui-react';
 import ReviewForm from './ReviewForm'
 
 export default class ReviewModal extends Component {

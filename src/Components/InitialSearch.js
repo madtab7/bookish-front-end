@@ -22,7 +22,7 @@ export default class InitialSearch extends Component{
         <br></br>
         <br></br>
       <div style={{
-        background:"rgba(255,255,255,0.5)",
+        background:"rgba(255,255,255,0.7)",
         width:"60%",
         marginLeft:"20%",
         borderRadius:"15px"

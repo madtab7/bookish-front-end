@@ -3,10 +3,12 @@ import InitialSearch from '../Components/InitialSearch'
 import SearchResultsG from '../Components/SearchResultsG'
 import SearchResultsNYT from '../Components/SearchResultsNYT'
 import BookShowPage from '../Components/BookShowPage'
+import NotFound from '../Components/NotFound'
 import BooksAdapter from '../apis/BooksAdapter'
 import InternalAdapter from '../apis/InternalAdapter'
 import { Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 import withAuth from '../HOCs/withAuth'
 
 class SearchContainer extends Component{
@@ -70,7 +72,8 @@ class SearchContainer extends Component{
     if(event.target.id !== "error"){
       isbn=event.target.id
     } else {
-      window.history.back()
+      // window.history.back()
+      isbn="error"
       /// flash message if unavailable isbn
     }
     BooksAdapter.getGoogleData(isbn)
@@ -179,15 +182,22 @@ class SearchContainer extends Component{
           />
         );
       case "bookClicked":
-        return(
-          <Fragment>
+        if (this.state.selectedBookData.items === undefined){
+          return(
+            <Fragment >
+              <NotFound message={"Sorry - We dont have any information on that book at this time!"}/>
+            </Fragment>
+          )
+        } else {
+          return (
+            <Fragment>
 
-          <Message floating positive
-            hidden={!this.state.showReviewConfirmMessage}
-            visible={this.state.showReviewConfirmMessage}>Your review has been submitted.
-          </Message>
+            <Message floating positive
+              hidden={!this.state.showReviewConfirmMessage}
+              visible={this.state.showReviewConfirmMessage}>Your review has been submitted.
+            </Message>
 
-          <BookShowPage
+            <BookShowPage
             selectedBookData={this.state.selectedBookData.items[0]}
             handleReadClick={this.handleReadClick}
             handleWantToReadClick={this.handleWantToReadClick}
@@ -195,9 +205,10 @@ class SearchContainer extends Component{
             handleRecommendClick={this.handleRecommendClick}
             handleBookReview={this.handleBookReview}
             userFriends={this.state.userFriends}
-          />
-          </Fragment>
-        )
+            />
+            </Fragment>
+          )
+        }
       default:
         return(
           <InitialSearch
@@ -213,5 +224,13 @@ class SearchContainer extends Component{
     }
   }
 }
+
+// const mapStateToProps = ({ usersReducer: { user: { id, avatarURL, username } } }) => ({
+//   id,
+//   avatarURL,
+//   username
+// })
+//
+// export default (connect(mapStateToProps)(SearchContainer))
 
 export default SearchContainer

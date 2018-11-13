@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Card, Divider, Segment, Icon, Accordion, List, Rating, Button } from 'semantic-ui-react'
+import { Grid, Card, Divider, Segment, Icon, Accordion, List, Rating, Button, Modal } from 'semantic-ui-react'
 import { BrowserRouter as Router, NavLink, Route, withRouter } from 'react-router-dom'
 import BookCardUser from './BookCardUser'
 import FriendIcon from './FriendIcon'
@@ -146,7 +146,7 @@ export default class UserPage extends Component{
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%"}}>
         <Grid.Column width={4} rows={2}
           style={{
-            background:"rgba(255,255,255,255)",
+            background:"rgba(255,255,255,0.9)",
             borderTopLeftRadius:"15px",
             borderBottomLeftRadius:"15px",
             marginTop:"5%"
@@ -173,7 +173,7 @@ export default class UserPage extends Component{
 
         <Grid.Column width={11}
           style={{
-            background:"rgba(255,255,255,255)",
+            background:"rgba(255,255,255,0.9)",
             borderTopRightRadius:"15px",
             borderBottomRightRadius:"15px",
             marginTop:"5%"
@@ -181,7 +181,6 @@ export default class UserPage extends Component{
 
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.username}'s Bookshelf <Icon name="book" /></h1>
         <br/>
-
 
           <Accordion fluid styled exclusive={false}>
 

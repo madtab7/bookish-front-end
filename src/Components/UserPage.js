@@ -102,12 +102,25 @@ export default class UserPage extends Component{
     }
   }
 
-  ///////////////////////////////////////////////
-
-  handleUpdatedReview=(reviewObj, reviewId)=>{
+  ////////////////////////////////
+  handleUpdatedReview=(reviewObj, reviewId, bookObj)=>{
     InternalAdapter.updateUserReview(reviewObj, reviewId)
+    const newReviewObj = Object.assign({}, {
+      id: reviewId,
+      title: reviewObj.title,
+      book_id: bookObj.id,
+      content: reviewObj.review,
+      rating: reviewObj.rating,
+      user_id: this.props.id
+    })
+    const reviewObjWithBook = Object.assign({}, newReviewObj)
+    reviewObjWithBook.book = bookObj
+    let idx = this.state.userReviews.indexOf(reviewObj)
+    let removeReplaceIdx = this.state.userReviews.splice(idx, 1, reviewObjWithBook)
+    let updatedArr = this.state.userReviews
     this.setState({
-      showEditMessage: true
+      showEditMessage: true,
+      userReviews: updatedArr
     })
   }
 
@@ -204,7 +217,7 @@ export default class UserPage extends Component{
 
       <Message floating positive
       hidden={!this.state.showEditMessage}
-      visible={this.state.showEditMessage}><h2 className="subhead">Your review has been</h2> updated.
+      visible={this.state.showEditMessage}><h2 className="subhead">Your review has been updated. </h2>
       </Message>
 
       <Message floating positive

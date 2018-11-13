@@ -25,7 +25,8 @@ export default class ReviewForm extends Component {
   handleEditReview = (event, bookData) => {
     const reviewObj = this.state
     const reviewId = this.props.review.id
-    this.props.handleUpdatedReview(reviewObj, reviewId)
+    const bookObj = this.props.book
+    this.props.handleUpdatedReview(reviewObj, reviewId, bookObj)
   }
 
   handleDeleteReview=(event)=>{

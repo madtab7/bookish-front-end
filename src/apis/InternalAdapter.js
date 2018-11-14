@@ -167,10 +167,10 @@ export default class InternalAdapter {
         'Accept':'application/json'
       },
       body: JSON.stringify({
-        friendship: {
+        friendship:{
           user_id: userId,
           friend_id: friendId
-        }
+        }  
       })
     })
   }

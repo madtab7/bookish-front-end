@@ -12,7 +12,7 @@ const withAuth = (WrappedComponent) => {
     }
 
     render(){
-      console.log("PROPS WITH AUTH", this.props)
+      // console.log("PROPS WITH AUTH", this.props)
 
       if(localStorage.getItem('jwt') && this.props.loggedIn){
         return <WrappedComponent />

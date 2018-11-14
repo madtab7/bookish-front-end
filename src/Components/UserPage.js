@@ -83,7 +83,6 @@ export default class UserPage extends Component{
 
   //OPTIMISTICALLY RENDERING
   handleUpdateBook=(event, bookObj)=>{
-    console.log(bookObj)
     let bookId = event.target.parentElement.id
     let idx = this.state.wantToReadBooks.indexOf(bookObj)
     let removeIdx = this.state.wantToReadBooks.splice(idx,1)
@@ -153,18 +152,28 @@ export default class UserPage extends Component{
     InternalAdapter.createReviewFromReadBook(userId, bookId, reviewObj)
   }
 
-  ////////////////////////////////////////////////
-
-  handleRecommendUserBook=(event, bookId)=>{
+  //optimistically rendering
+  handleRecommendUserBook=(event, bookData)=>{
     const userId = this.props.id
+    const bookId = bookData.id
     const friendId = parseInt(event.target.id)
-    InternalAdapter.createRecommendationFromReadBook(userId, bookId, friendId)
+    let updatedRecommendedBooks = this.state.recommendedBooks
+    const recommendation = Object.assign({}, {
+      id: null,
+      read: null,
+      recommended: true,
+      user_id: this.props.id,
+      want_to_read: null,
+      friend_id: friendId
+    })
+    const recommendationWithBook = Object.assign({}, recommendation)
+    recommendationWithBook.book = bookData
     this.setState({
+      recommendedBooks: [...this.state.recommendedBooks, recommendationWithBook],
       showReccMessage: true
     })
+    InternalAdapter.createRecommendationFromReadBook(userId, bookId, friendId)
   }
-////////////////////////////////////////////////////
-
 
 
   //allows modal pop up on book click

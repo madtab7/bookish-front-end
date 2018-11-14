@@ -43,7 +43,7 @@ export default class RecommendModal extends Component {
                   id={friend.friend.id}
                   key={friend.friend.id}
                   onClick={(event)=>{
-                    this.props.handleRecommendUserBook(event, this.state.bookData.id);
+                    this.props.handleRecommendUserBook(event, this.state.bookData);
                     this.handleClose()
                   }}
                 >

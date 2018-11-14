@@ -314,7 +314,7 @@ export default class UserPage extends Component{
               <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.count(this.state.wantToReadBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 0}>
-              <Card.Group itemsPerRow={4}>
+              <Card.Group >
                 {this.state.wantToReadBooks.map((book)=>{
                   return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}
                   handleBookClick={this.handleBookClick}/>

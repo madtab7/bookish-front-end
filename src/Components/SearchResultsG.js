@@ -16,7 +16,7 @@ const SearchResultsG =(props)=>{
 
 
     <h2 className="subhead" style={{marginLeft:"10px", fontSize:"1.4em"}}>Top results for '{props.userInput}'</h2>
-      <Card.Group itemsPerRow={5} style={{marginLeft:"50px", marginRight:"50px", marginTop:"30px", marginBottom:"30px"}}>
+      <Card.Group style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%", marginBottom:"7%"}}>
         {props.searchData.map((book)=>{
           return <BookCardG key={book.id} book={book} handleBookClick={props.handleBookClick}/>
         })}

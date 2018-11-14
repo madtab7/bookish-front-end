@@ -7,7 +7,7 @@ const BookCardNYT = ({book, handleBookClick}) => {
   // console.log(book)
 
   return(
-    <Card onClick={handleBookClick} id={book.primary_isbn13} style={{borderRadius:"10px"}}>
+    <Card onClick={handleBookClick} id={book.primary_isbn13} style={{borderRadius:"10px", width:"15%"}}>
 
       {book.book_image !== undefined ?
         <Image id={book.primary_isbn13} src={book.book_image} style={{height:"250px"}}/>
@@ -22,7 +22,7 @@ const BookCardNYT = ({book, handleBookClick}) => {
       <Card.Meta style={{textAlign:"center"}}>{book.author}</Card.Meta>
 
     </Card>
-  
+
   )
 
 }

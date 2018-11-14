@@ -29,9 +29,8 @@ const BookCardG = ({book, handleBookClick}) => {
 
   // currently assigns "error" for non13 digit isbns
 
-
   return(
-    <Card onClick={handleBookClick} id={isbn}>
+    <Card onClick={handleBookClick} id={isbn} style={{width:"15%"}}>
       {book.volumeInfo.imageLinks !== undefined ?
         <Image id={isbn} src={book.volumeInfo.imageLinks.thumbnail} style={{height:"250px"}}/>
       :

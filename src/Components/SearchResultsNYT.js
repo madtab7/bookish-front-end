@@ -7,6 +7,7 @@ function nameCategory(string){
   return string.split("-").join(" ")
 }
 
+
 const SearchResultsNYT=(props)=>{
 
   return(
@@ -20,7 +21,7 @@ const SearchResultsNYT=(props)=>{
 
       <h2 className="subhead" style={{marginLeft:"10px", fontSize:"1.4em"}}>Best-sellers for "{nameCategory(props.listSelect)}"</h2>
 
-      <Card.Group itemsPerRow={5} style={{marginLeft:"50px", marginRight:"50px", marginTop:"30px", marginBottom:"30px"}}>
+      <Card.Group itemsPerRow={5} style={{marginLeft:"10%", marginRight:"10%", marginTop:"2%", marginBottom:"7%"}}>
         {props.NYTData.map((book)=>{
           return <BookCardNYT key={book.primary_isbn10} book={book} handleBookClick={props.handleBookClick}/>
         })}

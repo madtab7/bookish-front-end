@@ -6,11 +6,11 @@ import RecommendModal from './RecommendModal'
 const BookCardUser = (props) => {
 
   return(
-    <Card id={props.book.book.id} onClick={props.handleBookClick} name="bookcard">
+    <Card id={props.book.book.id} onClick={props.handleBookClick} name="bookcard" style={{width:"15%"}}>
       {props.book.book.imgURL !== undefined ?
-        <Image src={props.book.book.imgURL} style={{height:"158px"}} id={props.book.book.id} onClick={props.handleBookClick} name="bookcard"/>
+        <Image src={props.book.book.imgURL} style={{height:"165px"}} id={props.book.book.id} onClick={props.handleBookClick} name="bookcard"/>
       :
-        <Image src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"158px"}} name="bookcard"/>
+        <Image src='http://i.imgur.com/sJ3CT4V.gif' style={{height:"165px"}} name="bookcard"/>
       }
       <Card.Header style={{textAlign:"center", fontSize:"0.7em"}}>{props.book.book.title}</Card.Header>
       <Card.Meta style={{textAlign:"center", fontSize:"0.7em"}}>{props.book.book.author}</Card.Meta>

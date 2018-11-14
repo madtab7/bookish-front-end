@@ -7,6 +7,7 @@ import BookModalUserPage from './BookModalUserPage'
 import EditReviewModal from './EditReviewModal'
 import InternalAdapter from '../apis/InternalAdapter'
 import Bookshelves2 from '../images/bookshelves2.jpg'
+import FriendsAccordion from './FriendsAccordion'
 
 export default class UserPage extends Component{
 
@@ -267,13 +268,18 @@ export default class UserPage extends Component{
           }}>
           <Grid.Row>
             <img src={this.props.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
+
+            <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>{this.props.full_name}</h3>
+
           </Grid.Row>
           <br></br>
           <Grid.Row>
-            <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>Friends({this.count(this.state.userFriends)})</h3>
-            {this.state.userFriends.map((friend)=>{
-              return <FriendIcon key={friend.id} friend={friend.friend}/>
-            })}
+
+            <FriendsAccordion
+              count={this.count}
+              userFriends={this.state.userFriends}
+            />
+
             <br></br>
             <NavLink
               to='/community'

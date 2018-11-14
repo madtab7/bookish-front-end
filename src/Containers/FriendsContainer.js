@@ -12,7 +12,9 @@ export default class FriendsContainer extends Component{
 
   render(){
     return(
-      <CommunityPage handleAddFriendClick={this.handleAddFriendClick} />
+      <CommunityPage
+        handleAddFriendClick={this.handleAddFriendClick}
+      />
     )
   }
 }

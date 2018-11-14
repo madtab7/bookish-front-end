@@ -18,16 +18,18 @@ class UserContainer extends Component {
         id={this.props.id}
         avatarURL={this.props.avatarURL}
         username={this.props.username}
+        full_name={this.props.full_name}
       />
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ usersReducer: { user: { id, avatarURL, username } } }) => ({
+const mapStateToProps = ({ usersReducer: { user: { id, avatarURL, username, full_name } } }) => ({
   id,
   avatarURL,
-  username
+  username,
+  full_name
 })
 
 export default withAuth(connect(mapStateToProps)(UserContainer))

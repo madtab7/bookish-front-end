@@ -13,7 +13,9 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 class App extends Component {
 
+
   render() {
+    console.log("APP:", this.props.user)
 
     return (
       <div className="App">

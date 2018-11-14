@@ -23,6 +23,9 @@ export default class CommunityPage extends Component{
     this.setState({
       showConfirmMessage: true
     })
+    this.timeout = setTimeout(()=>{
+      this.setState({showConfirmMessage: false})
+    }, 2500)
   }
 
   // ONLY SHOW ADD FRIEND ICON IF THEY AREN"T FRIENDS

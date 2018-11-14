@@ -26,7 +26,10 @@ class App extends Component {
           null
         }
 
-        <NavBar loggedIn={this.props.loggedIn}/>
+        <NavBar
+          loggedIn={this.props.loggedIn}
+          user={this.props.user}
+        />
 
         <Switch>
           <Route exact path="/"

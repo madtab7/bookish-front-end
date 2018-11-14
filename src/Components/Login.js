@@ -52,10 +52,10 @@ class Login extends Component{
 
       <div style={{
         backgroundImage:`url(${BackgroundURL})`,
-        backgroundRepeat:"no-repeat",
+        backgroundRepeat:"repeat-y",
         backgroundSize:"cover",
         width: "100%",
-        height:"800px"
+        height:"1000px"
       }}>
 
       <br/>

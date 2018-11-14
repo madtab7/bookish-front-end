@@ -13,7 +13,7 @@ class Home extends Component{
       <div style={{
         backgroundImage:`url(${Bookshelf})`,
         marginTop:"0.8%",
-        backgroundRepeat:"no-repeat",
+        backgroundRepeat:"repeat-y",
         backgroundSize:"cover",
         width: "100%",
         height:"1000px"

@@ -229,11 +229,11 @@ export default class UserPage extends Component{
     return(
       <div style={{
         backgroundImage:`url(${Bookshelves2})`,
-        marginTop:"1.1%",
-        backgroundRepeat:"repeat",
+        marginTop:"0.8%",
+        backgroundRepeat:"repeat-y",
         backgroundSize:"cover",
         width: "100%",
-        height:"2000px"
+        height:"3000px"
       }}>
 
       <Message floating positive

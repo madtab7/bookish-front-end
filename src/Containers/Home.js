@@ -8,15 +8,15 @@ class Home extends Component{
 
 
   render(){
-    //need to apply background image with id=home
+
     return(
       <div style={{
         backgroundImage:`url(${Bookshelf})`,
-        marginTop:"1.1%",
+        marginTop:"0.8%",
         backgroundRepeat:"no-repeat",
         backgroundSize:"cover",
         width: "100%",
-        height:"800px"
+        height:"1000px"
       }}>
 
         <Grid columns={1}>

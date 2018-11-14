@@ -84,7 +84,7 @@ class Login extends Component{
           </Button>
           <h2 className="subhead">OR</h2>
 
-          <h2 className="subhead">Login:</h2>
+          <h2 className="subhead">Log in:</h2>
 
           <Form.Input
             fluid label="Username"

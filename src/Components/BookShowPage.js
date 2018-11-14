@@ -21,10 +21,8 @@ export default class BookShowPage extends Component {
       showConfirmMessage: true
     })
     this.timeout = setTimeout(()=> {
-      this.setState({
-        showConfirmMessage: false
-      })
-    }, 2500)
+      this.setState({showConfirmMessage: false})
+    }, 3000)
   }
 
   handleReccButton=()=>{
@@ -32,10 +30,8 @@ export default class BookShowPage extends Component {
       showReccMessage: true
     })
     this.timeout = setTimeout(()=>{
-      this.setState({
-        showReccMessage: false
-      })
-    }, 2500)
+      this.setState({showReccMessage: false})
+    }, 3000)
   }
   // set timeout to make message disappear?
 

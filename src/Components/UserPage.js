@@ -21,6 +21,7 @@ export default class UserPage extends Component{
     activeIndex:"",
     selectedBookData:[],
     modalOpen: false,
+    showUpdatedBookshelfMessage: false,
     showDeleteMessage: false,
     showEditMessage: false,
     showReccMessage: false
@@ -90,15 +91,20 @@ export default class UserPage extends Component{
     if(event.target.parentElement.name === "read"){
       this.setState({
         readBooks: [...this.state.readBooks, bookObj],
-        wantToReadBooks: updatedArr
+        wantToReadBooks: updatedArr,
+        showUpdatedBookshelfMessage: true
       })
       InternalAdapter.updateUserBookshelfToRead(bookId)
     } else if (event.target.parentElement.name === "remove"){
       this.setState({
-        wantToReadBooks: updatedArr
+        wantToReadBooks: updatedArr,
+        showUpdatedBookshelfMessage: true
       })
       InternalAdapter.updateUserBookshelfToRemove(bookId)
     }
+    this.timeout = setTimeout(()=>{
+      this.setState({showUpdatedBookshelfMessage: false})
+    }, 3000)
   }
 
   ////////// partially optimistically rendering user reviews ///////
@@ -121,6 +127,9 @@ export default class UserPage extends Component{
       showEditMessage: true,
       userReviews: updatedArr
     })
+    this.timeout = setTimeout(()=>{
+      this.setState({showEditMessage: false})
+    }, 3000)
   }
 
   /////// optimistically rendering
@@ -133,6 +142,9 @@ export default class UserPage extends Component{
       showDeleteMessage: true,
       userReviews: filteredArr
     })
+    this.timeout = setTimeout(()=>{
+      this.setState({showDeleteMessage: false})
+    }, 3000)
   }
 
   //optimistically rendering
@@ -173,6 +185,9 @@ export default class UserPage extends Component{
       showReccMessage: true
     })
     InternalAdapter.createRecommendationFromReadBook(userId, bookId, friendId)
+    this.timeout = setTimeout(()=>{
+      this.setState({showReccMessage: false})
+    }, 3000)
   }
 
 
@@ -221,8 +236,13 @@ export default class UserPage extends Component{
       }}>
 
       <Message floating positive
+      hidden={!this.state.showUpdatedBookshelfMessage}
+      visible={this.state.showUpdatedBookshelfMessage}><h2 className="subhead">Your bookshelf has been updated.</h2>
+      </Message>
+
+      <Message floating positive
       hidden={!this.state.showDeleteMessage}
-      visible={this.state.showDeleteMessage}><h2 className="subhead">Your review has been</h2> deleted.
+      visible={this.state.showDeleteMessage}><h2 className="subhead">Your review has been deleted.</h2>
       </Message>
 
       <Message floating positive
@@ -236,6 +256,8 @@ export default class UserPage extends Component{
       </Message>
 
       <Grid columns={2} style={{marginLeft:"10%", marginRight:"10%"}}>
+
+
         <Grid.Column width={4} rows={2}
           style={{
             background:"rgba(255,255,255,0.9)",

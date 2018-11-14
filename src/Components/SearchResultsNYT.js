@@ -1,6 +1,7 @@
 import React from 'react';
 import BookCardNYT from './BookCardNYT'
-import { Card } from 'semantic-ui-react'
+import { Card, Button, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 function nameCategory(string){
   return string.split("-").join(" ")
@@ -10,7 +11,15 @@ const SearchResultsNYT=(props)=>{
 
   return(
     <div>
-      <h2 className="subead">Best-sellers for "{nameCategory(props.listSelect)}"</h2>
+
+    <Button size="large" name="search" style={{color:"black", marginLeft:"5px", marginTop:"5px"}}>
+      <Link to="/" style={{color:"black"}}>
+        <h1 className="subhead"><Icon name="chevron left" />back to home</h1>
+      </Link>
+    </Button>
+
+      <h2 className="subhead" style={{marginLeft:"10px", fontSize:"1.4em"}}>Best-sellers for "{nameCategory(props.listSelect)}"</h2>
+
       <Card.Group itemsPerRow={5} style={{marginLeft:"50px", marginRight:"50px", marginTop:"30px", marginBottom:"30px"}}>
         {props.NYTData.map((book)=>{
           return <BookCardNYT key={book.primary_isbn10} book={book} handleBookClick={props.handleBookClick}/>

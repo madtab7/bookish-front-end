@@ -1,12 +1,21 @@
 import React from 'react';
 import BookCardG from './BookCardG'
 import { Card, Button, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const SearchResultsG =(props)=>{
 
   return(
     <div>
-    <h2 className="subead">Top results for '{props.userInput}'</h2>
+
+    <Button size="large" name="search" style={{color:"black", marginLeft:"5px", marginTop:"5px"}}>
+      <Link to="/" style={{color:"black"}}>
+        <h1 className="subhead"><Icon name="chevron left" />back to home</h1>
+      </Link>
+    </Button>
+
+
+    <h2 className="subhead" style={{marginLeft:"10px", fontSize:"1.4em"}}>Top results for '{props.userInput}'</h2>
       <Card.Group itemsPerRow={5} style={{marginLeft:"50px", marginRight:"50px", marginTop:"30px", marginBottom:"30px"}}>
         {props.searchData.map((book)=>{
           return <BookCardG key={book.id} book={book} handleBookClick={props.handleBookClick}/>

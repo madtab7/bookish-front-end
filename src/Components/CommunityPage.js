@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InternalAdapter from '../apis/InternalAdapter'
-import { Image, Icon, Container, Grid, Message } from 'semantic-ui-react'
+import { Image, Icon, Container, Grid, Message, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class CommunityPage extends Component{
 
@@ -34,6 +35,14 @@ export default class CommunityPage extends Component{
       hidden={!this.state.showConfirmMessage}
       visible={this.state.showConfirmMessage}><h2 className="subhead">Friend added!</h2>
       </Message>
+
+      <br/>
+
+      <Button size="large" name="profile" style={{color:"black"}}>
+        <Link to="/profile" style={{color:"black"}}>
+          <h1 className="subhead"><Icon name="chevron left" />back to profile</h1>
+        </Link>
+      </Button>
 
       <Grid itemsPerRow={5}>
 

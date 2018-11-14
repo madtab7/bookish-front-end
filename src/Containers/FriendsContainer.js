@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CommunityPage from '../Components/CommunityPage'
-import InternalAdapter from '../apis/InternalAdapter'
+import CommunityPage from '../Components/CommunityPage';
+import InternalAdapter from '../apis/InternalAdapter';
 
 export default class FriendsContainer extends Component{
 

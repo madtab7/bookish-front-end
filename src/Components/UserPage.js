@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Grid, Card, Icon, Accordion, List, Rating, Message } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
@@ -267,10 +268,10 @@ export default class UserPage extends Component{
             marginTop:"7%",
             paddingBottom:"20%"
           }}>
-          <Grid.Row>
+          <Grid.Row >
             <img src={this.props.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
 
-            <h3 className="subhead" style={{textAlign:"left", marginLeft:"0%", marginTop:"2%"}}>{this.props.full_name}</h3>
+            <h3 className="subhead" style={{textAlign:"left", marginLeft:"2%", marginTop:"2%"}}>{this.props.full_name}</h3>
 
           </Grid.Row>
           <br></br>

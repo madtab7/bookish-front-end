@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Button, Modal, Popup, List } from 'semantic-ui-react';
+import FriendIcon from './FriendIcon'
 
 export default class RecommendModal extends Component {
   state = {
@@ -46,11 +47,11 @@ export default class RecommendModal extends Component {
                     this.props.handleRecommendUserBook(event, this.state.bookData);
                     this.handleClose()
                   }}
+                  style={{fontSize:"1.3em", padding:"1%"}}
                 >
-                  <Image avatar id={friend.friend.id} src={friend.friend.avatarURL} />
-                  <List.Content id={friend.friend.id} style={{width:"70%"}}>
-                    <List.Header id={friend.friend.id} className="subhead"> {friend.friend.username} </List.Header>
-                  </List.Content>
+
+                  <FriendIcon friend={friend.friend} />
+
                 </List.Item>
               )
             })}
@@ -64,3 +65,8 @@ export default class RecommendModal extends Component {
   }
 
 }
+
+// <Image avatar id={friend.friend.id} src={friend.friend.avatarURL} />
+// <List.Content id={friend.friend.id} style={{width:"70%"}}>
+//   <List.Header id={friend.friend.id} className="subhead"> {friend.friend.username} </List.Header>
+// </List.Content>

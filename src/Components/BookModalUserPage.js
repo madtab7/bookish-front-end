@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Grid, Icon, Modal, Segment, Divider, Rating } from 'semantic-ui-react';
+import { Grid, Icon, Modal, Segment, Divider, Rating, Dimmer, Loader } from 'semantic-ui-react';
 
 
 
@@ -11,6 +11,7 @@ const BookModalUserPage = (props)=> {
     >
       <Icon name="close icon" onClick={props.handleClose} />
       <Modal.Content>
+
         <Grid columns={2}>
           <Grid.Column width={6}>
             <img src={props.selectedBookData.imgURL} alt="book" style={{position:"relative", marginLeft:"25%"}}/>
@@ -23,33 +24,34 @@ const BookModalUserPage = (props)=> {
               <p style={{fontSize:"1em"}}>{props.selectedBookData.description}</p>
             </Grid.Row>
 
-            <Divider fitted />
-            <Grid.Row>
+          <Divider fitted />
+          <Grid.Row>
 
-            {props.selectedBookData.reviews && props.selectedBookData.reviews.length > 0 ?
-              <Fragment>
-              <h1 className="subhead"> Reviews: </h1>
+          {props.selectedBookData.reviews && props.selectedBookData.reviews.length > 0 ?
+            <Fragment>
+            <h1 className="subhead"> Reviews: </h1>
 
-                {props.selectedBookData.reviews.map((review)=>{
-                  return(
-                    <Segment>
-                      <Rating icon='star' defaultRating={review.rating} maxRating={5} disabled />
-                      <h4>{review.title}</h4>
-                      <p>{review.content}</p>
-                    </Segment>
-                  )
-                })}
-              </Fragment>
+            {props.selectedBookData.reviews.map((review)=>{
+              return(
+                <Segment>
+                <Rating icon='star' defaultRating={review.rating} maxRating={5} disabled />
+                <h4>{review.title}</h4>
+                <p>{review.content}</p>
+                </Segment>
+              )
+            })}
+            </Fragment>
             :
-              null
-            }
+            null
+          }
 
-            </Grid.Row>
+          </Grid.Row>
 
-          </Grid.Column>
+        </Grid.Column>
 
 
         </Grid>
+
       </Modal.Content>
     </Modal>
 

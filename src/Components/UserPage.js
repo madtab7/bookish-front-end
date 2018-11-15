@@ -222,7 +222,12 @@ export default class UserPage extends Component{
   }
   handleOpen = () => this.setState({ modalOpen: true })
 
-  handleClose = () => this.setState({ modalOpen: false })
+  handleClose = () => {
+    this.setState({
+    modalOpen: false,
+    selectedBookData: []
+    })
+  }
   ////////////////////
 
   render(){

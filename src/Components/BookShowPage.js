@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Button, Icon, Message, Popup } from 'semantic-ui-react';
+import { Container, Header, Grid, Button, Icon, Message, Popup, List } from 'semantic-ui-react';
 import FriendIcon from './FriendIcon'
 import ReviewModal from './ReviewModal'
 
@@ -33,7 +33,6 @@ export default class BookShowPage extends Component {
       this.setState({showReccMessage: false})
     }, 3000)
   }
-  // set timeout to make message disappear?
 
   handleRecc=()=>{
     this.setState({
@@ -122,21 +121,24 @@ export default class BookShowPage extends Component {
 
           <Grid.Column width={2}>
 
+            <List selection verticalAlign='middle'>
             {this.state.showUserFriendsList ?
               this.props.userFriends.map((friend)=>{
                 return (
-                  <div id={friend.friend.id}
-                  onClick={(event)=>{
-                    this.props.handleRecommendClick(event);
-                    this.handleReccButton()
-                  }}>
+                  <List.Item id={friend.friend.id}
+                    onClick={(event)=>{
+                      this.props.handleRecommendClick(event);
+                      this.handleReccButton()
+                    }}
+                  >
                   <FriendIcon id={friend.friend.id} key={friend.friend.id} friend={friend.friend} />
-                  </div>
+                  </List.Item>
                 )
               })
             :
               null
             }
+            </List>
           </Grid.Column>
 
         </Grid.Row>

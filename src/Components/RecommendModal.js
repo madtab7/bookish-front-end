@@ -36,7 +36,7 @@ export default class RecommendModal extends Component {
 
         <Modal.Header><h2 className="subhead">Recommend "{this.state.bookData.title}" by {this.state.bookData.author} to:</h2></Modal.Header>
         <Modal.Content >
-          <List>
+          <List selection verticalAlign='middle'>
             {this.props.userFriends.map((friend)=> {
               return(
                 <List.Item

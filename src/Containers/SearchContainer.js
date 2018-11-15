@@ -87,14 +87,14 @@ class SearchContainer extends Component{
     if(event.target.parentElement.className.includes("increase")){
       this.setState({
         searchIndex: this.state.searchIndex + 40
-      })
+      },()=>console.log(this.state.searchIndex))
     } else {
       this.setState({
         searchIndex: this.state.searchIndex - 40
-      })
+      },()=>console.log(this.state.searchIndex))
     }
+    debugger;
     BooksAdapter.getPaginatedBooksFromQuery(this.state)
-    .then(response => response.json())
     .then(data => {
       this.setState({
         searchData: data.items,

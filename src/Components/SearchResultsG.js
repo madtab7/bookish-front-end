@@ -23,10 +23,10 @@ const SearchResultsG =(props)=>{
       </Card.Group>
 
       <div style={{textAlign:"center"}}>
-        <h3>see more results</h3>
+        <h3 className="subhead">see more results</h3>
         {props.searchIndex === 0 ? null
         :
-          <div id="decrease">
+          <div className="decrease">
           <Button icon onClick={props.handlePagination}>
             <Icon name="angle double left"/>
           </Button>

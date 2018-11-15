@@ -264,7 +264,8 @@ export default class UserPage extends Component{
             background:"rgba(255,255,255,0.9)",
             borderTopLeftRadius:"15px",
             borderBottomLeftRadius:"15px",
-            marginTop:"5%"
+            marginTop:"7%",
+            paddingBottom:"20%"
           }}>
           <Grid.Row>
             <img src={this.props.avatarURL} id="avatarImg" style={{borderRadius:"5px"}}/>
@@ -296,7 +297,8 @@ export default class UserPage extends Component{
             background:"rgba(255,255,255,0.9)",
             borderTopRightRadius:"15px",
             borderBottomRightRadius:"15px",
-            marginTop:"5%"
+            marginTop:"7%",
+            paddingBottom:"20%"
           }}>
 
         <h1 className="subhead" style={{textAlign:"center", fontSize:"2em"}}>{this.props.username}'s Bookshelf <Icon name="book" /></h1>
@@ -314,7 +316,7 @@ export default class UserPage extends Component{
               <h2 className="subhead" style={{fontSize:"1.5em"}}>WANT TO READ ({this.count(this.state.wantToReadBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 0}>
-              <Card.Group >
+              <Card.Group itemsPerRow={5} centered>
                 {this.state.wantToReadBooks.map((book)=>{
                   return <BookCardUser key={book.id} book={book} handleUpdateBook={this.handleUpdateBook}
                   handleBookClick={this.handleBookClick}/>
@@ -327,7 +329,7 @@ export default class UserPage extends Component{
               <h2 className="subhead" style={{fontSize:"1.5em"}}>READ ({this.count(this.state.readBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 1}>
-              <Card.Group itemsPerRow={4}>
+              <Card.Group itemsPerRow={5} centered>
                 {this.state.readBooks.map((book)=>{
                   return <BookCardUser
                   handleBookReview={this.handleBookReview}
@@ -385,7 +387,7 @@ export default class UserPage extends Component{
               <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS MY FRIENDS RECOMMENDED ({this.count(this.state.booksRecommendedToUser)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 3}>
-              <Card.Group itemsPerRow={4}>
+              <Card.Group itemsPerRow={5} centered>
                 {this.state.booksRecommendedToUser.map((book)=>{
                   return <BookCardUser key={book.id} book={book} handleBookClick={this.handleBookClick}/>
                 })}
@@ -397,7 +399,7 @@ export default class UserPage extends Component{
               <h2 className="subhead" style={{fontSize:"1.5em"}}>BOOKS I'VE RECOMMENDED ({this.count(this.state.recommendedBooks)}) <Icon name='dropdown' /></h2>
             </Accordion.Title>
             <Accordion.Content active={this.state.activeIndex === 4}>
-              <Card.Group itemsPerRow={4}>
+              <Card.Group itemsPerRow={5} centered>
                 {this.state.recommendedBooks.map((book)=>{
                   return <BookCardUser key={book.id} book={book} handleBookClick={this.handleBookClick}/>
                 })}

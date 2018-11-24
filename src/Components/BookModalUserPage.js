@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Grid, Icon, Modal, Segment, Divider, Rating, Dimmer, Loader } from 'semantic-ui-react';
+import { Grid, Icon, Modal, Segment, Divider, Rating } from 'semantic-ui-react';
 
 
 

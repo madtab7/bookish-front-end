@@ -93,7 +93,6 @@ class SearchContainer extends Component{
         searchIndex: this.state.searchIndex - 40
       },()=>console.log(this.state.searchIndex))
     }
-    debugger;
     BooksAdapter.getPaginatedBooksFromQuery(this.state)
     .then(data => {
       this.setState({

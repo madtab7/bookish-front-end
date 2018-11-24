@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Rating} from 'semantic-ui-react';
+import { Form, Button, Rating } from 'semantic-ui-react';
 
 export default class ReviewForm extends Component {
 
@@ -62,13 +62,12 @@ export default class ReviewForm extends Component {
         />
 
         <Form.Input
-          type="text area"
           fluid label="Review"
           name="review"
           value={this.state.review}
           onChange={this.handleInputChange}
         />
-
+        <br/>
         <Button type="submit" style={{color:"black"}}>
           <h2 className="subhead">Submit</h2>
         </Button>

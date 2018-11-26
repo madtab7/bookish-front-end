@@ -10,7 +10,7 @@ export default class BooksAdapter {
   static getBooksFromQuery(stateObj){
     let userString = stateObj.userInput.split(" ").join("-")
     const queryInfo = `${userString}`
-    return fetch(`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
+    return fetch(`https://cors-anywhere.herokuapp.com/`+`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
   }
 
   static getPaginatedBooksFromQuery(stateObj){

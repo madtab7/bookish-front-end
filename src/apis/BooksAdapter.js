@@ -1,5 +1,5 @@
-const google_api_key = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
-const nyt_api_key = process.env.REACT_APP_NYT_BOOKS_API_KEY
+// const google_api_key = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
+// const nyt_api_key = process.env.REACT_APP_NYT_BOOKS_API_KEY
 
 const GOOGLE_Q_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes?q='
 const NYT_LIST_ENDPOINT = 'https://api.nytimes.com/svc/books/v3/lists/'
@@ -10,7 +10,7 @@ export default class BooksAdapter {
   static getBooksFromQuery(stateObj){
     let userString = stateObj.userInput.split(" ").join("-")
     const queryInfo = `${userString}`
-    return fetch(`http://cors.io/?`+`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${google_api_key}`)
+    return fetch(`http://cors.io/?`+`${GOOGLE_Q_ENDPOINT}`+`${queryInfo}`+`&maxResults=40`+`&key=${GOOGLE_API_KEY}`)
   }
 
   static getPaginatedBooksFromQuery(stateObj){

@@ -1,6 +1,7 @@
 export default class InternalAdapter {
 
   // http://localhost:3001/api/
+  // https://bookish-app-api.herokuapp.com/api/v1/
   // 'Access-Control-Allow-Origin':'*'
 
   static signUpUser(username, password, full_name, avatarURL){

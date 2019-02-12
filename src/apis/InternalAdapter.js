@@ -5,7 +5,7 @@ export default class InternalAdapter {
   // 'Access-Control-Allow-Origin':'*'
 
   static signUpUser(username, password, full_name, avatarURL){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/users', {
+    return fetch('http://localhost:3001/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export default class InternalAdapter {
   }
 
   static loginUser(username, password){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/login', {
+    return fetch('http://localhost:3001/api/v1/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default class InternalAdapter {
 
   //match jwt with user
   static getUser(){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/profile', {
+    return fetch('http://localhost:3001/api/v1/profile', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -50,7 +50,7 @@ export default class InternalAdapter {
   }
 
   static createUserBookRead(userId, bookData){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/books', {
+    return fetch('http://localhost:3001/api/v1/books', {
       method: "POST",
       headers:{
         'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export default class InternalAdapter {
     })
     .then(r=>r.json())
     .then(data => { console.log(data.id, userId)
-      fetch('https://bookish-app-api.herokuapp.com/api/v1/shelved_books',{
+      fetch('http://localhost:3001/api/v1/shelved_books',{
         method: "POST",
         headers:{
           'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export default class InternalAdapter {
   }
 
   static createUserBookWantToRead(userId, bookData){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/books', {
+    return fetch('http://localhost:3001/api/v1/books', {
       method: "POST",
       headers:{
         'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export default class InternalAdapter {
     })
     .then(r=>r.json())
     .then(data => { console.log(data.id, userId)
-      fetch('https://bookish-app-api.herokuapp.com/api/v1/shelved_books',{
+      fetch('http://localhost:3001/api/v1/shelved_books',{
         method: "POST",
         headers:{
           'Content-Type': 'application/json',
@@ -123,19 +123,19 @@ export default class InternalAdapter {
 
   // get users shelved books
   static getUserShevedBooks(userId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/shelved_books?user_id=${userId}`)
+    return fetch(`http://localhost:3001/api/v1/shelved_books?user_id=${userId}`)
     .then(r=>r.json())
   }
 
   static getAllShelvedBooks(userId){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/shelved_books')
+    return fetch('http://localhost:3001/api/v1/shelved_books')
     .then(r=>r.json())
   }
 
 
   // update user bookshelf
   static updateUserBookshelfToRead(bookId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/shelved_books/${bookId}`, {
+    return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
       method: "PATCH",
       headers: {
         'Accept': 'application/json',
@@ -152,7 +152,7 @@ export default class InternalAdapter {
 
 //remove book from users shelf
   static updateUserBookshelfToRemove(bookId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/shelved_books/${bookId}`, {
+    return fetch(`http://localhost:3001/api/v1/shelved_books/${bookId}`, {
       method: "DELETE"
     })
   }
@@ -164,7 +164,7 @@ export default class InternalAdapter {
 
 
   static createFriendship(userId, friendId){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/friendships', {
+    return fetch('http://localhost:3001/api/v1/friendships', {
       method: "POST",
       headers: {
         'Content-Type':'application/json',
@@ -180,14 +180,14 @@ export default class InternalAdapter {
   }
 
   static getUserFriends(userId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/friendships?user_id=${userId}`)
+    return fetch(`http://localhost:3001/api/v1/friendships?user_id=${userId}`)
     .then(r=>r.json())
   }
 
 //create book user recommended
   static createBookUserRecommends(userId, friendId, bookData){
     console.log(userId, friendId)
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/books', {
+    return fetch('http://localhost:3001/api/v1/books', {
       method: "POST",
       headers:{
         'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export default class InternalAdapter {
     })
     .then(r=>r.json())
     .then(data => {
-      fetch('https://bookish-app-api.herokuapp.com/api/v1/shelved_books',{
+      fetch('http://localhost:3001/api/v1/shelved_books',{
         method: "POST",
         headers:{
           'Content-Type': 'application/json',
@@ -227,7 +227,7 @@ export default class InternalAdapter {
   //create book review
 
   static createBookReview(userId, bookData, reviewObj){
-    return fetch('https://bookish-app-api.herokuapp.com/api/v1/books', {
+    return fetch('http://localhost:3001/api/v1/books', {
       method: "POST",
       headers:{
         'Content-Type': 'application/json',
@@ -244,7 +244,7 @@ export default class InternalAdapter {
     })
     .then(r=>r.json())
     .then(data => {
-      fetch('https://bookish-app-api.herokuapp.com/api/v1/reviews', {
+      fetch('http://localhost:3001/api/v1/reviews', {
         method: "POST",
         headers:{
           'Content-Type': 'application/json',
@@ -265,19 +265,19 @@ export default class InternalAdapter {
 
   // get user's reviews
   static getUserReviews(userId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/reviews?user_id=${userId}`)
+    return fetch(`http://localhost:3001/api/v1/reviews?user_id=${userId}`)
     .then(r=>r.json())
   }
 
   //delete user review
   static deleteUserReview(reviewId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/reviews/${reviewId}`, {
+    return fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
       method: 'DELETE'
     })
   }
 
   static updateUserReview(reviewObj, reviewId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/reviews/${reviewId}`, {
+    return fetch(`http://localhost:3001/api/v1/reviews/${reviewId}`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
@@ -293,7 +293,7 @@ export default class InternalAdapter {
   }
 
   static createReviewFromReadBook(userId, bookId, reviewObj){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/reviews`,{
+    return fetch(`http://localhost:3001/api/v1/reviews`,{
       method: "POST",
       headers:{
         'Content-Type': 'application/json',
@@ -312,7 +312,7 @@ export default class InternalAdapter {
   }
 
   static createRecommendationFromReadBook(userId, bookId, friendId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/shelved_books`,{
+    return fetch(`http://localhost:3001/api/v1/shelved_books`,{
       method: "POST",
       headers:{
         'Content-Type': 'application/json',
@@ -330,7 +330,7 @@ export default class InternalAdapter {
   }
 
   static getUserBookInfo(bookId){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/books/${bookId}`)
+    return fetch(`http://localhost:3001/api/v1/books/${bookId}`)
     .then(r=>r.json())
   }
 

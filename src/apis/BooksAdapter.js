@@ -1,9 +1,6 @@
 const google_api_key = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
 const nyt_api_key = process.env.REACT_APP_NYT_BOOKS_API_KEY
 
-// const google_api_key = process.env.GOOGLE_BOOKS_API_KEY
-// const nyt_api_key = process.env.NYT_BOOKS_API_KEY
-
 const GOOGLE_Q_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes?q='
 const NYT_LIST_ENDPOINT = 'https://api.nytimes.com/svc/books/v3/lists/'
 

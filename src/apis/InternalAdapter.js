@@ -1,9 +1,5 @@
 export default class InternalAdapter {
 
-  // http://localhost:3001/api/
-  // https://bookish-app-api.herokuapp.com/api/v1/
-  // 'Access-Control-Allow-Origin':'*'
-
   static signUpUser(username, password, full_name, avatarURL){
     return fetch('http://localhost:3001/api/v1/users', {
       method: 'POST',
@@ -158,7 +154,7 @@ export default class InternalAdapter {
   }
 
   static getAllUsers(){
-    return fetch(`https://bookish-app-api.herokuapp.com/api/v1/users`)
+    return fetch(`http://localhost:3001/api/v1/users`)
     .then(r=>r.json())
   }
 
@@ -174,7 +170,7 @@ export default class InternalAdapter {
         friendship:{
           user_id: userId,
           friend_id: friendId
-        }
+        }  
       })
     })
   }

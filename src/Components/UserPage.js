@@ -29,7 +29,6 @@ export default class UserPage extends Component{
     showReccMessage: false
   }
 
-  ///NEED TO REFACTOR
   componentDidMount=()=>{
     this.getUsersBooks()
     this.getUserData()

@@ -9,7 +9,7 @@ const BookModalUserPage = (props)=> {
     <Modal
     open={props.open}
     >
-      <Icon name="close icon" onClick={props.handleClose} />
+      <Icon name="close" onClick={props.handleClose} />
       <Modal.Content>
 
         <Grid columns={2}>

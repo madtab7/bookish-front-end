@@ -25,6 +25,7 @@ export default class BooksAdapter {
   //handle nyt best sellers api query
   static getBooksFromNYTList(stateObj){
     let listEndpoint = stateObj.listSelect
+    console.log(process.env.REACT_APP_NYT_BOOKS_API_KEY)
     return fetch(`${NYT_LIST_ENDPOINT}`+`${listEndpoint}`+`?api-key=${nyt_api_key}`)
   }
 
